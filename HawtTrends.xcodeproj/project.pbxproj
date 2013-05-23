@@ -1,0 +1,288 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		490C5CAC174EB22900CBD520 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490C5CAB174EB22800CBD520 /* UIKit.framework */; };
+		490C5CAE174EB22900CBD520 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490C5CAD174EB22900CBD520 /* Foundation.framework */; };
+		490C5CB0174EB22900CBD520 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490C5CAF174EB22900CBD520 /* CoreGraphics.framework */; };
+		490C5CB6174EB22900CBD520 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CB4174EB22900CBD520 /* InfoPlist.strings */; };
+		490C5CB8174EB22900CBD520 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CB7174EB22900CBD520 /* main.m */; };
+		490C5CBC174EB22900CBD520 /* HTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CBB174EB22900CBD520 /* HTAppDelegate.m */; };
+		490C5CBE174EB22900CBD520 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CBD174EB22900CBD520 /* Default.png */; };
+		490C5CC0174EB22900CBD520 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CBF174EB22900CBD520 /* Default@2x.png */; };
+		490C5CC2174EB22900CBD520 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CC1174EB22900CBD520 /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		490C5CA8174EB22800CBD520 /* HawtTrends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HawtTrends.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		490C5CAB174EB22800CBD520 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		490C5CAD174EB22900CBD520 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		490C5CAF174EB22900CBD520 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		490C5CB3174EB22900CBD520 /* HawtTrends-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HawtTrends-Info.plist"; sourceTree = "<group>"; };
+		490C5CB5174EB22900CBD520 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		490C5CB7174EB22900CBD520 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		490C5CB9174EB22900CBD520 /* HawtTrends-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HawtTrends-Prefix.pch"; sourceTree = "<group>"; };
+		490C5CBA174EB22900CBD520 /* HTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTAppDelegate.h; sourceTree = "<group>"; };
+		490C5CBB174EB22900CBD520 /* HTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTAppDelegate.m; sourceTree = "<group>"; };
+		490C5CBD174EB22900CBD520 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		490C5CBF174EB22900CBD520 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		490C5CC1174EB22900CBD520 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		490C5CA5174EB22800CBD520 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490C5CAC174EB22900CBD520 /* UIKit.framework in Frameworks */,
+				490C5CAE174EB22900CBD520 /* Foundation.framework in Frameworks */,
+				490C5CB0174EB22900CBD520 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		490C5C9F174EB22800CBD520 = {
+			isa = PBXGroup;
+			children = (
+				490C5CB1174EB22900CBD520 /* HawtTrends */,
+				490C5CAA174EB22800CBD520 /* Frameworks */,
+				490C5CA9174EB22800CBD520 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		490C5CA9174EB22800CBD520 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				490C5CA8174EB22800CBD520 /* HawtTrends.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		490C5CAA174EB22800CBD520 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				490C5CAB174EB22800CBD520 /* UIKit.framework */,
+				490C5CAD174EB22900CBD520 /* Foundation.framework */,
+				490C5CAF174EB22900CBD520 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		490C5CB1174EB22900CBD520 /* HawtTrends */ = {
+			isa = PBXGroup;
+			children = (
+				490C5CBA174EB22900CBD520 /* HTAppDelegate.h */,
+				490C5CBB174EB22900CBD520 /* HTAppDelegate.m */,
+				490C5CB2174EB22900CBD520 /* Supporting Files */,
+			);
+			path = HawtTrends;
+			sourceTree = "<group>";
+		};
+		490C5CB2174EB22900CBD520 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				490C5CB3174EB22900CBD520 /* HawtTrends-Info.plist */,
+				490C5CB4174EB22900CBD520 /* InfoPlist.strings */,
+				490C5CB7174EB22900CBD520 /* main.m */,
+				490C5CB9174EB22900CBD520 /* HawtTrends-Prefix.pch */,
+				490C5CBD174EB22900CBD520 /* Default.png */,
+				490C5CBF174EB22900CBD520 /* Default@2x.png */,
+				490C5CC1174EB22900CBD520 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		490C5CA7174EB22800CBD520 /* HawtTrends */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 490C5CC5174EB22900CBD520 /* Build configuration list for PBXNativeTarget "HawtTrends" */;
+			buildPhases = (
+				490C5CA4174EB22800CBD520 /* Sources */,
+				490C5CA5174EB22800CBD520 /* Frameworks */,
+				490C5CA6174EB22800CBD520 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HawtTrends;
+			productName = HawtTrends;
+			productReference = 490C5CA8174EB22800CBD520 /* HawtTrends.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		490C5CA0174EB22800CBD520 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = HT;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Pierre Felgines";
+			};
+			buildConfigurationList = 490C5CA3174EB22800CBD520 /* Build configuration list for PBXProject "HawtTrends" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 490C5C9F174EB22800CBD520;
+			productRefGroup = 490C5CA9174EB22800CBD520 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				490C5CA7174EB22800CBD520 /* HawtTrends */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		490C5CA6174EB22800CBD520 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490C5CB6174EB22900CBD520 /* InfoPlist.strings in Resources */,
+				490C5CBE174EB22900CBD520 /* Default.png in Resources */,
+				490C5CC0174EB22900CBD520 /* Default@2x.png in Resources */,
+				490C5CC2174EB22900CBD520 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		490C5CA4174EB22800CBD520 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490C5CB8174EB22900CBD520 /* main.m in Sources */,
+				490C5CBC174EB22900CBD520 /* HTAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		490C5CB4174EB22900CBD520 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				490C5CB5174EB22900CBD520 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		490C5CC3174EB22900CBD520 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		490C5CC4174EB22900CBD520 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		490C5CC6174EB22900CBD520 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HawtTrends/HawtTrends-Prefix.pch";
+				INFOPLIST_FILE = "HawtTrends/HawtTrends-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		490C5CC7174EB22900CBD520 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HawtTrends/HawtTrends-Prefix.pch";
+				INFOPLIST_FILE = "HawtTrends/HawtTrends-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		490C5CA3174EB22800CBD520 /* Build configuration list for PBXProject "HawtTrends" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				490C5CC3174EB22900CBD520 /* Debug */,
+				490C5CC4174EB22900CBD520 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		490C5CC5174EB22900CBD520 /* Build configuration list for PBXNativeTarget "HawtTrends" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				490C5CC6174EB22900CBD520 /* Debug */,
+				490C5CC7174EB22900CBD520 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 490C5CA0174EB22800CBD520 /* Project object */;
+}
