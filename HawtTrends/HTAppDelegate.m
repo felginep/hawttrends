@@ -7,6 +7,7 @@
 //
 
 #import "HTAppDelegate.h"
+#import "HTMainViewController.h"
 
 @implementation HTAppDelegate
 
@@ -16,10 +17,13 @@
     [super dealloc];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
+
+    HTMainViewController * mainViewController = [[HTMainViewController alloc] init];
+    self.window.rootViewController = mainViewController;
+    [mainViewController release];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
