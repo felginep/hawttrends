@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIColor (Trends)
-
-+ (UIColor *)randomTrendColor;
 + (UIColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
-
++ (NSArray *)trendColors;
++ (UIColor *)randomTrendColor;
++ (UIColor *)randomTrendColorWithBaseColor:(UIColor *)baseColor;
 @end

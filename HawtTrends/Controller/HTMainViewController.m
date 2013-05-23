@@ -8,7 +8,6 @@
 
 #import "HTMainViewController.h"
 #import "HTCellView.h"
-#import "UIColor+Trends.h"
 
 #define HT_NUMBER_CELL 5.0f
 
@@ -29,7 +28,6 @@
         for (int column = 0; column < HT_NUMBER_CELL; column++) {
             frame.origin = CGPointMake(column * widthCell, row * heightCell);
             HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
-            cellView.backgroundColor = [UIColor randomTrendColor];
             [self.view addSubview:cellView];
             [cellView release];
         }
