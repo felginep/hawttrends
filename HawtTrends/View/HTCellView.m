@@ -43,7 +43,11 @@
         [self addSubview:_contentView];
         self.contentView.backgroundColor = self.backgroundColor;
         
-        _animationTimer = [NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:YES];
+        _animationTimer = [NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL
+                                                  target:self
+                                                selector:@selector(_handleTimer:)
+                                                userInfo:nil
+                                                 repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:_animationTimer forMode:NSDefaultRunLoopMode];
     }
     return self;
@@ -66,6 +70,7 @@
     [layer setOpaque:YES];
     
     CGPoint lastPosition = layer.position;
+    // Calculate the new position for the layer
     CGPoint newPosition = lastPosition;
     switch (animationType) {
         case HTAnimationTypeTop:
@@ -90,6 +95,7 @@
             layer.backgroundColor = self.layer.backgroundColor;
             layer.position = self.layer.position;
         }];
+        // Animate the position
         CABasicAnimation * positionAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
         positionAnimation.fromValue = [NSValue valueWithCGPoint:lastPosition];
         positionAnimation.toValue = [NSValue valueWithCGPoint:newPosition];
