@@ -8,10 +8,13 @@
 
 #import "HTMainViewController.h"
 #import "HTCellView.h"
+#import "HTMeasureTextField.h"
 
 #define HT_NUMBER_CELL 5.0f
 
-@interface HTMainViewController ()
+@interface HTMainViewController () {
+    NSDate * _previousDate;
+}
 
 @end
 
@@ -33,9 +36,13 @@
 //        }
 //    }
     
-    HTCellView * cellView = [[HTCellView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width)];
-    [self.view addSubview:cellView];
-    [cellView release];
+//    HTCellView * cellView = [[HTCellView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width)];
+//    [self.view addSubview:cellView];
+//    [cellView release];
+    
+    HTMeasureTextField * textField = [[HTMeasureTextField alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.height - 20, self.view.frame.size.width - 20)];
+    [self.view addSubview:textField];
+    [textField release];
 }
 
 @end
