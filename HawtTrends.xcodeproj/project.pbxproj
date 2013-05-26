@@ -20,6 +20,7 @@
 		490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CCD174EB4E900CBD520 /* HTCellView.m */; };
 		490C5CD2174EB99A00CBD520 /* UIColor+Trends.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CD1174EB99A00CBD520 /* UIColor+Trends.m */; };
 		490C5CD8174EC41800CBD520 /* HTCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CD7174EC41800CBD520 /* HTCellView.xib */; };
+		4911BCBD175119F700A1ED8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4911BCBC175119F700A1ED8F /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		490C5CD0174EB99A00CBD520 /* UIColor+Trends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Trends.h"; path = "Modules/UIColor+Trends.h"; sourceTree = "<group>"; };
 		490C5CD1174EB99A00CBD520 /* UIColor+Trends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Trends.m"; path = "Modules/UIColor+Trends.m"; sourceTree = "<group>"; };
 		490C5CD7174EC41800CBD520 /* HTCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTCellView.xib; sourceTree = "<group>"; };
+		4911BCBC175119F700A1ED8F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4911BCBD175119F700A1ED8F /* QuartzCore.framework in Frameworks */,
 				490C5CAC174EB22900CBD520 /* UIKit.framework in Frameworks */,
 				490C5CAE174EB22900CBD520 /* Foundation.framework in Frameworks */,
 				490C5CB0174EB22900CBD520 /* CoreGraphics.framework in Frameworks */,
@@ -79,6 +82,7 @@
 		490C5CAA174EB22800CBD520 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4911BCBC175119F700A1ED8F /* QuartzCore.framework */,
 				490C5CAB174EB22800CBD520 /* UIKit.framework */,
 				490C5CAD174EB22900CBD520 /* Foundation.framework */,
 				490C5CAF174EB22900CBD520 /* CoreGraphics.framework */,
