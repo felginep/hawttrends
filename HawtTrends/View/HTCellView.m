@@ -6,11 +6,13 @@
 //  Copyright (c) 2013 Pierre Felgines. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "HTCellView.h"
 #import "UIColor+Trends.h"
 
+
 #define HT_TIMER_INTERVAL 3.0f
-#define HT_ANIMATION_DURATION 0.25f
+#define HT_ANIMATION_DURATION 0.5f
 
 @interface HTCellView (Private)
 - (void)_handleTimer:(NSTimer *)timer;
@@ -37,6 +39,7 @@
         
         [_contentView release], _contentView = nil;
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        [_contentView setOpaque:YES];
         [self addSubview:_contentView];
         self.contentView.backgroundColor = self.backgroundColor;
         
@@ -45,7 +48,6 @@
     }
     return self;
 }
-
 @end
 
 @implementation HTCellView (Private)
@@ -56,33 +58,44 @@
 }
 
 - (HTAnimationType)_randomAnimation {
-    int animation = (int)(((float)rand() / (float)RAND_MAX) * 4);
-    return animation;
+    return (int)(((float)rand() / (float)RAND_MAX) * 4);;
 }
 
 - (void)_animateWithAnimation:(HTAnimationType)animationType {
-    CGRect frame = self.contentView.frame;
+    CALayer * layer = self.contentView.layer;
+    [layer setOpaque:YES];
+    
+    CGPoint lastPosition = layer.position;
+    CGPoint newPosition = lastPosition;
     switch (animationType) {
         case HTAnimationTypeTop:
-            frame.origin.y = self.frame.size.height;
+            newPosition.y += self.frame.size.height;
             break;
         case HTAnimationTypeRight:
-            frame.origin.x = -self.frame.size.width;
+            newPosition.x += -self.frame.size.width;
             break;
         case HTAnimationTypeBottom:
-            frame.origin.y = -self.frame.size.height;
+            newPosition.y += -self.frame.size.height;
             break;
         case HTAnimationTypeLeft:
-            frame.origin.x = self.frame.size.width;
+            newPosition.x += self.frame.size.width;
             break;
     }
     
-    [UIView animateWithDuration:HT_ANIMATION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.contentView.frame = frame;
-    } completion:^(BOOL finished) {
-        self.contentView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-        self.contentView.backgroundColor = self.backgroundColor;
-    }];
+    [CATransaction begin]; {
+        [CATransaction setAnimationDuration:HT_ANIMATION_DURATION];
+        // See http://cubic-bezier.com/ for control points
+        [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithControlPoints:0.11f :0.31f :0.49f :1.0f]];
+        [CATransaction setCompletionBlock:^{
+            layer.backgroundColor = self.layer.backgroundColor;
+            layer.position = self.layer.position;
+        }];
+        CABasicAnimation * positionAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
+        positionAnimation.fromValue = [NSValue valueWithCGPoint:lastPosition];
+        positionAnimation.toValue = [NSValue valueWithCGPoint:newPosition];
+        [layer addAnimation:positionAnimation forKey:@"position"];
+        layer.position = newPosition;
+    } [CATransaction commit];
 }
 
 @end

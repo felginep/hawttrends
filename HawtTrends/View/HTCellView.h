@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 typedef enum {
     HTAnimationTypeTop = 0,
@@ -15,7 +16,7 @@ typedef enum {
     HTAnimationTypeLeft
 } HTAnimationType;
 
-@interface HTCellView : UIView
+@interface HTCellView : UIView 
 
 @property (retain, nonatomic) IBOutlet UIView * contentView;
 

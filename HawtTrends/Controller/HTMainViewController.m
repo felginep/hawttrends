@@ -20,18 +20,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CGFloat widthCell = self.view.frame.size.height / HT_NUMBER_CELL;
-    CGFloat heightCell = self.view.frame.size.width / HT_NUMBER_CELL;
+//    CGFloat widthCell = self.view.frame.size.height / HT_NUMBER_CELL;
+//    CGFloat heightCell = self.view.frame.size.width / HT_NUMBER_CELL;
+//    
+//    CGRect frame = CGRectMake(0, 0, widthCell, heightCell);
+//    for (int row = 0; row < HT_NUMBER_CELL; row++) {
+//        for (int column = 0; column < HT_NUMBER_CELL; column++) {
+//            frame.origin = CGPointMake(column * widthCell, row * heightCell);
+//            HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
+//            [self.view addSubview:cellView];
+//            [cellView release];
+//        }
+//    }
     
-    CGRect frame = CGRectMake(0, 0, widthCell, heightCell);
-    for (int row = 0; row < HT_NUMBER_CELL; row++) {
-        for (int column = 0; column < HT_NUMBER_CELL; column++) {
-            frame.origin = CGPointMake(column * widthCell, row * heightCell);
-            HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
-            [self.view addSubview:cellView];
-            [cellView release];
-        }
-    }
+    HTCellView * cellView = [[HTCellView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width)];
+    [self.view addSubview:cellView];
+    [cellView release];
 }
 
 @end
