@@ -50,6 +50,11 @@
     return self;
 }
 
+- (void)setTextColor:(UIColor *)textColor {
+    [super setTextColor:textColor];
+    _cursor.backgroundColor = textColor;
+}
+
 - (void)setAnimatedText:(NSString *)animatedText {
     [_animatedText release];
     _animatedText = [animatedText copy];

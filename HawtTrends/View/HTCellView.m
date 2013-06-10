@@ -14,7 +14,7 @@
 #define HT_TIMER_INTERVAL 3.0f
 #define HT_ANIMATION_DURATION 0.5f
 #define HT_LABEL_ANIMATION_DURATION 0.33f
-#define HT_LABEL_MOVE 60.0f
+#define HT_LABEL_MOVE 30.0f
 
 @interface HTCellView (Private)
 - (void)_handleTimer:(NSTimer *)timer;
@@ -50,7 +50,10 @@
         [_label release], _label = nil;
         _label = [[HTLabel alloc] initWithFrame:CGRectMake(20.0f, 20.0f, _contentView.frame.size.width - 40.0f, _contentView.frame.size.height - 40.0f)];
         _label.backgroundColor = [UIColor clearColor];
-        _label.font = [UIFont systemFontOfSize:60.0f];
+        _label.font = [UIFont boldSystemFontOfSize:60.0f];
+        _label.textColor = [UIColor whiteColor];
+        _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
+        _label.shadowOffset = CGSizeMake(1.0f, 1.0f);
         _label.delegate = self;
         [self addSubview:_label];
         
