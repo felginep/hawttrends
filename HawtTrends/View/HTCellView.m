@@ -13,15 +13,18 @@
 
 #define HT_TIMER_INTERVAL 3.0f
 #define HT_ANIMATION_DURATION 0.5f
+#define HT_LABEL_ANIMATION_DURATION 0.33f
+#define HT_LABEL_MOVE 60.0f
 
 @interface HTCellView (Private)
 - (void)_handleTimer:(NSTimer *)timer;
 - (HTAnimationType)_randomAnimation;
-- (void)_animateWithAnimation:(HTAnimationType)animationType;
+- (void)_animate;
+- (void)_makeLabelAppear;
 @end
 
 @interface HTCellView () {
-
+    HTAnimationType _currentAnimationType;
 }
 @end
 
@@ -69,21 +72,22 @@
 
 - (void)_handleTimer:(NSTimer *)timer {
     self.backgroundColor = [UIColor randomTrendColorWithBaseColor:self.contentView.backgroundColor];
-    [self _animateWithAnimation:[self _randomAnimation]];
+    _currentAnimationType = [self _randomAnimation];
+    [self _animate];
 }
 
 - (HTAnimationType)_randomAnimation {
     return (int)(((float)rand() / (float)RAND_MAX) * 4);;
 }
 
-- (void)_animateWithAnimation:(HTAnimationType)animationType {
+- (void)_animate {
     CALayer * layer = self.contentView.layer;
     [layer setOpaque:YES];
     
     CGPoint lastPosition = layer.position;
     // Calculate the new position for the layer
     CGPoint newPosition = lastPosition;
-    switch (animationType) {
+    switch (_currentAnimationType) {
         case HTAnimationTypeTop:
             newPosition.y += self.frame.size.height;
             break;
@@ -98,7 +102,6 @@
             break;
     }
 
-    _label.animatedText = @"Another text";
     [CATransaction begin]; {
         [CATransaction setAnimationDuration:HT_ANIMATION_DURATION];
         // See http://cubic-bezier.com/ for control points
@@ -106,7 +109,7 @@
         [CATransaction setCompletionBlock:^{
             layer.backgroundColor = self.layer.backgroundColor;
             layer.position = self.layer.position;
-            [_label startAnimating];
+            [self _makeLabelAppear];
         }];
         // Animate the position
         CABasicAnimation * positionAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
@@ -114,7 +117,39 @@
         positionAnimation.toValue = [NSValue valueWithCGPoint:newPosition];
         [layer addAnimation:positionAnimation forKey:@"position"];
         layer.position = newPosition;
+        
+        [_label.layer addAnimation:positionAnimation forKey:@"position"];
+        _label.layer.position = newPosition;
+        
     } [CATransaction commit];
+}
+
+- (void)_makeLabelAppear {
+    _label.animatedText = @"Another text";
+    [_label startAnimating];
+    
+    CGPoint center = self.center;
+    switch (_currentAnimationType) {
+        case HTAnimationTypeTop:
+            center.y -= HT_LABEL_MOVE;
+            break;
+        case HTAnimationTypeRight:
+            center.x += HT_LABEL_MOVE;
+            break;
+        case HTAnimationTypeBottom:
+            center.y += HT_LABEL_MOVE;
+            break;
+        case HTAnimationTypeLeft:
+            center.x -= HT_LABEL_MOVE;
+            break;
+    }
+    
+    _label.alpha = 0;
+    _label.center = center;
+    [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
+        _label.alpha = 1.0f;
+        _label.center = self.center;
+    }];
 }
 
 @end
