@@ -21,7 +21,7 @@
 @end
 
 @interface HTCellView () {
-    NSTimer * _animationTimer;
+
 }
 @end
 
@@ -29,6 +29,7 @@
 
 - (void)dealloc {
     [_contentView release];
+    [_label release];
     [super dealloc];
 }
 
@@ -43,15 +44,25 @@
         [self addSubview:_contentView];
         self.contentView.backgroundColor = self.backgroundColor;
         
-        _animationTimer = [NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL
-                                                  target:self
-                                                selector:@selector(_handleTimer:)
-                                                userInfo:nil
-                                                 repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:_animationTimer forMode:NSDefaultRunLoopMode];
+        [_label release], _label = nil;
+        _label = [[HTLabel alloc] initWithFrame:CGRectMake(20.0f, 20.0f, _contentView.frame.size.width - 40.0f, _contentView.frame.size.height - 40.0f)];
+        _label.backgroundColor = [UIColor clearColor];
+        _label.font = [UIFont systemFontOfSize:60.0f];
+        _label.delegate = self;
+        [self addSubview:_label];
+        
+        _label.animatedText = @"Dummy text";
+        [_label startAnimating];
     }
     return self;
 }
+
+#pragma mark - HTLabelDelegate
+
+- (void)labelDidStopAnimating:(HTLabel *)label {
+    [[NSRunLoop mainRunLoop] addTimer:[NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO] forMode:NSDefaultRunLoopMode];
+}
+
 @end
 
 @implementation HTCellView (Private)
@@ -86,7 +97,8 @@
             newPosition.x += self.frame.size.width;
             break;
     }
-    
+
+    _label.animatedText = @"Another text";
     [CATransaction begin]; {
         [CATransaction setAnimationDuration:HT_ANIMATION_DURATION];
         // See http://cubic-bezier.com/ for control points
@@ -94,6 +106,7 @@
         [CATransaction setCompletionBlock:^{
             layer.backgroundColor = self.layer.backgroundColor;
             layer.position = self.layer.position;
+            [_label startAnimating];
         }];
         // Animate the position
         CABasicAnimation * positionAnimation = [CABasicAnimation animationWithKeyPath:@"position"];

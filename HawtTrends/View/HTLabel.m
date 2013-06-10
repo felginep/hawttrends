@@ -10,7 +10,7 @@
 
 #define HT_TIMER_INTERVAL 0.25f
 #define HT_EPSILON 0.10f
-#define HT_CURSOR_TIMER_INTERVAL 0.6f
+#define HT_CURSOR_TIMER_INTERVAL 0.4f
 
 @interface HTLabel (Private)
 - (void)_handleTimer:(id)sender;
@@ -54,6 +54,8 @@
     [_animatedText release];
     _animatedText = [animatedText copy];
     _textIndex = 0;
+    self.text = nil;
+    [self _positionCursor];
 }
 
 - (void)startAnimating {
