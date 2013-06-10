@@ -61,6 +61,7 @@
     _textIndex = 0;
     self.text = nil;
     [self _positionCursor];
+    self.isWriting = NO;
 }
 
 - (void)startAnimating {
@@ -112,6 +113,7 @@
 }
 
 - (void)_createCursorTimer {
+    [_cursorTimer invalidate];
     [_cursorTimer release];
     _cursorTimer = [[NSTimer timerWithTimeInterval:HT_CURSOR_TIMER_INTERVAL target:self selector:@selector(_handleCursor:) userInfo:nil repeats:YES] retain];
     [[NSRunLoop mainRunLoop] addTimer:_cursorTimer forMode:NSDefaultRunLoopMode];

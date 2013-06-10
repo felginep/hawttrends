@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "HTCellView.h"
+#import "HTTermsDownloader.h"
 
 #define HT_TIMER_INTERVAL 3.0f
 #define HT_ANIMATION_DURATION 0.5f
@@ -59,7 +60,7 @@
         _label.delegate = self;
         [self addSubview:_label];
         
-        _label.animatedText = @"Dummy text";
+        _label.animatedText = [[HTTermsDownloader sharedDownloader] randomTerm];
         [_label startAnimating];
     }
     return self;
@@ -82,7 +83,7 @@
 }
 
 - (HTAnimationType)_randomAnimation {
-    return (int)(((float)rand() / (float)RAND_MAX) * 4);;
+    return (int)(((float)rand() / (float)RAND_MAX) * 4);
 }
 
 - (void)_animate {
@@ -130,7 +131,7 @@
 }
 
 - (void)_makeLabelAppear {
-    _label.animatedText = @"Another text";
+    _label.animatedText = [[HTTermsDownloader sharedDownloader] randomTerm];
     [_label startAnimating];
     
     CGPoint center = self.center;

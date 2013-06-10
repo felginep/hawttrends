@@ -21,6 +21,7 @@
 		490C5CD8174EC41800CBD520 /* HTCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CD7174EC41800CBD520 /* HTCellView.xib */; };
 		4911BCBD175119F700A1ED8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4911BCBC175119F700A1ED8F /* QuartzCore.framework */; };
 		4935EF581764CF4000069D81 /* HTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4935EF571764CF4000069D81 /* HTLabel.m */; };
+		4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4950C74217667B6F0040924E /* HTTermsDownloader.m */; };
 		49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA93341752AB180038DB2A /* HTMeasureTextField.m */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,8 @@
 		4911BCBC175119F700A1ED8F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4935EF561764CF4000069D81 /* HTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTLabel.h; path = View/HTLabel.h; sourceTree = "<group>"; };
 		4935EF571764CF4000069D81 /* HTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTLabel.m; path = View/HTLabel.m; sourceTree = "<group>"; };
+		4950C74117667B6F0040924E /* HTTermsDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTermsDownloader.h; path = Controller/HTTermsDownloader.h; sourceTree = "<group>"; };
+		4950C74217667B6F0040924E /* HTTermsDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTermsDownloader.m; path = Controller/HTTermsDownloader.m; sourceTree = "<group>"; };
 		49BA93331752AB180038DB2A /* HTMeasureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMeasureTextField.h; path = View/HTMeasureTextField.h; sourceTree = "<group>"; };
 		49BA93341752AB180038DB2A /* HTMeasureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMeasureTextField.m; path = View/HTMeasureTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +128,8 @@
 			children = (
 				490C5CC8174EB45D00CBD520 /* HTMainViewController.h */,
 				490C5CC9174EB45D00CBD520 /* HTMainViewController.m */,
+				4950C74117667B6F0040924E /* HTTermsDownloader.h */,
+				4950C74217667B6F0040924E /* HTTermsDownloader.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */,
 				49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */,
 				4935EF581764CF4000069D81 /* HTLabel.m in Sources */,
+				4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

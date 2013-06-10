@@ -8,6 +8,7 @@
 
 #import "HTAppDelegate.h"
 #import "HTMainViewController.h"
+#import "HTTermsDownloader.h"
 
 @implementation HTAppDelegate
 
