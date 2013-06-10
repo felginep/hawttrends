@@ -18,7 +18,6 @@
 		490C5CC2174EB22900CBD520 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CC1174EB22900CBD520 /* Default-568h@2x.png */; };
 		490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CC9174EB45D00CBD520 /* HTMainViewController.m */; };
 		490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CCD174EB4E900CBD520 /* HTCellView.m */; };
-		490C5CD2174EB99A00CBD520 /* UIColor+Trends.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CD1174EB99A00CBD520 /* UIColor+Trends.m */; };
 		490C5CD8174EC41800CBD520 /* HTCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CD7174EC41800CBD520 /* HTCellView.xib */; };
 		4911BCBD175119F700A1ED8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4911BCBC175119F700A1ED8F /* QuartzCore.framework */; };
 		4935EF581764CF4000069D81 /* HTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4935EF571764CF4000069D81 /* HTLabel.m */; };
@@ -43,8 +42,6 @@
 		490C5CC9174EB45D00CBD520 /* HTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMainViewController.m; path = Controller/HTMainViewController.m; sourceTree = "<group>"; };
 		490C5CCC174EB4E900CBD520 /* HTCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCellView.h; path = View/HTCellView.h; sourceTree = "<group>"; };
 		490C5CCD174EB4E900CBD520 /* HTCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCellView.m; path = View/HTCellView.m; sourceTree = "<group>"; };
-		490C5CD0174EB99A00CBD520 /* UIColor+Trends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Trends.h"; path = "Modules/UIColor+Trends.h"; sourceTree = "<group>"; };
-		490C5CD1174EB99A00CBD520 /* UIColor+Trends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Trends.m"; path = "Modules/UIColor+Trends.m"; sourceTree = "<group>"; };
 		490C5CD7174EC41800CBD520 /* HTCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTCellView.xib; sourceTree = "<group>"; };
 		4911BCBC175119F700A1ED8F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4935EF561764CF4000069D81 /* HTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTLabel.h; path = View/HTLabel.h; sourceTree = "<group>"; };
@@ -103,7 +100,6 @@
 				490C5CBB174EB22900CBD520 /* HTAppDelegate.m */,
 				490C5CCB174EB46400CBD520 /* Controller */,
 				490C5CCF174EB4ED00CBD520 /* View */,
-				490C5CD3174EB99E00CBD520 /* Modules */,
 				490C5CD6174EC41800CBD520 /* Resources */,
 				490C5CB2174EB22900CBD520 /* Supporting Files */,
 			);
@@ -144,15 +140,6 @@
 				4935EF571764CF4000069D81 /* HTLabel.m */,
 			);
 			name = View;
-			sourceTree = "<group>";
-		};
-		490C5CD3174EB99E00CBD520 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				490C5CD0174EB99A00CBD520 /* UIColor+Trends.h */,
-				490C5CD1174EB99A00CBD520 /* UIColor+Trends.m */,
-			);
-			name = Modules;
 			sourceTree = "<group>";
 		};
 		490C5CD6174EC41800CBD520 /* Resources */ = {
@@ -234,7 +221,6 @@
 				490C5CBC174EB22900CBD520 /* HTAppDelegate.m in Sources */,
 				490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */,
 				490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */,
-				490C5CD2174EB99A00CBD520 /* UIColor+Trends.m in Sources */,
 				49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */,
 				4935EF581764CF4000069D81 /* HTLabel.m in Sources */,
 			);

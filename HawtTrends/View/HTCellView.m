@@ -8,8 +8,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "HTCellView.h"
-#import "UIColor+Trends.h"
-
 
 #define HT_TIMER_INTERVAL 3.0f
 #define HT_ANIMATION_DURATION 0.5f
@@ -21,10 +19,13 @@
 - (HTAnimationType)_randomAnimation;
 - (void)_animate;
 - (void)_makeLabelAppear;
+- (NSArray *)_trendColors;
+- (UIColor *)_nextColor;
 @end
 
 @interface HTCellView () {
     HTAnimationType _currentAnimationType;
+    NSUInteger _colorIndex;
 }
 @end
 
@@ -39,7 +40,8 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor randomTrendColor];
+        _colorIndex = 0;
+        self.backgroundColor = [self _nextColor];
         
         [_contentView release], _contentView = nil;
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
@@ -74,7 +76,7 @@
 @implementation HTCellView (Private)
 
 - (void)_handleTimer:(NSTimer *)timer {
-    self.backgroundColor = [UIColor randomTrendColorWithBaseColor:self.contentView.backgroundColor];
+    self.backgroundColor = [self _nextColor];
     _currentAnimationType = [self _randomAnimation];
     [self _animate];
 }
@@ -153,6 +155,22 @@
         _label.alpha = 1.0f;
         _label.center = self.center;
     }];
+}
+
+- (NSArray *)_trendColors {
+    static NSArray * sTrendColors = nil;
+    if (!sTrendColors) {
+        sTrendColors = [[NSArray alloc] initWithObjects:[UIColor colorWithRed:0.258f green:0.521f blue:0.956 alpha:1.0f], //blue
+                        [UIColor colorWithRed:0.854f green:0.266f blue:0.215f alpha:1.0f], //red
+                        [UIColor colorWithRed:0.952f green:0.710f blue:0 alpha:1.0f], //orange
+                        [UIColor colorWithRed:0.058f green:0.615f blue:0.345 alpha:1.0f], nil]; //green
+    }
+    return sTrendColors;
+}
+
+- (UIColor *)_nextColor {
+    _colorIndex = (_colorIndex + 1) % [self _trendColors].count;
+    return [self _trendColors][_colorIndex];
 }
 
 @end
