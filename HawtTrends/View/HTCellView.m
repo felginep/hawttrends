@@ -60,7 +60,7 @@
         _label.delegate = self;
         [self addSubview:_label];
         
-        _label.animatedText = [[HTTermsDownloader sharedDownloader] randomTerm];
+        _label.animatedText = [self.datasource textToDisplayForCellView:self];
         [_label startAnimating];
     }
     return self;
@@ -131,7 +131,7 @@
 }
 
 - (void)_makeLabelAppear {
-    _label.animatedText = [[HTTermsDownloader sharedDownloader] randomTerm];
+    _label.animatedText = [self.datasource textToDisplayForCellView:self];
     [_label startAnimating];
     
     CGPoint center = self.center;

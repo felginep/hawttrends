@@ -17,9 +17,16 @@ typedef enum {
     HTAnimationTypeLeft
 } HTAnimationType;
 
+@protocol HTCellViewDataSource;
+
 @interface HTCellView : UIView <HTLabelDelegate>
 
 @property (retain, nonatomic) IBOutlet UIView * contentView;
 @property (retain, nonatomic) IBOutlet HTLabel *label;
+@property (nonatomic, assign) id<HTCellViewDataSource> datasource;
 
+@end
+
+@protocol HTCellViewDataSource <NSObject>
+- (NSString *)textToDisplayForCellView:(HTCellView *)cellView;
 @end

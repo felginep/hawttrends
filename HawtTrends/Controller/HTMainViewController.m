@@ -7,11 +7,9 @@
 //
 
 #import "HTMainViewController.h"
-#import "HTCellView.h"
-#import "HTMeasureTextField.h"
-#import "HTLabel.h"
+#import "HTTermsDownloader.h"
 
-#define HT_NUMBER_CELL 5.0f
+#define HT_NUMBER_CELL 3.0f
 
 @interface HTMainViewController () {
     NSDate * _previousDate;
@@ -38,19 +36,15 @@
 //    }
     
     HTCellView * cellView = [[HTCellView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width)];
+    cellView.datasource = self;
     [self.view addSubview:cellView];
     [cellView release];
+}
 
-//    HTLabel * label = [[HTLabel alloc] initWithFrame:CGRectMake(20.0f, 20.0f, self.view.frame.size.height - 40.0f, self.view.frame.size.width - 40.0f)];
-//    label.font = [UIFont systemFontOfSize:60.0f];
-//    label.animatedText = @"My dummy text";
-//    [self.view addSubview:label];
-//    [label release];
-//    [label startAnimating];
-    
-//    HTMeasureTextField * textField = [[HTMeasureTextField alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.height - 20, self.view.frame.size.width - 20)];
-//    [self.view addSubview:textField];
-//    [textField release];
+# pragma mark - HTCellViewDatasource
+
+- (NSString *)textToDisplayForCellView:(HTCellView *)cellView {
+    return [[HTTermsDownloader sharedDownloader] randomTerm];
 }
 
 @end
