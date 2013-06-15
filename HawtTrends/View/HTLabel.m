@@ -11,7 +11,7 @@
 #define HT_TIMER_INTERVAL 0.25f
 #define HT_EPSILON 0.10f
 #define HT_CURSOR_TIMER_INTERVAL 0.4f
-#define HT_LABEL_FONT_SIZE 60.0f
+#define HT_LABEL_FONT_FACTOR 0.113f
 
 @interface HTLabel (Private)
 - (void)_handleTimer:(id)sender;
@@ -136,7 +136,7 @@
 - (CGFloat)_fontSizeForText:(NSString *)string {
     UILabel * label = [[UILabel alloc] initWithFrame:self.frame];
     label.text = string;
-    label.font = [UIFont systemFontOfSize:HT_LABEL_FONT_SIZE];
+    label.font = [UIFont systemFontOfSize:self.frame.size.width * HT_LABEL_FONT_FACTOR];
     CGFloat fontSize;
     [label.text sizeWithFont:label.font minFontSize:10.0f actualFontSize:&fontSize forWidth:label.frame.size.width lineBreakMode:NSLineBreakByWordWrapping];
     [label release];

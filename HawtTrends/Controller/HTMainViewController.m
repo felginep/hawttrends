@@ -12,7 +12,7 @@
 /*
  * Change HT_NUMBER_CELL to split the screen with multiple cells
  */
-#define HT_NUMBER_CELL 1.0f
+#define HT_NUMBER_CELL 2.0f
 
 @implementation HTMainViewController
 
