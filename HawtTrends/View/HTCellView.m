@@ -43,6 +43,7 @@
     if (self) {
         _colorIndex = 0;
         self.backgroundColor = [self _nextColor];
+        self.clipsToBounds = YES;
         
         [_contentView release], _contentView = nil;
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
@@ -58,7 +59,7 @@
         _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
         _label.shadowOffset = CGSizeMake(1.0f, 1.0f);
         _label.delegate = self;
-        [self addSubview:_label];
+        [self.contentView addSubview:_label];
         
         _label.animatedText = [self.datasource textToDisplayForCellView:self];
         [_label startAnimating];
@@ -89,7 +90,7 @@
 - (void)_animate {
     CALayer * layer = self.contentView.layer;
     [layer setOpaque:YES];
-    
+        
     CGPoint lastPosition = layer.position;
     // Calculate the new position for the layer
     CGPoint newPosition = lastPosition;
@@ -107,14 +108,14 @@
             newPosition.x += self.frame.size.width;
             break;
     }
-
+        
     [CATransaction begin]; {
         [CATransaction setAnimationDuration:HT_ANIMATION_DURATION];
         // See http://cubic-bezier.com/ for control points
         [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithControlPoints:0.11f :0.31f :0.49f :1.0f]];
         [CATransaction setCompletionBlock:^{
             layer.backgroundColor = self.layer.backgroundColor;
-            layer.position = self.layer.position;
+            layer.position = lastPosition;
             [self _makeLabelAppear];
         }];
         // Animate the position
@@ -123,10 +124,6 @@
         positionAnimation.toValue = [NSValue valueWithCGPoint:newPosition];
         [layer addAnimation:positionAnimation forKey:@"position"];
         layer.position = newPosition;
-        
-        [_label.layer addAnimation:positionAnimation forKey:@"position"];
-        _label.layer.position = newPosition;
-        
     } [CATransaction commit];
 }
 
@@ -134,7 +131,7 @@
     _label.animatedText = [self.datasource textToDisplayForCellView:self];
     [_label startAnimating];
     
-    CGPoint center = self.center;
+    CGPoint center = self.contentView.center;
     switch (_currentAnimationType) {
         case HTAnimationTypeTop:
             center.y -= HT_LABEL_MOVE;
@@ -154,7 +151,7 @@
     _label.center = center;
     [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
         _label.alpha = 1.0f;
-        _label.center = self.center;
+        _label.center = self.contentView.center;
     }];
 }
 

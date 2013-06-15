@@ -9,30 +9,26 @@
 #import "HTMainViewController.h"
 #import "HTTermsDownloader.h"
 
-#define HT_NUMBER_CELL 3.0f
+#define HT_NUMBER_CELL 1.0f
 
 @implementation HTMainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    CGFloat widthCell = self.view.frame.size.height / HT_NUMBER_CELL;
-//    CGFloat heightCell = self.view.frame.size.width / HT_NUMBER_CELL;
-//    
-//    CGRect frame = CGRectMake(0, 0, widthCell, heightCell);
-//    for (int row = 0; row < HT_NUMBER_CELL; row++) {
-//        for (int column = 0; column < HT_NUMBER_CELL; column++) {
-//            frame.origin = CGPointMake(column * widthCell, row * heightCell);
-//            HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
-//            [self.view addSubview:cellView];
-//            [cellView release];
-//        }
-//    }
+    CGFloat widthCell = self.view.frame.size.height / HT_NUMBER_CELL;
+    CGFloat heightCell = self.view.frame.size.width / HT_NUMBER_CELL;
     
-    HTCellView * cellView = [[HTCellView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width)];
-    cellView.datasource = self;
-    [self.view addSubview:cellView];
-    [cellView release];
+    CGRect frame = CGRectMake(0, 0, widthCell, heightCell);
+    for (int row = 0; row < HT_NUMBER_CELL; row++) {
+        for (int column = 0; column < HT_NUMBER_CELL; column++) {
+            frame.origin = CGPointMake(column * widthCell, row * heightCell);
+            HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
+            cellView.datasource = self;
+            [self.view addSubview:cellView];
+            [cellView release];
+        }
+    }
 }
 
 # pragma mark - HTCellViewDatasource
