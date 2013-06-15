@@ -60,11 +60,14 @@
         _label.shadowOffset = CGSizeMake(1.0f, 1.0f);
         _label.delegate = self;
         [self.contentView addSubview:_label];
-        
-        _label.animatedText = [self.datasource textToDisplayForCellView:self];
-        [_label startAnimating];
     }
     return self;
+}
+
+- (void)setDatasource:(id<HTCellViewDataSource>)datasource {
+    _datasource = datasource;
+    _label.animatedText = [datasource textToDisplayForCellView:self];
+    [_label startAnimating];
 }
 
 #pragma mark - HTLabelDelegate

@@ -20,6 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    
+    [[HTTermsDownloader sharedDownloader] downloadTerms];
 
     HTMainViewController * mainViewController = [[HTMainViewController alloc] init];
     self.window.rootViewController = mainViewController;

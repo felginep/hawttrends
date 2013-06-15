@@ -17,7 +17,6 @@
     static HTTermsDownloader * sSharedDownloader = nil;
     if (!sSharedDownloader) {
         sSharedDownloader = [[HTTermsDownloader alloc] init];
-        [sSharedDownloader downloadTerms];
     }
     return sSharedDownloader;
 }

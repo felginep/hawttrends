@@ -9,6 +9,9 @@
 #import "HTMainViewController.h"
 #import "HTTermsDownloader.h"
 
+/*
+ * Change HT_NUMBER_CELL to split the screen with multiple cells
+ */
 #define HT_NUMBER_CELL 1.0f
 
 @implementation HTMainViewController
@@ -34,7 +37,9 @@
 # pragma mark - HTCellViewDatasource
 
 - (NSString *)textToDisplayForCellView:(HTCellView *)cellView {
-    return [[HTTermsDownloader sharedDownloader] randomTerm];
+    NSString * text = [[HTTermsDownloader sharedDownloader] randomTerm];
+    if (!text || !text.length) text = @"Loading...";
+    return text;
 }
 
 @end
