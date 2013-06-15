@@ -11,6 +11,7 @@
 #define HT_TIMER_INTERVAL 0.25f
 #define HT_EPSILON 0.10f
 #define HT_CURSOR_TIMER_INTERVAL 0.4f
+#define HT_LABEL_FONT_SIZE 60.0f
 
 @interface HTLabel (Private)
 - (void)_handleTimer:(id)sender;
@@ -19,6 +20,7 @@
 - (void)_createCursorTimer;
 - (NSTimeInterval)_randomTimeInterval;
 - (void)_positionCursor;
+- (CGFloat)_fontSizeForText:(NSString *)string;
 @end
 
 @interface HTLabel () {
@@ -60,6 +62,12 @@
     _animatedText = [animatedText copy];
     _textIndex = 0;
     self.text = nil;
+    CGFloat fontSize = [self _fontSizeForText:_animatedText];
+    self.font = [UIFont systemFontOfSize:fontSize];
+    CGRect frame = _cursor.frame;
+    frame.size.height = fontSize;
+    frame.origin.y = (self.frame.size.height - frame.size.height) * 0.5f;
+    _cursor.frame = frame;
     [self _positionCursor];
     self.isWriting = NO;
 }
@@ -123,6 +131,16 @@
     CGRect cursorFrame = _cursor.frame;
     cursorFrame.origin.x = [self.text sizeWithFont:self.font].width;
     _cursor.frame = cursorFrame;
+}
+
+- (CGFloat)_fontSizeForText:(NSString *)string {
+    UILabel * label = [[UILabel alloc] initWithFrame:self.frame];
+    label.text = string;
+    label.font = [UIFont systemFontOfSize:HT_LABEL_FONT_SIZE];
+    CGFloat fontSize;
+    [label.text sizeWithFont:label.font minFontSize:10.0f actualFontSize:&fontSize forWidth:label.frame.size.width lineBreakMode:NSLineBreakByWordWrapping];
+    [label release];
+    return fontSize - 1.0f; //to see the cursor
 }
 
 @end
