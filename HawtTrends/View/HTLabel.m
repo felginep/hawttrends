@@ -65,6 +65,7 @@
     CGFloat fontSize = [self _fontSizeForText:_animatedText];
     self.font = [UIFont systemFontOfSize:fontSize];
     CGRect frame = _cursor.frame;
+    frame.size.width = (fontSize < 30) ? 1.0 : 2.0f;
     frame.size.height = fontSize;
     frame.origin.y = (self.frame.size.height - frame.size.height) * 0.5f;
     _cursor.frame = frame;
