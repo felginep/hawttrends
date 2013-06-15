@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
+// This class is a helper to record your speed when you type in a UITextField
 @interface HTMeasureTextField : UITextField <UITextFieldDelegate>
-
 @end

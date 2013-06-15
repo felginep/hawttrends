@@ -10,5 +10,4 @@
 #import "HTCellView.h"
 
 @interface HTMainViewController : UIViewController <HTCellViewDataSource>
-
 @end

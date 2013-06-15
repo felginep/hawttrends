@@ -11,12 +11,6 @@
 
 #define HT_NUMBER_CELL 3.0f
 
-@interface HTMainViewController () {
-    NSDate * _previousDate;
-}
-
-@end
-
 @implementation HTMainViewController
 
 - (void)viewDidLoad {
