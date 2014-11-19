@@ -30,10 +30,16 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError * error = nil;
         NSString * jsonString = [NSString stringWithContentsOfURL:[NSURL URLWithString:HT_TERMS_API_URL] encoding:NSUTF8StringEncoding error:&error];
-        if (error) NSLog(@"ERROR : %@", error.description);
+        if (error) {
+            NSLog(@"ERROR : %@", error.description);
+            return ;
+        }
         
         NSDictionary * json = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-        if (error) NSLog(@"ERROR : %@", error.description);
+        if (error) {
+            NSLog(@"ERROR : %@", error.description);
+            return ;
+        }
         
         [_terms release];
         _terms = [[json objectForKey:@"1"] retain];
