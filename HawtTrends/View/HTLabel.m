@@ -28,6 +28,7 @@
     NSUInteger _textIndex;
     UIView * _cursor;
     NSTimer * _cursorTimer;
+    NSTimer * _textTimer;
 }
 @property (nonatomic, assign) BOOL isWriting;
 @end
@@ -37,6 +38,7 @@
 - (void)dealloc {
     [_animatedText release];
     [_cursorTimer invalidate], [_cursorTimer release];
+    [_textTimer invalidate], [_textTimer release];
     [_cursor release];
     [super dealloc];
 }
@@ -94,11 +96,16 @@
 @implementation HTLabel (Private)
 
 - (void)_handleTimer:(id)sender {
+    [_textTimer invalidate];
+    [_textTimer release];
+    _textTimer = nil;
     if (_textIndex < _animatedText.length) {
         _textIndex++;
         [self _createTimer];
     } else {
-        [self.delegate labelDidStopAnimating:self];
+        if ([self.delegate respondsToSelector:@selector(labelDidStopAnimating:)]) {
+            [self.delegate labelDidStopAnimating:self];
+        }
         self.isWriting = NO;
     }
     self.text = [_animatedText substringToIndex:_textIndex];
@@ -118,7 +125,10 @@
 }
 
 - (void)_createTimer {
-    [[NSRunLoop currentRunLoop] addTimer:[NSTimer timerWithTimeInterval:[self _randomTimeInterval] target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO] forMode:NSDefaultRunLoopMode];
+    [_textTimer invalidate];
+    [_textTimer release];
+    _textTimer = [[NSTimer timerWithTimeInterval:[self _randomTimeInterval] target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO] retain];
+    [[NSRunLoop currentRunLoop] addTimer:_textTimer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)_createCursorTimer {

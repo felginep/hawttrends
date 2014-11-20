@@ -27,14 +27,16 @@
 @interface HTCellView () {
     HTAnimationType _currentAnimationType;
     NSUInteger _colorIndex;
+    NSTimer * _labelTimer;
 }
 @end
 
 @implementation HTCellView
 
 - (void)dealloc {
-    [_contentView release];
-    [_label release];
+    [_contentView release], _contentView = nil;
+    [_label release], _label = nil;
+    [_labelTimer invalidate], [_labelTimer release], _labelTimer = nil;
     [super dealloc];
 }
 
@@ -73,7 +75,9 @@
 #pragma mark - HTLabelDelegate
 
 - (void)labelDidStopAnimating:(HTLabel *)label {
-    [[NSRunLoop mainRunLoop] addTimer:[NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO] forMode:NSDefaultRunLoopMode];
+    [_labelTimer release];
+    _labelTimer = [[NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO] retain];
+    [[NSRunLoop mainRunLoop] addTimer:_labelTimer forMode:NSDefaultRunLoopMode];
 }
 
 @end
@@ -81,6 +85,7 @@
 @implementation HTCellView (Private)
 
 - (void)_handleTimer:(NSTimer *)timer {
+    [_labelTimer release], _labelTimer = nil;
     self.backgroundColor = [self _nextColor];
     _currentAnimationType = [self _randomAnimation];
     [self _animate];
