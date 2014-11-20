@@ -36,10 +36,9 @@
 @implementation HTLabel
 
 - (void)dealloc {
-    [_animatedText release];
-    [_cursorTimer invalidate], [_cursorTimer release];
-    [_textTimer invalidate], [_textTimer release];
-    [_cursor release];
+    [_animatedText release], _animatedText = nil;
+    [_cursor release], _cursor = nil;
+    [self stopTimers];
     [super dealloc];
 }
 
@@ -78,6 +77,13 @@
 - (void)startAnimating {
     [self _handleTimer:nil];
     self.isWriting = YES;
+}
+
+- (void)stopTimers {
+    [_cursorTimer invalidate];
+    [_cursorTimer release], _cursorTimer = nil;
+    [_textTimer invalidate];
+    [_textTimer release], _textTimer = nil;
 }
 
 - (void)setIsWriting:(BOOL)isWriting {

@@ -35,8 +35,10 @@
 
 - (void)dealloc {
     [_contentView release], _contentView = nil;
+    [_label stopTimers];
     [_label release], _label = nil;
-    [_labelTimer invalidate], [_labelTimer release], _labelTimer = nil;
+    [_labelTimer invalidate];
+    [_labelTimer release], _labelTimer = nil;
     [super dealloc];
 }
 
@@ -85,6 +87,7 @@
 @implementation HTCellView (Private)
 
 - (void)_handleTimer:(NSTimer *)timer {
+    [_labelTimer invalidate];
     [_labelTimer release], _labelTimer = nil;
     self.backgroundColor = [self _nextColor];
     _currentAnimationType = [self _randomAnimation];

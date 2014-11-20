@@ -16,6 +16,7 @@
 @property (nonatomic, assign) id<HTLabelDelegate> delegate;
 
 - (void)startAnimating;
+- (void)stopTimers;
 
 @end
 
