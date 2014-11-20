@@ -35,7 +35,7 @@ typedef enum {
 @interface HTMenuButton : UIView
 @property (nonatomic, assign) NSInteger squareNumbers;
 @property (nonatomic, assign) CGFloat squareMargin;
-@property id<HTMenuButtonDelegate> delegate;
+@property (nonatomic, assign) id<HTMenuButtonDelegate> delegate;
 @end
 
 @interface HTMenuButton () {
