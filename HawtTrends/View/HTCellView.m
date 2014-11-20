@@ -17,6 +17,7 @@
 
 @interface HTCellView (Private)
 - (void)_handleTimer:(NSTimer *)timer;
+- (int)_random;
 - (HTAnimationType)_randomAnimation;
 - (void)_animate;
 - (void)_makeLabelAppear;
@@ -45,7 +46,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        _colorIndex = 0;
+        _colorIndex = [self _random];
         self.backgroundColor = [self _nextColor];
         self.clipsToBounds = YES;
         
@@ -95,6 +96,10 @@
 }
 
 - (HTAnimationType)_randomAnimation {
+    return [self _random];
+}
+
+- (int)_random {
     return (int)(((float)rand() / (float)RAND_MAX) * 4);
 }
 
