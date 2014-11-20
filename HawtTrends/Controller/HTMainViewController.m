@@ -215,20 +215,24 @@ typedef enum {
 
 
 @interface HTMainViewController () <HTMenuButtonDelegate>
-
+@property (nonatomic, retain) HTMenuButton * menuButton;
 @end
 
 @implementation HTMainViewController
+
+- (void)dealloc {
+    [_menuButton release], _menuButton = nil;
+    [super dealloc];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self _loadInterfaceWithNumberOfRows:HT_NUMBER_CELL andNumberOfColumns:HT_NUMBER_CELL];
 
-    HTMenuButton * menuButton = [[HTMenuButton alloc] initWithFrame:CGRectMake(5.0f, 5.0f, 20.0f, 20.0f)];
-    menuButton.delegate = self;
-    [self.view addSubview:menuButton];
-    [menuButton release];
+    _menuButton = [[HTMenuButton alloc] initWithFrame:CGRectMake(5.0f, 20.0f, 20.0f, 20.0f)];
+    _menuButton.delegate = self;
+    [self.view addSubview:_menuButton];
 }
 
 # pragma mark - HTCellViewDatasource
@@ -260,13 +264,15 @@ typedef enum {
     CGRect frame = CGRectMake(0, 0, widthCell, heightCell);
     for (int row = 0; row < numberOfRows; row++) {
         for (int column = 0; column < numberOfColumns; column++) {
-            frame.origin = CGPointMake(column * widthCell, row * heightCell);
+            frame.origin = CGPointMake(row * widthCell, column * heightCell);
             HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
             cellView.datasource = self;
             [self.view addSubview:cellView];
             [cellView release];
         }
     }
+
+    [self.view bringSubviewToFront:_menuButton];
 }
 
 @end
