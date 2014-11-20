@@ -24,6 +24,7 @@
 		494C47E6176CBAE000DE909B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 494C47E5176CBAE000DE909B /* icon@2x.png */; };
 		4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4950C74217667B6F0040924E /* HTTermsDownloader.m */; };
 		49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA93341752AB180038DB2A /* HTMeasureTextField.m */; };
+		49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		4950C74217667B6F0040924E /* HTTermsDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTermsDownloader.m; path = Controller/HTTermsDownloader.m; sourceTree = "<group>"; };
 		49BA93331752AB180038DB2A /* HTMeasureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMeasureTextField.h; path = View/HTMeasureTextField.h; sourceTree = "<group>"; };
 		49BA93341752AB180038DB2A /* HTMeasureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMeasureTextField.m; path = View/HTMeasureTextField.m; sourceTree = "<group>"; };
+		49C0C19D1A1DF8DC0098E25D /* HTGridSizeSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTGridSizeSelector.h; path = View/HTGridSizeSelector.h; sourceTree = "<group>"; };
+		49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTGridSizeSelector.m; path = View/HTGridSizeSelector.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,8 @@
 				49BA93341752AB180038DB2A /* HTMeasureTextField.m */,
 				4935EF561764CF4000069D81 /* HTLabel.h */,
 				4935EF571764CF4000069D81 /* HTLabel.m */,
+				49C0C19D1A1DF8DC0098E25D /* HTGridSizeSelector.h */,
+				49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */,
 				490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */,
 				49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */,
+				49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */,
 				4935EF581764CF4000069D81 /* HTLabel.m in Sources */,
 				4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */,
 			);
