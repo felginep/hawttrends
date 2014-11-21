@@ -12,7 +12,7 @@
 #define HT_LANGUAGE_KEY @"HT_LANGUAGE_KEY"
 
 @interface HTTermsDownloader () {
-    NSDictionary * _languageAssociations;
+    NSDictionary * _countryAssociations;
 }
 
 @end
@@ -28,13 +28,14 @@
 }
 
 - (void)dealloc {
-    [_languageAssociations release], _languageAssociations = nil;
+    [_countryAssociations release], _countryAssociations = nil;
+    [_currentCountry release], _currentCountry = nil;
     [super dealloc];
 }
 
 - (id)init {
     if (self = [super init]) {
-        _languageAssociations = [[NSDictionary alloc] initWithDictionary:@{
+        _countryAssociations = [[NSDictionary alloc] initWithDictionary:@{
                                                                           @"Afrique du Sub": @"40",
                                                                           @"Allemagne": @"15",
                                                                           @"Arabie Saoudite": @"36",
@@ -84,21 +85,21 @@
                                                                           @"Vietnam": @"28"
                                                                           }];
 
-        _currentLanguage = [[NSUserDefaults standardUserDefaults] objectForKey:HT_LANGUAGE_KEY];
-        if (!_currentLanguage) {
-            self.currentLanguage = @"Etats Unis";
+        _currentCountry = [[NSUserDefaults standardUserDefaults] objectForKey:HT_LANGUAGE_KEY];
+        if (!_currentCountry) {
+            self.currentCountry = @"Etats Unis";
         }
     }
     return self;
 }
 
-- (NSArray *)languages {
-    return [[_languageAssociations allKeys] sortedArrayUsingSelector:@selector(compare:)];
+- (NSArray *)countries {
+    return [[_countryAssociations allKeys] sortedArrayUsingSelector:@selector(compare:)];
 }
 
-- (void)setCurrentLanguage:(NSString *)currentLanguage {
-    _currentLanguage = currentLanguage;
-    [[NSUserDefaults standardUserDefaults] setObject:currentLanguage forKey:HT_LANGUAGE_KEY];
+- (void)setCurrentCountry:(NSString *)currentCountry {
+    _currentCountry = currentCountry;
+    [[NSUserDefaults standardUserDefaults] setObject:currentCountry forKey:HT_LANGUAGE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self downloadTerms];
 }
@@ -126,7 +127,7 @@
         }
         
         [_terms release];
-        _terms = [[json objectForKey:_languageAssociations[_currentLanguage]] retain];
+        _terms = [[json objectForKey:_countryAssociations[_currentCountry]] retain];
     });
 }
 

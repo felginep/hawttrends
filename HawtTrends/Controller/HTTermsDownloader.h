@@ -13,12 +13,12 @@
 @interface HTTermsDownloader : NSObject
 
 @property (nonatomic, retain, readonly) NSArray * terms;
-@property (nonatomic, retain) NSString * currentLanguage;
+@property (nonatomic, retain) NSString * currentCountry;
 @property (nonatomic, assign) id<HTTermsDownloaderDelegate> delegate;
 
 + (HTTermsDownloader *)sharedDownloader;
 - (NSString *)randomTerm;
-- (NSArray *)languages;
+- (NSArray *)countries;
 - (void)downloadTerms;
 
 @end

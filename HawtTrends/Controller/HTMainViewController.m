@@ -48,7 +48,7 @@
     [self.view addSubview:_languageButton];
 
     _countryTableViewController = [[HTCountryTableViewController alloc] init];
-    _countryTableViewController.countries = [HTTermsDownloader sharedDownloader].languages;
+    _countryTableViewController.countries = [HTTermsDownloader sharedDownloader].countries;
     _countryTableViewController.delegate = self;
 
     [self _loadInterfaceWithNumberOfRows:HT_NUMBER_CELL andNumberOfColumns:HT_NUMBER_CELL];
@@ -75,7 +75,7 @@
 #pragma mark - HTCountryTableViewControllerDelegate methods
 
 - (void)countryTableViewController:(HTCountryTableViewController *)countryTableViewController didSelectCountry:(NSString *)country {
-    [HTTermsDownloader sharedDownloader].currentLanguage = country;
+    [HTTermsDownloader sharedDownloader].currentCountry = country;
     [self _loadInterfaceWithNumberOfRows:2 andNumberOfColumns:2];
     [self toggleLanguage:nil];
 }
