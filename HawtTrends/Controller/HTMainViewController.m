@@ -16,7 +16,8 @@
  */
 #define HT_NUMBER_CELL 1
 
-@interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate>
+@property (nonatomic, retain) UIView * contentView;
 @property (nonatomic, retain) HTGridSizeSelector * gridSelector;
 @property (nonatomic, retain) UIButton * languageButton;
 @property (nonatomic, retain) HTCountryTableViewController * countryTableViewController;
@@ -26,13 +27,15 @@
 
 - (void)dealloc {
     [_gridSelector release], _gridSelector = nil;
+    [_contentView release], _contentView = nil;
     [super dealloc];
 }
 
 - (void)loadView {
     [super loadView];
 
-    [self _loadInterfaceWithNumberOfRows:HT_NUMBER_CELL andNumberOfColumns:HT_NUMBER_CELL];
+    _contentView = [[UIView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:_contentView];
 
     _gridSelector = [[HTGridSizeSelector alloc] initWithFrame:CGRectMake(5.0f, 5.0f, 20.0f, 20.0f)];
     _gridSelector.delegate = self;
@@ -47,6 +50,8 @@
     _countryTableViewController = [[HTCountryTableViewController alloc] init];
     _countryTableViewController.countries = [HTTermsDownloader sharedDownloader].languages;
     _countryTableViewController.delegate = self;
+
+    [self _loadInterfaceWithNumberOfRows:HT_NUMBER_CELL andNumberOfColumns:HT_NUMBER_CELL];
 }
 
 - (void)toggleLanguage:(id)sender {
@@ -92,14 +97,11 @@
 #pragma mark - Private methods
 
 - (void)_loadInterfaceWithNumberOfRows:(int)numberOfRows andNumberOfColumns:(int)numberOfColumns {
-    CGFloat widthCell = self.view.frame.size.width / numberOfRows;
-    CGFloat heightCell = self.view.frame.size.height / numberOfColumns;
+    CGFloat widthCell = _contentView.frame.size.width / numberOfRows;
+    CGFloat heightCell = _contentView.frame.size.height / numberOfColumns;
 
-    for (UIView * subview in self.view.subviews) {
-        if ([subview isKindOfClass:[HTCellView class]]) {
-            [subview removeFromSuperview];
-        }
-    }
+    // Remove all subviews
+    [_contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
     CGRect frame = CGRectMake(0, 0, widthCell, heightCell);
     for (int row = 0; row < numberOfRows; row++) {
@@ -107,13 +109,10 @@
             frame.origin = CGPointMake(row * widthCell, column * heightCell);
             HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
             cellView.datasource = self;
-            [self.view addSubview:cellView];
+            [_contentView addSubview:cellView];
             [cellView release];
         }
     }
-
-    [self.view bringSubviewToFront:_gridSelector];
-    [self.view bringSubviewToFront:_languageButton];
 }
 
 @end
