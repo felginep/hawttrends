@@ -20,8 +20,6 @@
 @property (nonatomic, retain) UIButton * languageButton;
 @property (nonatomic, retain) UIView * overlayView;
 @property (nonatomic, retain) UITableView * tableView;
-@property (nonatomic, retain) NSDictionary * languages;
-@property (nonatomic, retain) NSArray * languagesKeys;
 @end
 
 @implementation HTMainViewController
@@ -31,15 +29,11 @@
     [_overlayView release], _overlayView = nil;
     [_tableView release], _tableView = nil;
     [_languageButton release], _languageButton = nil;
-    [_languages release], _languages = nil;
-    [_languagesKeys release], _languagesKeys = nil;
     [super dealloc];
 }
 
 - (void)loadView {
     [super loadView];
-
-
 
     [self _loadInterfaceWithNumberOfRows:HT_NUMBER_CELL andNumberOfColumns:HT_NUMBER_CELL];
 
@@ -55,7 +49,7 @@
     _languageButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
     _languageButton.frame = CGRectMake(self.view.frame.size.width - 54.0f, 10.0f, 44.0f, 44.0f);
     _languageButton.backgroundColor = [UIColor redColor];
-    [_languageButton addTarget:self action:@selector(chooseLanguage:) forControlEvents:UIControlEventTouchUpInside];
+    [_languageButton addTarget:self action:@selector(toggleLanguage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_languageButton];
 
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
@@ -67,63 +61,8 @@
     [self.overlayView addSubview:_tableView];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    _languages = [[NSDictionary alloc] initWithDictionary:@{
-                                                           @"Afrique du Sub": @"40",
-                                                           @"Allemagne": @"15",
-                                                           @"Arabie Saoudite": @"36",
-                                                           @"Argentine": @"30",
-                                                           @"Australie": @"8",
-                                                           @"Autriche": @"44",
-                                                           @"Belgique": @"41",
-                                                           @"Brésil": @"18",
-                                                           @"Canada": @"13",
-                                                           @"Chili": @"38",
-                                                           @"Colombie": @"32",
-                                                           @"Corée du Sud": @"23",
-                                                           @"Danemark": @"49",
-                                                           @"Egypte": @"29",
-                                                           @"Espagne": @"26",
-                                                           @"Etats Unis": @"1",
-                                                           @"Finlande": @"50",
-                                                           @"France": @"16",
-                                                           @"Grèce": @"48",
-                                                           @"Hong Kong": @"10",
-                                                           @"Hongrie": @"45",
-                                                           @"Inde": @"3",
-                                                           @"Indonésie": @"19",
-                                                           @"Israël": @"6",
-                                                           @"Italie": @"27",
-                                                           @"Japon": @"4",
-                                                           @"Kenya": @"37",
-                                                           @"Malaisie": @"34",
-                                                           @"Mexique": @"21",
-                                                           @"Nigeria": @"52",
-                                                           @"Norvège": @"51",
-                                                           @"Pays-Bas": @"17",
-                                                           @"Philippines": @"25",
-                                                           @"Pologne": @"31",
-                                                           @"Portugal": @"47",
-                                                           @"République Tchèque": @"43",
-                                                           @"Roumanie": @"39",
-                                                           @"Royaume Uni": @"9",
-                                                           @"Russie": @"14",
-                                                           @"Singapour": @"5",
-                                                           @"Suède": @"42",
-                                                           @"Suisse": @"46",
-                                                           @"Taïwan": @"12",
-                                                           @"Thaïlande": @"33",
-                                                           @"Turquie": @"24",
-                                                           @"Ukraine": @"35",
-                                                           @"Vietnam": @"28"
-                                                           }] ;
-
-    _languagesKeys = [[[_languages allKeys] sortedArrayUsingSelector:@selector(compare:)] retain];
-}
-
-- (void)chooseLanguage:(id)sender {
+- (void)toggleLanguage:(id)sender {
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     [UIView animateWithDuration:0.3f animations:^{
         _overlayView.alpha = ABS(1.0f - _overlayView.alpha);
     }];
@@ -132,7 +71,7 @@
 #pragma mark - UITableViewDataSource methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _languagesKeys.count;
+    return [HTTermsDownloader sharedDownloader].languages.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -142,11 +81,14 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
     }
 
-    cell.textLabel.text = _languagesKeys[indexPath.row];
+    cell.textLabel.text = [HTTermsDownloader sharedDownloader].languages[indexPath.row];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.font = [UIFont systemFontOfSize:40.0f];
+    if ([cell.textLabel.text isEqualToString:[HTTermsDownloader sharedDownloader].currentLanguage]) {
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:40.0f];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
@@ -155,7 +97,9 @@
 #pragma mark - UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"selected");
+    [HTTermsDownloader sharedDownloader].currentLanguage = [HTTermsDownloader sharedDownloader].languages[indexPath.row];
+    [self _loadInterfaceWithNumberOfRows:2 andNumberOfColumns:2];
+    [self toggleLanguage:nil];
 }
 
 # pragma mark - HTCellViewDatasource
@@ -195,6 +139,7 @@
         }
     }
 
+    [self.view bringSubviewToFront:_overlayView];
     [self.view bringSubviewToFront:_gridSelector];
     [self.view bringSubviewToFront:_languageButton];
 }
