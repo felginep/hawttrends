@@ -20,6 +20,7 @@
 }
 
 - (void)loadView {
+    [super loadView];
     self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8f];
 
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
