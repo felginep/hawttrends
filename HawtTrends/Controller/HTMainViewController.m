@@ -63,6 +63,7 @@
             [_countryTableViewController removeFromParentViewController];
         }];
     } else {
+        _countryTableViewController.country = [HTTermsDownloader sharedDownloader].currentCountry;
         [self addChildViewController:_countryTableViewController];
         [self.view addSubview:_countryTableViewController.view];
         _countryTableViewController.view.alpha = 0;

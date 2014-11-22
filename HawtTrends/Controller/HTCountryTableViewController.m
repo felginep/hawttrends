@@ -16,6 +16,8 @@
 
 - (void)dealloc {
     [_tableView release], _tableView = nil;
+    [_countries release], _countries = nil;
+    [_country release], _country = nil;
     [super dealloc];
 }
 
@@ -35,6 +37,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+
+    if (self.country) {
+        NSUInteger index = [self.countries indexOfObject:self.country];
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+    }
 }
 
 #pragma mark - UITableViewDataSource methods
