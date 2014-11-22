@@ -35,6 +35,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self reloadData];
+}
+
+- (void)reloadData {
     [self.tableView reloadData];
 
     if (self.country) {

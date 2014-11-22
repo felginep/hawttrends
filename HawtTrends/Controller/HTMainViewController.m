@@ -17,6 +17,7 @@
 #define HT_NUMBER_CELL 1
 
 @interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate>
+@property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIView * contentView;
 @property (nonatomic, strong) HTGridSizeSelector * gridSelector;
 @property (nonatomic, strong) UIButton * languageButton;
@@ -31,13 +32,22 @@
     _contentView = nil;
     _languageButton = nil;
     _countryTableViewController = nil;
+    _scrollView = nil;
 }
 
 - (void)loadView {
     [super loadView];
 
+    _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_scrollView];
+    _scrollView.pagingEnabled = YES;
+    _scrollView.bounces = NO;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.backgroundColor = [UIColor whiteColor];
+    _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2.0f, self.view.bounds.size.height);
+
     _contentView = [[UIView alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:_contentView];
+    [_scrollView addSubview:_contentView];
 
     _gridSelector = [[HTGridSizeSelector alloc] initWithFrame:CGRectMake(5.0f, 5.0f, 20.0f, 20.0f)];
     _gridSelector.delegate = self;
@@ -52,28 +62,22 @@
     _countryTableViewController = [[HTCountryTableViewController alloc] init];
     _countryTableViewController.countries = [HTTermsDownloader sharedDownloader].countries;
     _countryTableViewController.delegate = self;
+    [self addChildViewController:_countryTableViewController];
+    [self.scrollView addSubview:_countryTableViewController.view];
+
+    _countryTableViewController.view.frame = CGRectMake(self.view.bounds.size.width, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 
     _currentConfiguration = HTConfigurationMake(2, 2);
     [self _loadInterfaceWithConfiguration:_currentConfiguration];
 }
 
 - (void)toggleLanguage:(id)sender {
-    if (_countryTableViewController.parentViewController == self) {
-        [UIView animateWithDuration:0.3f animations:^{
-            _countryTableViewController.view.alpha = 0;
-        } completion:^(BOOL finished) {
-            [_countryTableViewController.view removeFromSuperview];
-            [_countryTableViewController removeFromParentViewController];
-        }];
-    } else {
+    if (self.scrollView.contentOffset.x == 0) {
+        [self.scrollView scrollRectToVisible:_countryTableViewController.view.frame animated:YES];
         _countryTableViewController.country = [HTTermsDownloader sharedDownloader].currentCountry;
-        [self addChildViewController:_countryTableViewController];
-        [self.view addSubview:_countryTableViewController.view];
-        [self.view bringSubviewToFront:_languageButton];
-        _countryTableViewController.view.alpha = 0;
-        [UIView animateWithDuration:0.3f animations:^{
-            _countryTableViewController.view.alpha = 1.0f;
-        }];
+        [self.countryTableViewController reloadData];
+    } else {
+        [self.scrollView scrollRectToVisible:_contentView.frame animated:YES];
     }
 }
 
