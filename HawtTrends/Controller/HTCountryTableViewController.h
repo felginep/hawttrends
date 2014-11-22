@@ -14,8 +14,6 @@
 @end
 
 @interface HTCountryTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) NSArray * countries;
-@property (nonatomic, strong) NSString * country;
 @property (nonatomic, strong) IBOutlet UITableView * tableView;
 @property (nonatomic, weak) id<HTCountryTableViewControllerDelegate> delegate;
 

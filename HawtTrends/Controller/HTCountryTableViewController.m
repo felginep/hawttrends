@@ -8,6 +8,7 @@
 
 #import "HTCountryTableViewController.h"
 #import "HTCountryTableViewCell.h"
+#import "HTTermsDownloader.h"
 
 @interface HTCountryTableViewController ()
 
@@ -17,8 +18,6 @@
 
 - (void)dealloc {
     _tableView = nil;
-    _countries = nil;
-    _country = nil;
 }
 
 - (void)loadView {
@@ -46,8 +45,8 @@
 - (void)reloadData {
     [self.tableView reloadData];
 
-    if (self.country) {
-        NSUInteger index = [self.countries indexOfObject:self.country];
+    NSUInteger index = [[HTTermsDownloader sharedDownloader].countries indexOfObject:[HTTermsDownloader sharedDownloader].currentCountry];
+    if (index != NSNotFound) {
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
         [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:NO];
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -57,7 +56,7 @@
 #pragma mark - UITableViewDataSource methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.countries.count;
+    return [HTTermsDownloader sharedDownloader].countries.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,7 +65,7 @@
     if (!cell) {
         cell = [[HTCountryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.label.text = self.countries[indexPath.row];
+    cell.label.text = [HTTermsDownloader sharedDownloader].countries[indexPath.row];
     return cell;
 }
 
@@ -77,8 +76,9 @@
 #pragma mark - UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString * country = [HTTermsDownloader sharedDownloader].countries[indexPath.row];
     if ([self.delegate respondsToSelector:@selector(countryTableViewController:didSelectCountry:)]) {
-        [self.delegate countryTableViewController:self didSelectCountry:self.countries[indexPath.row]];
+        [self.delegate countryTableViewController:self didSelectCountry:country];
     }
 }
 

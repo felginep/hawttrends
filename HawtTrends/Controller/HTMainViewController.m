@@ -53,7 +53,6 @@
     [self.view addSubview:_gridSelector];
 
     _countryTableViewController = [[HTCountryTableViewController alloc] init];
-    _countryTableViewController.countries = [HTTermsDownloader sharedDownloader].countries;
     _countryTableViewController.delegate = self;
     [self addChildViewController:_countryTableViewController];
     [self.scrollView addSubview:_countryTableViewController.view];
@@ -72,7 +71,6 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     if (scrollView.contentOffset.x == 0) {
-        _countryTableViewController.country = [HTTermsDownloader sharedDownloader].currentCountry;
         [self.countryTableViewController reloadData];
     }
 }
