@@ -66,6 +66,7 @@
         _countryTableViewController.country = [HTTermsDownloader sharedDownloader].currentCountry;
         [self addChildViewController:_countryTableViewController];
         [self.view addSubview:_countryTableViewController.view];
+        [self.view bringSubviewToFront:_languageButton];
         _countryTableViewController.view.alpha = 0;
         [UIView animateWithDuration:0.3f animations:^{
             _countryTableViewController.view.alpha = 1.0f;
