@@ -29,6 +29,8 @@
 - (void)dealloc {
     _gridSelector = nil;
     _contentView = nil;
+    _languageButton = nil;
+    _countryTableViewController = nil;
 }
 
 - (void)loadView {
