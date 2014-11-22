@@ -12,9 +12,9 @@
 
 @interface HTTermsDownloader : NSObject
 
-@property (nonatomic, retain, readonly) NSArray * terms;
-@property (nonatomic, retain) NSString * currentCountry;
-@property (nonatomic, assign) id<HTTermsDownloaderDelegate> delegate;
+@property (nonatomic, strong, readonly) NSArray * terms;
+@property (nonatomic, strong) NSString * currentCountry;
+@property (nonatomic, weak) id<HTTermsDownloaderDelegate> delegate;
 
 + (HTTermsDownloader *)sharedDownloader;
 - (NSString *)randomTerm;

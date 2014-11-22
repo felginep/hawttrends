@@ -36,10 +36,9 @@
 @implementation HTLabel
 
 - (void)dealloc {
-    [_animatedText release], _animatedText = nil;
-    [_cursor release], _cursor = nil;
+    _animatedText = nil;
+    _cursor = nil;
     [self stopTimers];
-    [super dealloc];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -59,7 +58,6 @@
 }
 
 - (void)setAnimatedText:(NSString *)animatedText {
-    [_animatedText release];
     _animatedText = [animatedText copy];
     _textIndex = 0;
     self.text = nil;
@@ -81,9 +79,9 @@
 
 - (void)stopTimers {
     [_cursorTimer invalidate];
-    [_cursorTimer release], _cursorTimer = nil;
+    _cursorTimer = nil;
     [_textTimer invalidate];
-    [_textTimer release], _textTimer = nil;
+    _textTimer = nil;
 }
 
 - (void)setIsWriting:(BOOL)isWriting {
@@ -91,7 +89,7 @@
     if (isWriting) {
         _cursor.hidden = NO;
         [_cursorTimer invalidate];
-        [_cursorTimer release], _cursorTimer = nil;
+        _cursorTimer = nil;
     } else {
         [self _createCursorTimer];
     }
@@ -103,7 +101,6 @@
 
 - (void)_handleTimer:(id)sender {
     [_textTimer invalidate];
-    [_textTimer release];
     _textTimer = nil;
     if (_textIndex < _animatedText.length) {
         _textIndex++;
@@ -132,15 +129,13 @@
 
 - (void)_createTimer {
     [_textTimer invalidate];
-    [_textTimer release];
-    _textTimer = [[NSTimer timerWithTimeInterval:[self _randomTimeInterval] target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO] retain];
+    _textTimer = [NSTimer timerWithTimeInterval:[self _randomTimeInterval] target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop] addTimer:_textTimer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)_createCursorTimer {
     [_cursorTimer invalidate];
-    [_cursorTimer release];
-    _cursorTimer = [[NSTimer timerWithTimeInterval:HT_CURSOR_TIMER_INTERVAL target:self selector:@selector(_handleCursor:) userInfo:nil repeats:YES] retain];
+    _cursorTimer = [NSTimer timerWithTimeInterval:HT_CURSOR_TIMER_INTERVAL target:self selector:@selector(_handleCursor:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:_cursorTimer forMode:NSDefaultRunLoopMode];
 }
 
@@ -156,7 +151,6 @@
     label.font = [UIFont systemFontOfSize:self.frame.size.width * HT_LABEL_FONT_FACTOR];
     CGFloat fontSize;
     [label.text sizeWithFont:label.font minFontSize:10.0f actualFontSize:&fontSize forWidth:label.frame.size.width lineBreakMode:NSLineBreakByWordWrapping];
-    [label release];
     return fontSize - 1.0f; //to see the cursor
 }
 

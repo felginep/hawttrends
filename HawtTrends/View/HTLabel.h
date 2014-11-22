@@ -13,7 +13,7 @@
 @interface HTLabel : UILabel
 
 @property (nonatomic, copy) NSString * animatedText;
-@property (nonatomic, assign) id<HTLabelDelegate> delegate;
+@property (nonatomic, weak) id<HTLabelDelegate> delegate;
 
 - (void)startAnimating;
 - (void)stopTimers;

@@ -29,8 +29,7 @@
     if (_previousDate) {
         NSLog(@"'%@' %f", string, ABS([_previousDate timeIntervalSinceNow]));
     }
-    [_previousDate release];
-    _previousDate = [[NSDate date] retain];
+    _previousDate = [NSDate date];
     return YES;
 }
 

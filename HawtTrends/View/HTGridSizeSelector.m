@@ -18,8 +18,7 @@
 @implementation HTGridSizeSelector
 
 - (void)dealloc {
-    [_squares release], _squares = nil;
-    [super dealloc];
+    _squares = nil;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -62,7 +61,6 @@
             }
             [_squares addObject:view];
             [self addSubview:view];
-            [view release];
         }
     }
 }

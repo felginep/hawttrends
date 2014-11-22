@@ -21,9 +21,9 @@ typedef enum {
 
 @interface HTCellView : UIView <HTLabelDelegate>
 
-@property (retain, nonatomic) IBOutlet UIView * contentView;
-@property (retain, nonatomic) IBOutlet HTLabel *label;
-@property (nonatomic, assign) id<HTCellViewDataSource> datasource;
+@property (strong, nonatomic) IBOutlet UIView * contentView;
+@property (strong, nonatomic) IBOutlet HTLabel *label;
+@property (nonatomic, weak) id<HTCellViewDataSource> datasource;
 
 @end
 

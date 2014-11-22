@@ -17,18 +17,17 @@
 #define HT_NUMBER_CELL 1
 
 @interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate>
-@property (nonatomic, retain) UIView * contentView;
-@property (nonatomic, retain) HTGridSizeSelector * gridSelector;
-@property (nonatomic, retain) UIButton * languageButton;
-@property (nonatomic, retain) HTCountryTableViewController * countryTableViewController;
+@property (nonatomic, strong) UIView * contentView;
+@property (nonatomic, strong) HTGridSizeSelector * gridSelector;
+@property (nonatomic, strong) UIButton * languageButton;
+@property (nonatomic, strong) HTCountryTableViewController * countryTableViewController;
 @end
 
 @implementation HTMainViewController
 
 - (void)dealloc {
-    [_gridSelector release], _gridSelector = nil;
-    [_contentView release], _contentView = nil;
-    [super dealloc];
+    _gridSelector = nil;
+    _contentView = nil;
 }
 
 - (void)loadView {
@@ -41,7 +40,7 @@
     _gridSelector.delegate = self;
     [self.view addSubview:_gridSelector];
 
-    _languageButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    _languageButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _languageButton.frame = CGRectMake(self.view.frame.size.width - 54.0f, 10.0f, 44.0f, 44.0f);
     _languageButton.backgroundColor = [UIColor redColor];
     [_languageButton addTarget:self action:@selector(toggleLanguage:) forControlEvents:UIControlEventTouchUpInside];
@@ -112,7 +111,6 @@
             HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
             cellView.datasource = self;
             [_contentView addSubview:cellView];
-            [cellView release];
         }
     }
 }

@@ -12,14 +12,9 @@
 
 @implementation HTAppDelegate
 
-- (void)dealloc
-{
-    [_window release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [UIApplication sharedApplication].statusBarHidden = YES;
     
@@ -27,7 +22,6 @@
 
     HTMainViewController * mainViewController = [[HTMainViewController alloc] init];
     self.window.rootViewController = mainViewController;
-    [mainViewController release];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

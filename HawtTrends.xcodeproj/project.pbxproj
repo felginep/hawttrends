@@ -313,6 +313,7 @@
 		490C5CC6174EB22900CBD520 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HawtTrends/HawtTrends-Prefix.pch";
 				INFOPLIST_FILE = "HawtTrends/HawtTrends-Info.plist";
@@ -325,6 +326,7 @@
 		490C5CC7174EB22900CBD520 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HawtTrends/HawtTrends-Prefix.pch";
 				INFOPLIST_FILE = "HawtTrends/HawtTrends-Info.plist";

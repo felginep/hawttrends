@@ -15,10 +15,9 @@
 @implementation HTCountryTableViewController
 
 - (void)dealloc {
-    [_tableView release], _tableView = nil;
-    [_countries release], _countries = nil;
-    [_country release], _country = nil;
-    [super dealloc];
+    _tableView = nil;
+    _countries = nil;
+    _country = nil;
 }
 
 - (void)loadView {
@@ -55,7 +54,7 @@
     static NSString * cellIdentifier = @"HTLanguageCell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
 
     cell.textLabel.text = self.countries[indexPath.row];

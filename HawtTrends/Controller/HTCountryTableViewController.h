@@ -17,5 +17,5 @@
 @property (nonatomic, strong) NSArray * countries;
 @property (nonatomic, strong) NSString * country;
 @property (nonatomic, strong) IBOutlet UITableView * tableView;
-@property (nonatomic, assign) id<HTCountryTableViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<HTCountryTableViewControllerDelegate> delegate;
 @end

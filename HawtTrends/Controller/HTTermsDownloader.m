@@ -28,62 +28,61 @@
 }
 
 - (void)dealloc {
-    [_countryAssociations release], _countryAssociations = nil;
-    [_currentCountry release], _currentCountry = nil;
-    [super dealloc];
+    _countryAssociations = nil;
+    _currentCountry = nil;
 }
 
 - (id)init {
     if (self = [super init]) {
-        _countryAssociations = [[NSDictionary alloc] initWithDictionary:@{
-                                                                          @"Afrique du Sub": @"40",
-                                                                          @"Allemagne": @"15",
-                                                                          @"Arabie Saoudite": @"36",
-                                                                          @"Argentine": @"30",
-                                                                          @"Australie": @"8",
-                                                                          @"Autriche": @"44",
-                                                                          @"Belgique": @"41",
-                                                                          @"Brésil": @"18",
-                                                                          @"Canada": @"13",
-                                                                          @"Chili": @"38",
-                                                                          @"Colombie": @"32",
-                                                                          @"Corée du Sud": @"23",
-                                                                          @"Danemark": @"49",
-                                                                          @"Egypte": @"29",
-                                                                          @"Espagne": @"26",
-                                                                          @"Etats Unis": @"1",
-                                                                          @"Finlande": @"50",
-                                                                          @"France": @"16",
-                                                                          @"Grèce": @"48",
-                                                                          @"Hong Kong": @"10",
-                                                                          @"Hongrie": @"45",
-                                                                          @"Inde": @"3",
-                                                                          @"Indonésie": @"19",
-                                                                          @"Israël": @"6",
-                                                                          @"Italie": @"27",
-                                                                          @"Japon": @"4",
-                                                                          @"Kenya": @"37",
-                                                                          @"Malaisie": @"34",
-                                                                          @"Mexique": @"21",
-                                                                          @"Nigeria": @"52",
-                                                                          @"Norvège": @"51",
-                                                                          @"Pays-Bas": @"17",
-                                                                          @"Philippines": @"25",
-                                                                          @"Pologne": @"31",
-                                                                          @"Portugal": @"47",
-                                                                          @"République Tchèque": @"43",
-                                                                          @"Roumanie": @"39",
-                                                                          @"Royaume Uni": @"9",
-                                                                          @"Russie": @"14",
-                                                                          @"Singapour": @"5",
-                                                                          @"Suède": @"42",
-                                                                          @"Suisse": @"46",
-                                                                          @"Taïwan": @"12",
-                                                                          @"Thaïlande": @"33",
-                                                                          @"Turquie": @"24",
-                                                                          @"Ukraine": @"35",
-                                                                          @"Vietnam": @"28"
-                                                                          }];
+        _countryAssociations = @{
+                                 @"Afrique du Sub": @"40",
+                                 @"Allemagne": @"15",
+                                 @"Arabie Saoudite": @"36",
+                                 @"Argentine": @"30",
+                                 @"Australie": @"8",
+                                 @"Autriche": @"44",
+                                 @"Belgique": @"41",
+                                 @"Brésil": @"18",
+                                 @"Canada": @"13",
+                                 @"Chili": @"38",
+                                 @"Colombie": @"32",
+                                 @"Corée du Sud": @"23",
+                                 @"Danemark": @"49",
+                                 @"Egypte": @"29",
+                                 @"Espagne": @"26",
+                                 @"Etats Unis": @"1",
+                                 @"Finlande": @"50",
+                                 @"France": @"16",
+                                 @"Grèce": @"48",
+                                 @"Hong Kong": @"10",
+                                 @"Hongrie": @"45",
+                                 @"Inde": @"3",
+                                 @"Indonésie": @"19",
+                                 @"Israël": @"6",
+                                 @"Italie": @"27",
+                                 @"Japon": @"4",
+                                 @"Kenya": @"37",
+                                 @"Malaisie": @"34",
+                                 @"Mexique": @"21",
+                                 @"Nigeria": @"52",
+                                 @"Norvège": @"51",
+                                 @"Pays-Bas": @"17",
+                                 @"Philippines": @"25",
+                                 @"Pologne": @"31",
+                                 @"Portugal": @"47",
+                                 @"République Tchèque": @"43",
+                                 @"Roumanie": @"39",
+                                 @"Royaume Uni": @"9",
+                                 @"Russie": @"14",
+                                 @"Singapour": @"5",
+                                 @"Suède": @"42",
+                                 @"Suisse": @"46",
+                                 @"Taïwan": @"12",
+                                 @"Thaïlande": @"33",
+                                 @"Turquie": @"24",
+                                 @"Ukraine": @"35",
+                                 @"Vietnam": @"28"
+                                 };
 
         _currentCountry = [[NSUserDefaults standardUserDefaults] objectForKey:HT_LANGUAGE_KEY];
         if (!_currentCountry) {
@@ -111,7 +110,7 @@
 }
 
 - (void)downloadTerms {
-    [_terms release], _terms = nil;
+    _terms = nil;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError * error = nil;
         NSString * jsonString = [NSString stringWithContentsOfURL:[NSURL URLWithString:HT_TERMS_API_URL] encoding:NSUTF8StringEncoding error:&error];
@@ -119,15 +118,14 @@
             NSLog(@"ERROR : %@", error.description);
             return ;
         }
-        
+
         NSDictionary * json = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
         if (error) {
             NSLog(@"ERROR : %@", error.description);
             return ;
         }
-        
-        [_terms release];
-        _terms = [[json objectForKey:_countryAssociations[_currentCountry]] retain];
+
+        _terms = [json objectForKey:_countryAssociations[_currentCountry]];
     });
 }
 

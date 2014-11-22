@@ -35,12 +35,11 @@
 @implementation HTCellView
 
 - (void)dealloc {
-    [_contentView release], _contentView = nil;
+    _contentView = nil;
     [_label stopTimers];
-    [_label release], _label = nil;
+    _label = nil;
     [_labelTimer invalidate];
-    [_labelTimer release], _labelTimer = nil;
-    [super dealloc];
+    _labelTimer = nil;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -50,13 +49,13 @@
         self.backgroundColor = [self _nextColor];
         self.clipsToBounds = YES;
         
-        [_contentView release], _contentView = nil;
+        _contentView = nil;
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [_contentView setOpaque:YES];
         [self addSubview:_contentView];
         self.contentView.backgroundColor = self.backgroundColor;
         
-        [_label release], _label = nil;
+        _label = nil;
         _label = [[HTLabel alloc] initWithFrame:CGRectMake(20.0f, 20.0f, _contentView.frame.size.width - 40.0f, _contentView.frame.size.height - 40.0f)];
         _label.backgroundColor = [UIColor clearColor];
         _label.font = [UIFont boldSystemFontOfSize:60.0f];
@@ -78,8 +77,7 @@
 #pragma mark - HTLabelDelegate
 
 - (void)labelDidStopAnimating:(HTLabel *)label {
-    [_labelTimer release];
-    _labelTimer = [[NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO] retain];
+    _labelTimer = [NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:_labelTimer forMode:NSDefaultRunLoopMode];
 }
 
@@ -89,7 +87,7 @@
 
 - (void)_handleTimer:(NSTimer *)timer {
     [_labelTimer invalidate];
-    [_labelTimer release], _labelTimer = nil;
+    _labelTimer = nil;
     self.backgroundColor = [self _nextColor];
     _currentAnimationType = [self _randomAnimation];
     [self _animate];

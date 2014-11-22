@@ -29,5 +29,5 @@ typedef enum {
 @interface HTGridSizeSelector : UIView
 @property (nonatomic, assign) NSInteger squareNumbers;
 @property (nonatomic, assign) CGFloat squareMargin;
-@property (nonatomic, assign) id<HTGridSizeSelectorDelegate> delegate;
+@property (nonatomic, weak) id<HTGridSizeSelectorDelegate> delegate;
 @end
