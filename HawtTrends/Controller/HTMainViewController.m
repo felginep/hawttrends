@@ -21,6 +21,7 @@
 @property (nonatomic, strong) HTGridSizeSelector * gridSelector;
 @property (nonatomic, strong) UIButton * languageButton;
 @property (nonatomic, strong) HTCountryTableViewController * countryTableViewController;
+@property (nonatomic) HTConfiguration currentConfiguration;
 @end
 
 @implementation HTMainViewController
@@ -50,7 +51,8 @@
     _countryTableViewController.countries = [HTTermsDownloader sharedDownloader].countries;
     _countryTableViewController.delegate = self;
 
-    [self _loadInterfaceWithNumberOfRows:HT_NUMBER_CELL andNumberOfColumns:HT_NUMBER_CELL];
+    _currentConfiguration = HTConfigurationMake(2, 2);
+    [self _loadInterfaceWithConfiguration:_currentConfiguration];
 }
 
 - (void)toggleLanguage:(id)sender {
@@ -77,7 +79,7 @@
 
 - (void)countryTableViewController:(HTCountryTableViewController *)countryTableViewController didSelectCountry:(NSString *)country {
     [HTTermsDownloader sharedDownloader].currentCountry = country;
-    [self _loadInterfaceWithNumberOfRows:2 andNumberOfColumns:2];
+    [self _loadInterfaceWithConfiguration:_currentConfiguration];
     [self toggleLanguage:nil];
 }
 
@@ -92,21 +94,22 @@
 #pragma mark - HTGridSizeSelectorDelegate methods
 
 - (void)gridSelector:(HTGridSizeSelector *)gridSelector didChoosePosition:(HTPosition)position {
-    [self _loadInterfaceWithNumberOfRows:(position.row + 1) andNumberOfColumns:(position.column + 1)];
+    _currentConfiguration = HTConfigurationMakeFromPosition(position);
+    [self _loadInterfaceWithConfiguration:_currentConfiguration];
 }
 
 #pragma mark - Private methods
 
-- (void)_loadInterfaceWithNumberOfRows:(int)numberOfRows andNumberOfColumns:(int)numberOfColumns {
-    CGFloat widthCell = _contentView.frame.size.width / numberOfRows;
-    CGFloat heightCell = _contentView.frame.size.height / numberOfColumns;
+- (void)_loadInterfaceWithConfiguration:(HTConfiguration)configuration {
+    CGFloat widthCell = _contentView.frame.size.width / configuration.row;
+    CGFloat heightCell = _contentView.frame.size.height / configuration.column;
 
     // Remove all subviews
     [_contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
     CGRect frame = CGRectMake(0, 0, widthCell, heightCell);
-    for (int row = 0; row < numberOfRows; row++) {
-        for (int column = 0; column < numberOfColumns; column++) {
+    for (int row = 0; row < configuration.row; row++) {
+        for (int column = 0; column < configuration.column; column++) {
             frame.origin = CGPointMake(row * widthCell, column * heightCell);
             HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
             cellView.datasource = self;

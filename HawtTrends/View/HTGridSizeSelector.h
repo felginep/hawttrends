@@ -14,6 +14,24 @@ struct HTPosition {
 };
 typedef struct HTPosition HTPosition;
 
+CG_INLINE HTPosition
+HTPositionMake(int row, int column)
+{
+    HTPosition p; p.row = row; p.column = column; return p;
+}
+
+typedef struct HTPosition HTConfiguration;
+CG_INLINE HTConfiguration
+HTConfigurationMake(int row, int column)
+{
+    HTConfiguration p; p.row = row; p.column = column; return p;
+}
+
+CG_INLINE HTConfiguration
+HTConfigurationMakeFromPosition(HTPosition position) {
+    HTConfiguration p; p.row = position.row + 1; p.column = position.column + 1; return p;
+}
+
 typedef enum {
     HTSquareTypeEmpty = 0,
     HTSquareTypeCurrent,
