@@ -65,6 +65,13 @@
     }
 }
 
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    CGRect relativeFrame = self.bounds;
+    UIEdgeInsets hitTestEdgeInsets = UIEdgeInsetsMake(-44, -44, -44, -44);
+    CGRect hitFrame = UIEdgeInsetsInsetRect(relativeFrame, hitTestEdgeInsets);
+    return CGRectContainsPoint(hitFrame, point);
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self _expand];
 }
