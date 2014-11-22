@@ -142,7 +142,7 @@
 - (void)_expand {
     if (_isCollapsed) {
         _isCollapsed = NO;
-        _squareNumbers = 5;
+        _squareNumbers = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 3 : 5;
         [self _updateFrame];
         [self setNeedsLayout];
     }
