@@ -16,11 +16,10 @@
  */
 #define HT_NUMBER_CELL 1
 
-@interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate>
+@interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIView * contentView;
 @property (nonatomic, strong) HTGridSizeSelector * gridSelector;
-@property (nonatomic, strong) UIButton * languageButton;
 @property (nonatomic, strong) HTCountryTableViewController * countryTableViewController;
 @property (nonatomic) HTConfiguration currentConfiguration;
 @end
@@ -30,7 +29,6 @@
 - (void)dealloc {
     _gridSelector = nil;
     _contentView = nil;
-    _languageButton = nil;
     _countryTableViewController = nil;
     _scrollView = nil;
 }
@@ -45,6 +43,7 @@
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.backgroundColor = [UIColor whiteColor];
     _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2.0f, self.view.bounds.size.height);
+    _scrollView.delegate = self;
 
     _contentView = [[UIView alloc] initWithFrame:self.view.frame];
     [_scrollView addSubview:_contentView];
@@ -52,12 +51,6 @@
     _gridSelector = [[HTGridSizeSelector alloc] initWithFrame:CGRectMake(5.0f, 5.0f, 20.0f, 20.0f)];
     _gridSelector.delegate = self;
     [self.view addSubview:_gridSelector];
-
-    _languageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _languageButton.frame = CGRectMake(self.view.frame.size.width - 54.0f, 10.0f, 44.0f, 44.0f);
-    _languageButton.backgroundColor = [UIColor redColor];
-    [_languageButton addTarget:self action:@selector(toggleLanguage:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_languageButton];
 
     _countryTableViewController = [[HTCountryTableViewController alloc] init];
     _countryTableViewController.countries = [HTTermsDownloader sharedDownloader].countries;
@@ -71,13 +64,16 @@
     [self _loadInterfaceWithConfiguration:_currentConfiguration];
 }
 
-- (void)toggleLanguage:(id)sender {
-    if (self.scrollView.contentOffset.x == 0) {
-        [self.scrollView scrollRectToVisible:_countryTableViewController.view.frame animated:YES];
+#pragma mark - UIScrollViewDelegate methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    self.gridSelector.alpha = MAX(0, 1.0f - (scrollView.contentOffset.x / self.contentView.frame.size.width));
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.x == 0) {
         _countryTableViewController.country = [HTTermsDownloader sharedDownloader].currentCountry;
         [self.countryTableViewController reloadData];
-    } else {
-        [self.scrollView scrollRectToVisible:_contentView.frame animated:YES];
     }
 }
 
@@ -86,7 +82,7 @@
 - (void)countryTableViewController:(HTCountryTableViewController *)countryTableViewController didSelectCountry:(NSString *)country {
     [HTTermsDownloader sharedDownloader].currentCountry = country;
     [self _loadInterfaceWithConfiguration:_currentConfiguration];
-    [self toggleLanguage:nil];
+    [self.scrollView scrollRectToVisible:self.contentView.bounds animated:YES];
 }
 
 # pragma mark - HTCellViewDatasource
