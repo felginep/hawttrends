@@ -7,6 +7,7 @@
 //
 
 #import "HTCountryTableViewController.h"
+#import "HTCountryTableViewCell.h"
 
 @interface HTCountryTableViewController ()
 
@@ -22,15 +23,19 @@
 
 - (void)loadView {
     [super loadView];
-    self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8f];
+    self.view.backgroundColor = [UIColor colorWithRed:0.952f green:0.710f blue:0 alpha:1.0f];
 
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.contentInset = UIEdgeInsetsMake(100.0f, 0, 100.0f, 0);
     [self.view addSubview:_tableView];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    _tableView.contentInset = UIEdgeInsetsMake(self.view.frame.size.height / 2.0f - 40.0f, 0, self.view.frame.size.height / 2.0f - 40.0f, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -44,7 +49,8 @@
     if (self.country) {
         NSUInteger index = [self.countries indexOfObject:self.country];
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
 }
 
@@ -56,19 +62,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * cellIdentifier = @"HTLanguageCell";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    HTCountryTableViewCell * cell = (HTCountryTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[HTCountryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-
-    cell.textLabel.text = self.countries[indexPath.row];
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:40.0f];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    cell.label.text = self.countries[indexPath.row];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100.0f;
 }
 
 #pragma mark - UITableViewDelegate methods

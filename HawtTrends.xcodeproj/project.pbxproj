@@ -22,6 +22,7 @@
 		49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA93341752AB180038DB2A /* HTMeasureTextField.m */; };
 		49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */; };
 		49C4B1361A20C74400A418BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C4B1351A20C74400A418BC /* Images.xcassets */; };
+		49C4B1391A20DB8400A418BC /* HTCountryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		49C0C19D1A1DF8DC0098E25D /* HTGridSizeSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTGridSizeSelector.h; path = View/HTGridSizeSelector.h; sourceTree = "<group>"; };
 		49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTGridSizeSelector.m; path = View/HTGridSizeSelector.m; sourceTree = "<group>"; };
 		49C4B1351A20C74400A418BC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		49C4B1371A20DB8400A418BC /* HTCountryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCountryTableViewCell.h; path = View/HTCountryTableViewCell.h; sourceTree = "<group>"; };
+		49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountryTableViewCell.m; path = View/HTCountryTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,8 @@
 				4935EF571764CF4000069D81 /* HTLabel.m */,
 				49C0C19D1A1DF8DC0098E25D /* HTGridSizeSelector.h */,
 				49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */,
+				49C4B1371A20DB8400A418BC /* HTCountryTableViewCell.h */,
+				49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C4B1391A20DB8400A418BC /* HTCountryTableViewCell.m in Sources */,
 				490C5CB8174EB22900CBD520 /* main.m in Sources */,
 				490C5CBC174EB22900CBD520 /* HTAppDelegate.m in Sources */,
 				490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */,
