@@ -13,19 +13,15 @@
 		490C5CB6174EB22900CBD520 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CB4174EB22900CBD520 /* InfoPlist.strings */; };
 		490C5CB8174EB22900CBD520 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CB7174EB22900CBD520 /* main.m */; };
 		490C5CBC174EB22900CBD520 /* HTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CBB174EB22900CBD520 /* HTAppDelegate.m */; };
-		490C5CBE174EB22900CBD520 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CBD174EB22900CBD520 /* Default.png */; };
-		490C5CC0174EB22900CBD520 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CBF174EB22900CBD520 /* Default@2x.png */; };
-		490C5CC2174EB22900CBD520 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 490C5CC1174EB22900CBD520 /* Default-568h@2x.png */; };
 		490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CC9174EB45D00CBD520 /* HTMainViewController.m */; };
 		490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CCD174EB4E900CBD520 /* HTCellView.m */; };
 		4911BCBD175119F700A1ED8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4911BCBC175119F700A1ED8F /* QuartzCore.framework */; };
 		4935EF581764CF4000069D81 /* HTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4935EF571764CF4000069D81 /* HTLabel.m */; };
 		4936EC351A1F6E6E009EB1BC /* HTCountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */; };
-		494C47E4176CBADA00DE909B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 494C47E3176CBADA00DE909B /* icon.png */; };
-		494C47E6176CBAE000DE909B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 494C47E5176CBAE000DE909B /* icon@2x.png */; };
 		4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4950C74217667B6F0040924E /* HTTermsDownloader.m */; };
 		49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA93341752AB180038DB2A /* HTMeasureTextField.m */; };
 		49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */; };
+		49C4B1361A20C74400A418BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C4B1351A20C74400A418BC /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,9 +35,6 @@
 		490C5CB9174EB22900CBD520 /* HawtTrends-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HawtTrends-Prefix.pch"; sourceTree = "<group>"; };
 		490C5CBA174EB22900CBD520 /* HTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTAppDelegate.h; sourceTree = "<group>"; };
 		490C5CBB174EB22900CBD520 /* HTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTAppDelegate.m; sourceTree = "<group>"; };
-		490C5CBD174EB22900CBD520 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		490C5CBF174EB22900CBD520 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		490C5CC1174EB22900CBD520 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		490C5CC8174EB45D00CBD520 /* HTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMainViewController.h; path = Controller/HTMainViewController.h; sourceTree = "<group>"; };
 		490C5CC9174EB45D00CBD520 /* HTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMainViewController.m; path = Controller/HTMainViewController.m; sourceTree = "<group>"; };
 		490C5CCC174EB4E900CBD520 /* HTCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCellView.h; path = View/HTCellView.h; sourceTree = "<group>"; };
@@ -51,14 +44,13 @@
 		4935EF571764CF4000069D81 /* HTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTLabel.m; path = View/HTLabel.m; sourceTree = "<group>"; };
 		4936EC331A1F6E6E009EB1BC /* HTCountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCountryTableViewController.h; path = Controller/HTCountryTableViewController.h; sourceTree = "<group>"; };
 		4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountryTableViewController.m; path = Controller/HTCountryTableViewController.m; sourceTree = "<group>"; };
-		494C47E3176CBADA00DE909B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		494C47E5176CBAE000DE909B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		4950C74117667B6F0040924E /* HTTermsDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTermsDownloader.h; path = Controller/HTTermsDownloader.h; sourceTree = "<group>"; };
 		4950C74217667B6F0040924E /* HTTermsDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTermsDownloader.m; path = Controller/HTTermsDownloader.m; sourceTree = "<group>"; };
 		49BA93331752AB180038DB2A /* HTMeasureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMeasureTextField.h; path = View/HTMeasureTextField.h; sourceTree = "<group>"; };
 		49BA93341752AB180038DB2A /* HTMeasureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMeasureTextField.m; path = View/HTMeasureTextField.m; sourceTree = "<group>"; };
 		49C0C19D1A1DF8DC0098E25D /* HTGridSizeSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTGridSizeSelector.h; path = View/HTGridSizeSelector.h; sourceTree = "<group>"; };
 		49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTGridSizeSelector.m; path = View/HTGridSizeSelector.m; sourceTree = "<group>"; };
+		49C4B1351A20C74400A418BC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +71,6 @@
 		490C5C9F174EB22800CBD520 = {
 			isa = PBXGroup;
 			children = (
-				494C47E5176CBAE000DE909B /* icon@2x.png */,
-				494C47E3176CBADA00DE909B /* icon.png */,
 				490C5CB1174EB22900CBD520 /* HawtTrends */,
 				490C5CAA174EB22800CBD520 /* Frameworks */,
 				490C5CA9174EB22800CBD520 /* Products */,
@@ -125,9 +115,7 @@
 				490C5CB4174EB22900CBD520 /* InfoPlist.strings */,
 				490C5CB7174EB22900CBD520 /* main.m */,
 				490C5CB9174EB22900CBD520 /* HawtTrends-Prefix.pch */,
-				490C5CBD174EB22900CBD520 /* Default.png */,
-				490C5CBF174EB22900CBD520 /* Default@2x.png */,
-				490C5CC1174EB22900CBD520 /* Default-568h@2x.png */,
+				49C4B1351A20C74400A418BC /* Images.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -213,11 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490C5CB6174EB22900CBD520 /* InfoPlist.strings in Resources */,
-				490C5CBE174EB22900CBD520 /* Default.png in Resources */,
-				490C5CC0174EB22900CBD520 /* Default@2x.png in Resources */,
-				490C5CC2174EB22900CBD520 /* Default-568h@2x.png in Resources */,
-				494C47E4176CBADA00DE909B /* icon.png in Resources */,
-				494C47E6176CBAE000DE909B /* icon@2x.png in Resources */,
+				49C4B1361A20C74400A418BC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +297,8 @@
 		490C5CC6174EB22900CBD520 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HawtTrends/HawtTrends-Prefix.pch";
@@ -326,6 +312,8 @@
 		490C5CC7174EB22900CBD520 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HawtTrends/HawtTrends-Prefix.pch";
