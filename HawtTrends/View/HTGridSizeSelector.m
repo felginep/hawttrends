@@ -66,10 +66,6 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    CGPoint position = [[touches anyObject] locationInView:self];
-    NSLog(@"touchesBegan %@", NSStringFromCGPoint(position));
-
-    // expand
     [self _expand];
 }
 
@@ -97,20 +93,14 @@
             }
         }
     }
-
-    NSLog(@"touchesMoved");
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touchesCancelled");
     [self _collapse];
-    // cancel & collapse
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint position = [[touches anyObject] locationInView:self];
-    NSLog(@"touchesEnded %@", NSStringFromCGPoint(position));
-
     if (position.x > self.frame.size.width) {
         position.x = self.frame.size.width;
     }
@@ -127,7 +117,6 @@
         [self.delegate gridSelector:self didChoosePosition:finalPosition];
     }
 
-    // select & collapse
     [self _collapse];
 }
 
