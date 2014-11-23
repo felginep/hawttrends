@@ -7,18 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HTCountry.h"
 
 @protocol HTTermsDownloaderDelegate;
 
 @interface HTTermsDownloader : NSObject
 
 @property (nonatomic, strong, readonly) NSArray * terms;
-@property (nonatomic, strong) NSString * currentCountry;
+@property (nonatomic, strong) HTCountry * currentCountry;
+@property (nonatomic, strong) NSArray * countries;
 @property (nonatomic, weak) id<HTTermsDownloaderDelegate> delegate;
 
 + (HTTermsDownloader *)sharedDownloader;
 - (NSString *)randomTerm;
-- (NSArray *)countries;
 - (void)downloadTerms;
 
 @end

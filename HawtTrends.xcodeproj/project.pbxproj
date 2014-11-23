@@ -23,6 +23,7 @@
 		49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */; };
 		49C4B1361A20C74400A418BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C4B1351A20C74400A418BC /* Images.xcassets */; };
 		49C4B1391A20DB8400A418BC /* HTCountryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */; };
+		49C4B13D1A227BEA00A418BC /* HTCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B13C1A227BEA00A418BC /* HTCountry.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		49C4B1351A20C74400A418BC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49C4B1371A20DB8400A418BC /* HTCountryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCountryTableViewCell.h; path = View/HTCountryTableViewCell.h; sourceTree = "<group>"; };
 		49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountryTableViewCell.m; path = View/HTCountryTableViewCell.m; sourceTree = "<group>"; };
+		49C4B13B1A227BEA00A418BC /* HTCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCountry.h; path = Model/HTCountry.h; sourceTree = "<group>"; };
+		49C4B13C1A227BEA00A418BC /* HTCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountry.m; path = Model/HTCountry.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,7 @@
 			children = (
 				490C5CBA174EB22900CBD520 /* HTAppDelegate.h */,
 				490C5CBB174EB22900CBD520 /* HTAppDelegate.m */,
+				49C4B13A1A227BBE00A418BC /* Model */,
 				490C5CCB174EB46400CBD520 /* Controller */,
 				490C5CCF174EB4ED00CBD520 /* View */,
 				490C5CB2174EB22900CBD520 /* Supporting Files */,
@@ -151,6 +155,15 @@
 				49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		49C4B13A1A227BBE00A418BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				49C4B13B1A227BEA00A418BC /* HTCountry.h */,
+				49C4B13C1A227BEA00A418BC /* HTCountry.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +238,7 @@
 				490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */,
 				49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */,
 				49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */,
+				49C4B13D1A227BEA00A418BC /* HTCountry.m in Sources */,
 				4935EF581764CF4000069D81 /* HTLabel.m in Sources */,
 				4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */,
 			);

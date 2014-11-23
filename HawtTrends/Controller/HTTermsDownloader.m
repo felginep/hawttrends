@@ -33,76 +33,89 @@
 }
 
 - (id)init {
-    if (self = [super init]) {
-        _countryAssociations = @{
-                                 @"Afrique du Sub": @"40",
-                                 @"Allemagne": @"15",
-                                 @"Arabie Saoudite": @"36",
-                                 @"Argentine": @"30",
-                                 @"Australie": @"8",
-                                 @"Autriche": @"44",
-                                 @"Belgique": @"41",
-                                 @"Brésil": @"18",
-                                 @"Canada": @"13",
-                                 @"Chili": @"38",
-                                 @"Colombie": @"32",
-                                 @"Corée du Sud": @"23",
-                                 @"Danemark": @"49",
-                                 @"Egypte": @"29",
-                                 @"Espagne": @"26",
-                                 @"Etats Unis": @"1",
-                                 @"Finlande": @"50",
-                                 @"France": @"16",
-                                 @"Grèce": @"48",
-                                 @"Hong Kong": @"10",
-                                 @"Hongrie": @"45",
-                                 @"Inde": @"3",
-                                 @"Indonésie": @"19",
-                                 @"Israël": @"6",
-                                 @"Italie": @"27",
-                                 @"Japon": @"4",
-                                 @"Kenya": @"37",
-                                 @"Malaisie": @"34",
-                                 @"Mexique": @"21",
-                                 @"Nigeria": @"52",
-                                 @"Norvège": @"51",
-                                 @"Pays-Bas": @"17",
-                                 @"Philippines": @"25",
-                                 @"Pologne": @"31",
-                                 @"Portugal": @"47",
-                                 @"République Tchèque": @"43",
-                                 @"Roumanie": @"39",
-                                 @"Royaume Uni": @"9",
-                                 @"Russie": @"14",
-                                 @"Singapour": @"5",
-                                 @"Suède": @"42",
-                                 @"Suisse": @"46",
-                                 @"Taïwan": @"12",
-                                 @"Thaïlande": @"33",
-                                 @"Turquie": @"24",
-                                 @"Ukraine": @"35",
-                                 @"Vietnam": @"28"
-                                 };
+    _countryAssociations = @{
+                             @"ZA": @"40",
+                             @"DE": @"15",
+                             @"SA": @"36",
+                             @"AR": @"30",
+                             @"AU": @"8",
+                             @"AT": @"44",
+                             @"BE": @"41",
+                             @"BR": @"18",
+                             @"CA": @"13",
+                             @"CL": @"38",
+                             @"CO": @"32",
+                             @"KR": @"23",
+                             @"DK": @"49",
+                             @"EG": @"29",
+                             @"ES": @"26",
+                             @"US": @"1",
+                             @"FI": @"50",
+                             @"FR": @"16",
+                             @"GR": @"48",
+                             @"HK": @"10",
+                             @"HU": @"45",
+                             @"IN": @"3",
+                             @"ID": @"19",
+                             @"IL": @"6",
+                             @"IT": @"27",
+                             @"JP": @"4",
+                             @"KE": @"37",
+                             @"MY": @"34",
+                             @"MX": @"21",
+                             @"NG": @"52",
+                             @"NO": @"51",
+                             @"NL": @"17",
+                             @"PH": @"25",
+                             @"PL": @"31",
+                             @"PT": @"47",
+                             @"CZ": @"43",
+                             @"RO": @"39",
+                             @"GB": @"9",
+                             @"RU": @"14",
+                             @"SG": @"5",
+                             @"SE": @"42",
+                             @"CH": @"46",
+                             @"TW": @"12",
+                             @"TH": @"33",
+                             @"TR": @"24",
+                             @"UA": @"35",
+                             @"VN": @"28"
+                             };
 
-        _currentCountry = [[NSUserDefaults standardUserDefaults] objectForKey:HT_LANGUAGE_KEY];
-        if (!_currentCountry) {
-            self.currentCountry = @"Etats Unis";
+    if (self = [super init]) {
+        NSString * currentCountryCode = [[NSUserDefaults standardUserDefaults] objectForKey:HT_LANGUAGE_KEY];
+
+        NSMutableArray * countries = [NSMutableArray array];
+        for (NSString * countryCode in [_countryAssociations allKeys]) {
+            //        NSString * identifier = [NSLocale localeIdentifierFromComponents:@{NSLocaleCountryCode: countryCode}];
+            //        NSString * country = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:identifier];
+            HTCountry * country = [[HTCountry alloc] init];
+            country.countryCode = countryCode;
+            country.webserviceCode = _countryAssociations[countryCode];
+            country.displayName = [[NSLocale systemLocale] displayNameForKey:NSLocaleCountryCode value:countryCode];
+            [countries addObject:country];
+
+            if ([currentCountryCode isEqualToString:countryCode]) {
+                self.currentCountry = country;
+            }
+            if (!_currentCountry && [countryCode isEqualToString:@"US"]) {
+                self.currentCountry = country;
+            }
         }
+//        _countries = [countries sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        _countries = countries;
     }
+
     return self;
 }
 
-- (NSArray *)countries {
-    return [[_countryAssociations allKeys] sortedArrayUsingSelector:@selector(compare:)];
-}
-
-- (void)setCurrentCountry:(NSString *)currentCountry {
+- (void)setCurrentCountry:(HTCountry *)currentCountry {
     _currentCountry = currentCountry;
-    [[NSUserDefaults standardUserDefaults] setObject:currentCountry forKey:HT_LANGUAGE_KEY];
+    [[NSUserDefaults standardUserDefaults] setObject:currentCountry.countryCode forKey:HT_LANGUAGE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self downloadTerms];
 }
-
 
 - (NSString *)randomTerm {
     NSUInteger index = (int)(((float)rand() / (float)RAND_MAX) * self.terms.count);
@@ -125,7 +138,7 @@
             return ;
         }
 
-        _terms = [json objectForKey:_countryAssociations[_currentCountry]];
+        _terms = [json objectForKey:_currentCountry.webserviceCode];
     });
 }
 

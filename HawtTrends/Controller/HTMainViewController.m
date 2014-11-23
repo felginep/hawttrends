@@ -77,7 +77,7 @@
 
 #pragma mark - HTCountryTableViewControllerDelegate methods
 
-- (void)countryTableViewController:(HTCountryTableViewController *)countryTableViewController didSelectCountry:(NSString *)country {
+- (void)countryTableViewController:(HTCountryTableViewController *)countryTableViewController didSelectCountry:(HTCountry *)country {
     [HTTermsDownloader sharedDownloader].currentCountry = country;
     [self _loadInterfaceWithConfiguration:_currentConfiguration];
     [self.scrollView scrollRectToVisible:self.contentView.bounds animated:YES];

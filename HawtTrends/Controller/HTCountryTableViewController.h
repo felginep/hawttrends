@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTCountry.h"
 
 @class HTCountryTableViewController;
 @protocol HTCountryTableViewControllerDelegate <NSObject>
-- (void)countryTableViewController:(HTCountryTableViewController *)countryTableViewController didSelectCountry:(NSString *)country;
+- (void)countryTableViewController:(HTCountryTableViewController *)countryTableViewController didSelectCountry:(HTCountry *)country;
 @end
 
 @interface HTCountryTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>

@@ -65,7 +65,8 @@
     if (!cell) {
         cell = [[HTCountryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.label.text = [HTTermsDownloader sharedDownloader].countries[indexPath.row];
+    HTCountry * country = [HTTermsDownloader sharedDownloader].countries[indexPath.row];
+    cell.label.text = country.displayName;
     return cell;
 }
 
@@ -76,7 +77,7 @@
 #pragma mark - UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString * country = [HTTermsDownloader sharedDownloader].countries[indexPath.row];
+    HTCountry * country = [HTTermsDownloader sharedDownloader].countries[indexPath.row];
     if ([self.delegate respondsToSelector:@selector(countryTableViewController:didSelectCountry:)]) {
         [self.delegate countryTableViewController:self didSelectCountry:country];
     }
