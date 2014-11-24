@@ -10,7 +10,9 @@
 #import "HTCountryTableViewCell.h"
 #import "HTTermsDownloader.h"
 
-@interface HTCountryTableViewController ()
+@interface HTCountryTableViewController () {
+    CGFloat _minFontSize;
+}
 
 @end
 
@@ -45,7 +47,7 @@
             minFontSize = fontSize;
         }
     }
-    NSLog(@"minFontSize = %f", minFontSize);
+    _minFontSize = minFontSize;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,6 +80,7 @@
     }
     HTCountry * country = [HTTermsDownloader sharedDownloader].countries[indexPath.row];
     cell.label.text = country.displayName;
+    cell.label.font = [UIFont boldSystemFontOfSize:_minFontSize];
     return cell;
 }
 
