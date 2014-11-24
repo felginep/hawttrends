@@ -64,7 +64,6 @@
     [super viewWillLayoutSubviews];
     _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2.0f, self.view.bounds.size.height);
     _contentView.frame = self.view.bounds;
-    _contentView.backgroundColor = [UIColor redColor];
     _countryTableViewController.view.frame = CGRectMake(self.view.bounds.size.width, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 
     [self _loadInterfaceWithConfiguration:_currentConfiguration];
