@@ -36,6 +36,16 @@
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     _tableView.contentInset = UIEdgeInsetsMake(self.view.frame.size.height / 2.0f - 40.0f, 0, self.view.frame.size.height / 2.0f - 40.0f, 0);
+
+    CGFloat minFontSize = CGFLOAT_MAX;
+    for (HTCountry * country in [HTTermsDownloader sharedDownloader].countries) {
+        CGFloat fontSize;
+        [country.displayName sizeWithFont:[UIFont boldSystemFontOfSize:60.0f] minFontSize:10.0f actualFontSize:&fontSize forWidth:(_tableView.frame.size.width - 40.0f) lineBreakMode:NSLineBreakByWordWrapping];
+        if (fontSize < minFontSize) {
+            minFontSize = fontSize;
+        }
+    }
+    NSLog(@"minFontSize = %f", minFontSize);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
