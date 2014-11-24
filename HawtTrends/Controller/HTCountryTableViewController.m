@@ -60,7 +60,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * cellIdentifier = @"HTLanguageCell";
+    static NSString * cellIdentifier = @"HTCountryCell";
     HTCountryTableViewCell * cell = (HTCountryTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[HTCountryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
