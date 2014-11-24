@@ -103,7 +103,9 @@
                 self.currentCountry = country;
             }
         }
-//        _countries = [countries sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+
+        NSSortDescriptor * sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
+        [countries sortUsingDescriptors:@[sortDescriptor]];
         _countries = countries;
     }
 
