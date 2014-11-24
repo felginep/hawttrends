@@ -69,6 +69,14 @@
     [self _loadInterfaceWithConfiguration:_currentConfiguration];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+
+    if (self.scrollView.contentOffset.x > 0) {
+        self.scrollView.contentOffset = CGPointMake(self.scrollView.bounds.size.width, 0);
+    }
+}
+
 #pragma mark - UIScrollViewDelegate methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
