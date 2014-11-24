@@ -37,12 +37,12 @@
     [super loadView];
 
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:_scrollView];
     _scrollView.pagingEnabled = YES;
     _scrollView.bounces = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.backgroundColor = [UIColor whiteColor];
-    _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2.0f, self.view.bounds.size.height);
     _scrollView.delegate = self;
 
     _contentView = [[UIView alloc] initWithFrame:self.view.frame];
@@ -57,9 +57,16 @@
     [self addChildViewController:_countryTableViewController];
     [self.scrollView addSubview:_countryTableViewController.view];
 
+    _currentConfiguration = HTConfigurationMake(2, 2);
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2.0f, self.view.bounds.size.height);
+    _contentView.frame = self.view.bounds;
+    _contentView.backgroundColor = [UIColor redColor];
     _countryTableViewController.view.frame = CGRectMake(self.view.bounds.size.width, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 
-    _currentConfiguration = HTConfigurationMake(2, 2);
     [self _loadInterfaceWithConfiguration:_currentConfiguration];
 }
 
