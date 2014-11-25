@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "HTLabel.h"
+#import "HTTextView.h"
 
 typedef enum {
     HTAnimationTypeTop = 0,
@@ -19,10 +20,11 @@ typedef enum {
 
 @protocol HTCellViewDataSource;
 
-@interface HTCellView : UIView <HTLabelDelegate>
+@interface HTCellView : UIView <HTLabelDelegate, HTTextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView * contentView;
 @property (strong, nonatomic) IBOutlet HTLabel *label;
+@property (strong, nonatomic) IBOutlet HTTextView * textView;
 @property (nonatomic, weak) id<HTCellViewDataSource> datasource;
 
 @end

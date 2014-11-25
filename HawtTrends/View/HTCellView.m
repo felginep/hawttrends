@@ -40,6 +40,8 @@
     _label = nil;
     [_labelTimer invalidate];
     _labelTimer = nil;
+    _textView = nil;
+    [_textView stopTimers];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -63,7 +65,17 @@
         _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
         _label.shadowOffset = CGSizeMake(1.0f, 1.0f);
         _label.delegate = self;
-        [self.contentView addSubview:_label];
+//        [self.contentView addSubview:_label];
+
+        _textView = nil;
+        _textView = [[HTTextView alloc] initWithFrame:CGRectMake(20.0f, 20.0f, _contentView.frame.size.width - 40.0f, _contentView.frame.size.height - 40.0f)];
+        _textView.backgroundColor = [UIColor clearColor];
+//        _textView.font = [UIFont boldSystemFontOfSize:60.0f];
+        _textView.textColor = [UIColor whiteColor];
+//        _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
+//        _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
+        _textView.animationDelegate = self;
+        [self.contentView addSubview:_textView];
     }
     return self;
 }
@@ -72,11 +84,21 @@
     _datasource = datasource;
     _label.animatedText = [datasource textToDisplayForCellView:self];
     [_label startAnimating];
+
+    _textView.animatedText = [datasource textToDisplayForCellView:self];
+    [_textView startAnimating];
 }
 
 #pragma mark - HTLabelDelegate
 
 - (void)labelDidStopAnimating:(HTLabel *)label {
+    _labelTimer = [NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:_labelTimer forMode:NSDefaultRunLoopMode];
+}
+
+#pragma HTTextViewDelegate
+
+- (void)textViewDidStopAnimating:(HTTextView *)textView {
     _labelTimer = [NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:_labelTimer forMode:NSDefaultRunLoopMode];
 }
@@ -144,7 +166,9 @@
 - (void)_makeLabelAppear {
     _label.animatedText = [self.datasource textToDisplayForCellView:self];
     [_label startAnimating];
-    
+    _textView.animatedText = [self.datasource textToDisplayForCellView:self];
+    [_textView startAnimating];
+
     CGPoint center = self.contentView.center;
     switch (_currentAnimationType) {
         case HTAnimationTypeTop:
@@ -166,6 +190,12 @@
     [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
         _label.alpha = 1.0f;
         _label.center = self.contentView.center;
+    }];
+    _textView.alpha = 0;
+    _textView.center = center;
+    [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
+        _textView.alpha = 1.0f;
+        _textView.center = self.contentView.center;
     }];
 }
 
