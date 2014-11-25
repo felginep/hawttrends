@@ -115,7 +115,7 @@
     }
     self.text = [_animatedText substringToIndex:_textIndex];
 
-    CGRect lastCharacterRect = [self _boundingRectForCharacterRange:NSMakeRange(self.text.length - 1, 1)];
+//    CGRect lastCharacterRect = [self _boundingRectForCharacterRange:NSMakeRange(self.text.length - 1, 1)];
 
     [self _positionCursor];
 }
