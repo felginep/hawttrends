@@ -21,6 +21,7 @@
 - (NSTimeInterval)_randomTimeInterval;
 - (void)_positionCursor;
 - (CGFloat)_fontSizeForText:(NSString *)string;
+- (CGRect)_boundingRectForCharacterRange:(NSRange)range;
 @end
 
 @interface HTLabel () {
@@ -112,7 +113,56 @@
         self.isWriting = NO;
     }
     self.text = [_animatedText substringToIndex:_textIndex];
+
+//    CGRect lastCharacterRect = [self _boundingRectForCharacterRange:NSMakeRange(self.text.length - 1, 1)];
+
     [self _positionCursor];
+}
+
+- (CGRect)_boundingRectForCharacterRange:(NSRange)range {
+    NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:self.text attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:40.0f]}];
+    NSTextStorage * textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
+    NSLayoutManager * layoutManager = [[NSLayoutManager alloc] init];
+    [textStorage addLayoutManager:layoutManager];
+
+    NSTextContainer * textContainer = [[NSTextContainer alloc] initWithSize:self.bounds.size];
+    textContainer.lineBreakMode = NSLineBreakByWordWrapping;
+    textContainer.lineFragmentPadding = 0;
+    [layoutManager addTextContainer:textContainer];
+
+    for (UIView * subview in self.subviews) {
+        if ([subview isKindOfClass:[UITextView class]]) {
+            [subview removeFromSuperview];
+        }
+    }
+
+    UITextView * textView = [[UITextView alloc] initWithFrame:self.bounds textContainer:textContainer];
+    textView.textContainerInset = UIEdgeInsetsZero;
+    [self addSubview:textView];
+    [textView sizeToFit];
+    textView.frame = CGRectMake(textView.frame.origin.x, (self.bounds.size.height - textView.frame.size.height) * 0.5f , textView.frame.size.width, textView.frame.size.height);
+
+
+
+    NSRange glyphRange;
+    [layoutManager characterRangeForGlyphRange:range actualGlyphRange:&glyphRange];
+
+    CGRect rect = [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:textContainer];
+
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5f];
+    for (UIView * subview in self.subviews) {
+        if (subview.tag == 999) {
+            [subview removeFromSuperview];
+        }
+    }
+
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(rect.origin.x, rect.origin.y + textView.frame.origin.y, rect.size.width, rect.size.height)];
+    view.tag = 999;
+    view.layer.borderColor = [UIColor redColor].CGColor;
+    view.layer.borderWidth = 1.0f;
+    [self addSubview:view];
+
+    return rect;
 }
 
 - (void)_handleCursor:(id)sender {
