@@ -144,4 +144,40 @@
     });
 }
 
+
+#define HT_MIN_FONT_SIZE 10.0f
+#define HT_MAX_FONT_SIZE 100.0f
+
+- (CGFloat)fontSizeForSize:(CGSize)size {
+    CGFloat minFontSize = HT_MAX_FONT_SIZE;
+    for (NSString * term in self.terms) {
+        CGFloat fontSize = [self _fontSizeForSize:size andString:term];
+        if (fontSize < minFontSize) {
+            minFontSize = fontSize;
+        }
+    }
+    return minFontSize;
+}
+
+- (CGFloat)_fontSizeForSize:(CGSize)size andString:(NSString *)string {
+    CGFloat fontSize = HT_MAX_FONT_SIZE;
+    while (fontSize > HT_MIN_FONT_SIZE) {
+        UIFont * font = [UIFont boldSystemFontOfSize:fontSize];
+        CGRect stringRect = [string boundingRectWithSize:CGSizeMake(size.width, CGFLOAT_MAX)
+                                                 options:NSStringDrawingUsesLineFragmentOrigin
+                                              attributes:@{NSFontAttributeName: font}
+                                                 context:nil];
+
+        if (stringRect.size.height <= size.height) {
+            break;
+        }
+
+        fontSize -= 2;
+    }
+
+//    NSLog(@"( %@ ) => %f", string, fontSize);
+
+    return fontSize;
+}
+
 @end

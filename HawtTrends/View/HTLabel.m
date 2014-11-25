@@ -7,6 +7,7 @@
 //
 
 #import "HTLabel.h"
+#import "HTTermsDownloader.h"
 
 #define HT_TIMER_INTERVAL 0.25f
 #define HT_EPSILON 0.10f
@@ -114,13 +115,15 @@
     }
     self.text = [_animatedText substringToIndex:_textIndex];
 
-//    CGRect lastCharacterRect = [self _boundingRectForCharacterRange:NSMakeRange(self.text.length - 1, 1)];
+    CGRect lastCharacterRect = [self _boundingRectForCharacterRange:NSMakeRange(self.text.length - 1, 1)];
 
     [self _positionCursor];
 }
 
 - (CGRect)_boundingRectForCharacterRange:(NSRange)range {
-    NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:self.text attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:40.0f]}];
+    CGFloat fontSize = [[HTTermsDownloader sharedDownloader] fontSizeForSize:self.bounds.size];
+
+    NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:self.text attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:fontSize]}];
     NSTextStorage * textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
     NSLayoutManager * layoutManager = [[NSLayoutManager alloc] init];
     [textStorage addLayoutManager:layoutManager];
