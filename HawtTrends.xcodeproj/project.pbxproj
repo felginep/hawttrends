@@ -24,6 +24,7 @@
 		49C4B1361A20C74400A418BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C4B1351A20C74400A418BC /* Images.xcassets */; };
 		49C4B1391A20DB8400A418BC /* HTCountryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */; };
 		49C4B13D1A227BEA00A418BC /* HTCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B13C1A227BEA00A418BC /* HTCountry.m */; };
+		49C4B1431A252B3A00A418BC /* HTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1421A252B3900A418BC /* HTTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountryTableViewCell.m; path = View/HTCountryTableViewCell.m; sourceTree = "<group>"; };
 		49C4B13B1A227BEA00A418BC /* HTCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCountry.h; path = Model/HTCountry.h; sourceTree = "<group>"; };
 		49C4B13C1A227BEA00A418BC /* HTCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountry.m; path = Model/HTCountry.m; sourceTree = "<group>"; };
+		49C4B1411A252B3900A418BC /* HTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTextView.h; path = View/HTTextView.h; sourceTree = "<group>"; };
+		49C4B1421A252B3900A418BC /* HTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTextView.m; path = View/HTTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 				49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */,
 				49C4B1371A20DB8400A418BC /* HTCountryTableViewCell.h */,
 				49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */,
+				49C4B1411A252B3900A418BC /* HTTextView.h */,
+				49C4B1421A252B3900A418BC /* HTTextView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 				49C4B1391A20DB8400A418BC /* HTCountryTableViewCell.m in Sources */,
 				490C5CB8174EB22900CBD520 /* main.m in Sources */,
 				490C5CBC174EB22900CBD520 /* HTAppDelegate.m in Sources */,
+				49C4B1431A252B3A00A418BC /* HTTextView.m in Sources */,
 				490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */,
 				4936EC351A1F6E6E009EB1BC /* HTCountryTableViewController.m in Sources */,
 				490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */,
