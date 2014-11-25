@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "HTCountry.h"
 
+static NSString * kTermsDownloadedNotification = @"kTermsDownloadedNotification";
+
 @protocol HTTermsDownloaderDelegate;
 
 @interface HTTermsDownloader : NSObject

@@ -141,6 +141,8 @@
         }
 
         _terms = [json objectForKey:_currentCountry.webserviceCode];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:kTermsDownloadedNotification object:nil];
     });
 }
 
