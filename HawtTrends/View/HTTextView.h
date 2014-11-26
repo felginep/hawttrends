@@ -15,6 +15,8 @@
 @property (nonatomic, copy) NSString * animatedText;
 @property (nonatomic, weak) id<HTTextViewDelegate> animationDelegate;
 @property (nonatomic, strong) UIColor * textColor;
+@property (nonatomic, strong) UIColor * shadowColor;
+@property (nonatomic) CGSize shadowOffset;
 
 - (void)startAnimating;
 - (void)stopTimers;

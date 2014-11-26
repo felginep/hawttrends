@@ -31,6 +31,8 @@
     _animatedText = nil;
     _textView = nil;
     _cursor = nil;
+    _shadowColor = nil;
+    _textColor = nil;
     [self stopTimers];
 }
 
@@ -49,6 +51,8 @@
         _textView.font = [UIFont boldSystemFontOfSize:fontSize];
         _textView.textContainer.lineBreakMode = NSLineBreakByWordWrapping;
         _textView.textContainer.lineFragmentPadding = 0;
+        _textView.layer.shadowOpacity = 1.0f;
+        _textView.layer.shadowRadius = 1.0f;
 
         self.isWriting = NO;
     }
@@ -68,6 +72,16 @@
 - (void)setTextColor:(UIColor *)textColor {
     _textView.textColor = textColor;
     _cursor.backgroundColor = textColor;
+}
+
+- (void)setShadowColor:(UIColor *)shadowColor {
+    _shadowColor = shadowColor;
+    _textView.layer.shadowColor = shadowColor.CGColor;
+}
+
+- (void)setShadowOffset:(CGSize)shadowOffset {
+    _shadowOffset = shadowOffset;
+    _textView.layer.shadowOffset = shadowOffset;
 }
 
 - (void)setAnimatedText:(NSString *)animatedText {

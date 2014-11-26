@@ -75,6 +75,8 @@
 //        _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
 //        _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
         _textView.animationDelegate = self;
+        _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
+        _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
         [self.contentView addSubview:_textView];
     }
     return self;
