@@ -78,12 +78,8 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint position = [[touches anyObject] locationInView:self];
-    if (position.x > self.frame.size.width) {
-        position.x = self.frame.size.width;
-    }
-    if (position.y > self.frame.size.height) {
-        position.y = self.frame.size.height;
-    }
+    position = [self _inBoundsPosition:position];
+
     int i = position.x / (40.0f + _squareMargin);
     int j = position.y / (40.0f + _squareMargin);
 
@@ -108,12 +104,8 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint position = [[touches anyObject] locationInView:self];
-    if (position.x > self.frame.size.width) {
-        position.x = self.frame.size.width;
-    }
-    if (position.y > self.frame.size.height) {
-        position.y = self.frame.size.height;
-    }
+    position = [self _inBoundsPosition:position];
+
     int i = position.x / (40.0f + _squareMargin);
     int j = position.y / (40.0f + _squareMargin);
 
@@ -128,6 +120,22 @@
 }
 
 #pragma mark - Private methods
+
+- (CGPoint)_inBoundsPosition:(CGPoint)position {
+    if (position.x > self.frame.size.width) {
+        position.x = self.frame.size.width;
+    }
+    if (position.x < 0) {
+        position.x = 0;
+    }
+    if (position.y > self.frame.size.height) {
+        position.y = self.frame.size.height;
+    }
+    if (position.y < 0) {
+        position.y = 0;
+    }
+    return position;
+}
 
 - (void)_collapse {
     if (!_isCollapsed) {
