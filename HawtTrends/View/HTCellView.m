@@ -36,8 +36,6 @@
 
 - (void)dealloc {
     _contentView = nil;
-    [_label stopTimers];
-    _label = nil;
     [_labelTimer invalidate];
     _labelTimer = nil;
     _textView = nil;
@@ -56,16 +54,6 @@
         [_contentView setOpaque:YES];
         [self addSubview:_contentView];
         self.contentView.backgroundColor = self.backgroundColor;
-        
-        _label = nil;
-        _label = [[HTLabel alloc] initWithFrame:CGRectMake(20.0f, 20.0f, _contentView.frame.size.width - 40.0f, _contentView.frame.size.height - 40.0f)];
-        _label.backgroundColor = [UIColor clearColor];
-        _label.font = [UIFont boldSystemFontOfSize:60.0f];
-        _label.textColor = [UIColor whiteColor];
-        _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
-        _label.shadowOffset = CGSizeMake(1.0f, 1.0f);
-        _label.delegate = self;
-//        [self.contentView addSubview:_label];
 
         _textView = nil;
         _textView = [[HTTextView alloc] initWithFrame:CGRectMake(20.0f, 20.0f, _contentView.frame.size.width - 40.0f, _contentView.frame.size.height - 40.0f)];
@@ -84,18 +72,8 @@
 
 - (void)setDatasource:(id<HTCellViewDataSource>)datasource {
     _datasource = datasource;
-    _label.animatedText = [datasource textToDisplayForCellView:self];
-    [_label startAnimating];
-
     _textView.animatedText = [datasource textToDisplayForCellView:self];
     [_textView startAnimating];
-}
-
-#pragma mark - HTLabelDelegate
-
-- (void)labelDidStopAnimating:(HTLabel *)label {
-    _labelTimer = [NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO];
-    [[NSRunLoop mainRunLoop] addTimer:_labelTimer forMode:NSDefaultRunLoopMode];
 }
 
 #pragma HTTextViewDelegate
@@ -166,8 +144,6 @@
 }
 
 - (void)_makeLabelAppear {
-    _label.animatedText = [self.datasource textToDisplayForCellView:self];
-    [_label startAnimating];
     _textView.animatedText = [self.datasource textToDisplayForCellView:self];
     [_textView startAnimating];
 
@@ -186,13 +162,7 @@
             center.x -= HT_LABEL_MOVE;
             break;
     }
-    
-    _label.alpha = 0;
-    _label.center = center;
-    [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
-        _label.alpha = 1.0f;
-        _label.center = self.contentView.center;
-    }];
+
     _textView.alpha = 0;
     _textView.center = center;
     [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
