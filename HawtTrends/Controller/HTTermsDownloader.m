@@ -177,20 +177,19 @@
     CGFloat fontSize = HT_MAX_FONT_SIZE;
     while (fontSize > HT_MIN_FONT_SIZE) {
         UIFont * font = [UIFont boldSystemFontOfSize:fontSize];
+        NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
         CGRect stringRect = [string boundingRectWithSize:CGSizeMake(size.width, CGFLOAT_MAX)
                                                  options:NSStringDrawingUsesLineFragmentOrigin
-                                              attributes:@{NSFontAttributeName: font}
+                                              attributes:@{NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle}
                                                  context:nil];
 
-        if (stringRect.size.height <= size.height) {
+        if (stringRect.size.height <= size.height && stringRect.size.width <= size.width) {
             break;
         }
 
         fontSize -= 2;
     }
-
-//    NSLog(@"( %@ ) => %f", string, fontSize);
-
     return fontSize;
 }
 
