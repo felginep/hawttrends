@@ -56,7 +56,8 @@
         self.contentView.backgroundColor = self.backgroundColor;
 
         _textView = nil;
-        _textView = [[HTTextView alloc] initWithFrame:CGRectMake(20.0f, 20.0f, _contentView.frame.size.width - 40.0f, _contentView.frame.size.height - 40.0f)];
+        CGFloat margin = MIN(_contentView.frame.size.width, _contentView.frame.size.height) / 10.0f;
+        _textView = [[HTTextView alloc] initWithFrame:CGRectMake(margin, margin, _contentView.frame.size.width - 2 * margin, _contentView.frame.size.height - 2 * margin)];
         _textView.backgroundColor = [UIColor clearColor];
 //        _textView.font = [UIFont boldSystemFontOfSize:60.0f];
         _textView.textColor = [UIColor whiteColor];
