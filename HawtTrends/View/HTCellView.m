@@ -59,10 +59,7 @@
         CGFloat margin = MIN(_contentView.frame.size.width, _contentView.frame.size.height) / 10.0f;
         _textView = [[HTTextView alloc] initWithFrame:CGRectMake(margin, margin, _contentView.frame.size.width - 2 * margin, _contentView.frame.size.height - 2 * margin)];
         _textView.backgroundColor = [UIColor clearColor];
-//        _textView.font = [UIFont boldSystemFontOfSize:60.0f];
         _textView.textColor = [UIColor whiteColor];
-//        _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
-//        _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
         _textView.animationDelegate = self;
         _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
         _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
