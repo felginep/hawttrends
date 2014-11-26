@@ -31,7 +31,6 @@
     _animatedText = nil;
     _textView = nil;
     _cursor = nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTermsDownloadedNotification object:nil];
     [self stopTimers];
 }
 
@@ -52,8 +51,6 @@
         _textView.textContainer.lineFragmentPadding = 0;
 
         self.isWriting = NO;
-
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateFont:) name:kTermsDownloadedNotification object:nil];
     }
     return self;
 }
@@ -74,10 +71,13 @@
 }
 
 - (void)setAnimatedText:(NSString *)animatedText {
+    CGFloat fontSize = [[HTTermsDownloader sharedDownloader] fontSizeForSize:self.bounds.size];
+    _textView.font = [UIFont boldSystemFontOfSize:fontSize];
+
     _animatedText = [animatedText copy];
     _textIndex = 0;
     _textView.text = nil;
-    CGFloat fontSize = _textView.font.pointSize; // to change
+//    CGFloat fontSize = _textView.font.pointSize; // to change
     CGRect frame = _cursor.frame;
     frame.size.width = (fontSize < 30) ? 1.0 : 2.0f;
     frame.size.height = fontSize;
@@ -136,16 +136,14 @@
 }
 
 - (CGRect)_boundingRectForCharacterRange:(NSRange)range {
-    CGFloat fontSize = _textView.font.pointSize;
-
     NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:_textView.text attributes:@{NSFontAttributeName : _textView.font}];
     NSTextStorage * textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
     NSLayoutManager * layoutManager = [[NSLayoutManager alloc] init];
     [textStorage addLayoutManager:layoutManager];
 
     NSTextContainer * textContainer = [[NSTextContainer alloc] initWithSize:self.bounds.size];
-    textContainer.lineBreakMode = NSLineBreakByWordWrapping;
-    textContainer.lineFragmentPadding = 0;
+    textContainer.lineBreakMode = _textView.textContainer.lineBreakMode;
+    textContainer.lineFragmentPadding = _textView.textContainer.lineFragmentPadding;
     [layoutManager addTextContainer:textContainer];
 
     NSRange glyphRange;

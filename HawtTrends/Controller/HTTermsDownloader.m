@@ -125,7 +125,7 @@
 }
 
 - (void)downloadTerms {
-    _terms = nil;
+    _terms = @[@"Loading..."];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError * error = nil;
         NSString * jsonString = [NSString stringWithContentsOfURL:[NSURL URLWithString:HT_TERMS_API_URL] encoding:NSUTF8StringEncoding error:&error];
@@ -141,8 +141,6 @@
         }
 
         _terms = [json objectForKey:_currentCountry.webserviceCode];
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:kTermsDownloadedNotification object:nil];
     });
 }
 
@@ -151,6 +149,17 @@
 #define HT_MAX_FONT_SIZE 100.0f
 
 - (CGFloat)fontSizeForSize:(CGSize)size {
+    static CGSize savedSize;
+    static NSArray * savedTerms;
+    static CGFloat savedFontSize;
+
+    if (CGSizeEqualToSize(size, savedSize) && savedTerms == self.terms && savedFontSize > 0) {
+        return savedFontSize;
+    } else {
+        savedSize = size;
+        savedTerms = _terms;
+    }
+
     CGFloat minFontSize = HT_MAX_FONT_SIZE;
     for (NSString * term in self.terms) {
         CGFloat fontSize = [self _fontSizeForSize:size andString:term];
@@ -158,6 +167,9 @@
             minFontSize = fontSize;
         }
     }
+
+    savedFontSize = minFontSize;
+
     return minFontSize;
 }
 
