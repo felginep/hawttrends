@@ -11,11 +11,6 @@
 #import "HTGridSizeSelector.h"
 #import "HTCountryTableViewController.h"
 
-/*
- * Change HT_NUMBER_CELL to split the screen with multiple cells
- */
-#define HT_NUMBER_CELL 1
-
 @interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIView * contentView;
