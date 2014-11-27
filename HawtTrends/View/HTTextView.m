@@ -62,16 +62,6 @@
     return self;
 }
 
-- (void)_updateFont:(NSNotification *)notification {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        CGFloat fontSize = [[HTTermsDownloader sharedDownloader] fontSizeForSize:self.bounds.size];
-        _textView.font = [UIFont boldSystemFontOfSize:fontSize];
-        CGRect frame = _cursor.frame;
-        frame.size.height = fontSize;
-        _cursor.frame = frame;
-    });
-}
-
 - (void)setTextColor:(UIColor *)textColor {
     _textView.textColor = textColor;
     _cursor.backgroundColor = textColor;
