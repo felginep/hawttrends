@@ -152,7 +152,7 @@
         _isCollapsed = NO;
         _squareNumbers = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 3 : 5;
         [self _updateFrame];
-        [self setNeedsLayout];
+        [self layoutIfNeeded];
     }
 }
 
