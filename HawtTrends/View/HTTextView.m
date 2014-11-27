@@ -53,6 +53,9 @@
         _textView.textContainer.lineFragmentPadding = 0;
         _textView.layer.shadowOpacity = 1.0f;
         _textView.layer.shadowRadius = 1.0f;
+        _textView.dataDetectorTypes = UIDataDetectorTypeNone;
+        _textView.editable = NO;
+        _textView.selectable = NO;
 
         self.isWriting = NO;
     }
@@ -150,22 +153,9 @@
 }
 
 - (CGRect)_boundingRectForCharacterRange:(NSRange)range {
-    NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:_textView.text attributes:@{NSFontAttributeName : _textView.font}];
-    NSTextStorage * textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
-    NSLayoutManager * layoutManager = [[NSLayoutManager alloc] init];
-    [textStorage addLayoutManager:layoutManager];
-
-    NSTextContainer * textContainer = [[NSTextContainer alloc] initWithSize:self.bounds.size];
-    textContainer.lineBreakMode = _textView.textContainer.lineBreakMode;
-    textContainer.lineFragmentPadding = _textView.textContainer.lineFragmentPadding;
-    [layoutManager addTextContainer:textContainer];
-
     NSRange glyphRange;
-    [layoutManager characterRangeForGlyphRange:range actualGlyphRange:&glyphRange];
-
-    CGRect rect = [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:textContainer];
-
-    return rect;
+    [_textView.layoutManager characterRangeForGlyphRange:range actualGlyphRange:&glyphRange];
+    return [_textView.layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:_textView.textContainer];
 }
 
 - (void)_handleCursor:(id)sender {
