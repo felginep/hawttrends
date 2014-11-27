@@ -80,11 +80,11 @@
     CGPoint position = [[touches anyObject] locationInView:self];
     position = [self _inBoundsPosition:position];
 
-    int i = position.x / (40.0f + _squareMargin);
-    int j = position.y / (40.0f + _squareMargin);
+    int row = position.x / (40.0f + _squareMargin);
+    int column = position.y / (40.0f + _squareMargin);
 
-    _currentPosition.row = i;
-    _currentPosition.column = j;
+    _currentPosition.row = row;
+    _currentPosition.column = column;
 
     for (int i = 0; i < _squareNumbers; i++) {
         for (int j = 0; j < _squareNumbers; j++) {
