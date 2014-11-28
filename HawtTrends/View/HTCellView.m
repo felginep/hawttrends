@@ -49,13 +49,11 @@
         self.backgroundColor = [self _nextColor];
         self.clipsToBounds = YES;
         
-        _contentView = nil;
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [_contentView setOpaque:YES];
         [self addSubview:_contentView];
         self.contentView.backgroundColor = self.backgroundColor;
 
-        _textView = nil;
         CGFloat margin = MIN(_contentView.frame.size.width, _contentView.frame.size.height) / 10.0f;
         _textView = [[HTTextView alloc] initWithFrame:CGRectMake(margin, margin, _contentView.frame.size.width - 2 * margin, _contentView.frame.size.height - 2 * margin)];
         _textView.backgroundColor = [UIColor clearColor];
