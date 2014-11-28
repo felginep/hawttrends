@@ -143,9 +143,9 @@
     }
     _textView.text = [_animatedText substringToIndex:_textIndex];
 
-    _textView.frame = self.bounds;
-    [_textView sizeToFit];
+    CGSize sizeToFitIn = [_textView sizeThatFits:self.bounds.size];
     CGRect frame = _textView.frame;
+    frame.size = sizeToFitIn;
     frame.origin.y = (self.bounds.size.height - frame.size.height) / 2.0f;
     _textView.frame = frame;
 
