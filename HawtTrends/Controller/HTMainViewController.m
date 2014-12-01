@@ -10,6 +10,7 @@
 #import "HTTermsDownloader.h"
 #import "HTGridSizeSelector.h"
 #import "HTCountryTableViewController.h"
+#import "HTCollectionViewCell.h"
 
 @interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
@@ -64,13 +65,8 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"identifier" forIndexPath:indexPath];
-
-    cell.backgroundColor = [UIColor yellowColor];
-
-    cell.layer.borderColor = [UIColor blackColor].CGColor;
-    cell.layer.borderWidth = 1;
-
+    HTCollectionViewCell * cell = (HTCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"identifier" forIndexPath:indexPath];
+    
     return cell;
 }
 
@@ -207,7 +203,6 @@
     UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
     _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-    _collectionView.backgroundColor = [UIColor redColor];
     [_scrollView addSubview:_collectionView];
 
 
@@ -231,7 +226,7 @@
                                                                         metrics:nil
                                                                           views:NSDictionaryOfVariableBindings(_collectionView)]];
 
-    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"identifier"];
+    [_collectionView registerClass:[HTCollectionViewCell class] forCellWithReuseIdentifier:@"identifier"];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
 }
