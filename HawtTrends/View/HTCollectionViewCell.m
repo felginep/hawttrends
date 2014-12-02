@@ -39,10 +39,6 @@
         _colorIndex = [self _random];
         self.backgroundColor = [self _nextColor];
         self.clipsToBounds = YES;
-
-        _backgroundTimer = [NSTimer timerWithTimeInterval:5.0f target:self selector:@selector(_changeBackground) userInfo:nil repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:_backgroundTimer forMode:NSRunLoopCommonModes];
-        [self _animate];
     }
     return self;
 }
@@ -51,6 +47,12 @@
     self.backgroundColor = [self _nextColor];
     _currentAnimationType = [self _randomAnimation];
     
+    [self _animate];
+}
+
+- (void)startAnimating {
+    _backgroundTimer = [NSTimer timerWithTimeInterval:5.0f target:self selector:@selector(_changeBackground) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:_backgroundTimer forMode:NSRunLoopCommonModes];
     [self _animate];
 }
 

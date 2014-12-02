@@ -13,5 +13,7 @@
 //@property (strong, nonatomic) IBOutlet UIView * contentView;
 //@property (strong, nonatomic) IBOutlet HTTextView * textView;
 
+- (void)startAnimating;
+
 @end
 
