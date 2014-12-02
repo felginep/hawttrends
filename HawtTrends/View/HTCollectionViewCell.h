@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTTextView.h"
 
-@interface HTCollectionViewCell : UICollectionViewCell
+@interface HTCollectionViewCell : UICollectionViewCell <HTTextViewDelegate>
 
 //@property (strong, nonatomic) IBOutlet UIView * contentView;
-//@property (strong, nonatomic) IBOutlet HTTextView * textView;
+@property (strong, nonatomic) IBOutlet HTTextView * textView;
 
 - (void)startAnimating;
 

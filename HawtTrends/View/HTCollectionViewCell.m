@@ -27,6 +27,7 @@
 - (void)dealloc {
     [_backgroundTimer invalidate];
     _backgroundTimer = nil;
+    _textView = nil;
 }
 
 - (void)prepareForReuse {
@@ -39,8 +40,23 @@
         _colorIndex = [self _random];
         self.backgroundColor = [self _nextColor];
         self.clipsToBounds = YES;
+
+        _textView = [[HTTextView alloc] init];
+        _textView.backgroundColor = [UIColor clearColor];
+        _textView.textColor = [UIColor whiteColor];
+        _textView.animationDelegate = self;
+        _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
+        _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
+        _textView.backgroundColor = [UIColor orangeColor];
+        [self.contentView addSubview:_textView];
     }
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGFloat margin = MIN(self.contentView.frame.size.width, self.contentView.frame.size.height) / 10.0f;
+    _textView.frame = CGRectMake(margin, margin, self.contentView.frame.size.width - 2 * margin, self.contentView.frame.size.height - 2 * margin);
 }
 
 - (void)_changeBackground {
@@ -51,9 +67,17 @@
 }
 
 - (void)startAnimating {
+    [_backgroundTimer invalidate];
     _backgroundTimer = [NSTimer timerWithTimeInterval:5.0f target:self selector:@selector(_changeBackground) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:_backgroundTimer forMode:NSRunLoopCommonModes];
     [self _animate];
+}
+
+#pragma HTTextViewDelegate
+
+- (void)textViewDidStopAnimating:(HTTextView *)textView {
+//    _labelTimer = [NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO];
+//    [[NSRunLoop mainRunLoop] addTimer:_labelTimer forMode:NSDefaultRunLoopMode];
 }
 
 
@@ -88,9 +112,7 @@
         [CATransaction setCompletionBlock:^{
             layer.backgroundColor = self.layer.backgroundColor;
             layer.position = lastPosition;
-
-//            [self _makeLabelAppear];
-            
+            [self _makeLabelAppear];
         }];
         // Animate the position
         CABasicAnimation * positionAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
@@ -101,6 +123,33 @@
     } [CATransaction commit];
 }
 
+- (void)_makeLabelAppear {
+//    _textView.animatedText = [self.datasource textToDisplayForCellView:self];
+//    [_textView startAnimating];
+
+    CGPoint center = self.contentView.center;
+    switch (_currentAnimationType) {
+        case HTAnimationTypeTop:
+            center.y -= HT_LABEL_MOVE;
+            break;
+        case HTAnimationTypeRight:
+            center.x += HT_LABEL_MOVE;
+            break;
+        case HTAnimationTypeBottom:
+            center.y += HT_LABEL_MOVE;
+            break;
+        case HTAnimationTypeLeft:
+            center.x -= HT_LABEL_MOVE;
+            break;
+    }
+
+    _textView.alpha = 0;
+    _textView.center = center;
+    [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
+        _textView.alpha = 1.0f;
+        _textView.center = self.contentView.center;
+    }];
+}
 
 - (int)_random {
     return (int)(((float)rand() / (float)RAND_MAX) * 4);
