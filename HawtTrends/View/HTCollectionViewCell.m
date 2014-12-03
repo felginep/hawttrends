@@ -17,8 +17,9 @@
 @interface HTCollectionViewCell () {
     NSUInteger _colorIndex;
     HTAnimationType _currentAnimationType;
-    CALayer * _backgroundLayer;
+    UIView * _backgroundView;
     NSTimer * _backgroundTimer;
+    BOOL _needsAnimating;
 }
 @end
 
@@ -30,16 +31,15 @@
     _textView = nil;
 }
 
-- (void)prepareForReuse {
-    [_backgroundTimer invalidate];
-    _backgroundTimer = nil;
-}
-
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         _colorIndex = [self _random];
         self.backgroundColor = [self _nextColor];
         self.clipsToBounds = YES;
+
+        _backgroundView = [[UIView alloc] initWithFrame:self.bounds];
+        _backgroundView.backgroundColor = [UIColor redColor];
+        [self.contentView addSubview:_backgroundView];
 
         _textView = [[HTTextView alloc] init];
         _textView.backgroundColor = [UIColor clearColor];
@@ -48,15 +48,27 @@
         _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
         _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
         _textView.backgroundColor = [UIColor orangeColor];
-        [self.contentView addSubview:_textView];
+        [_backgroundView addSubview:_textView];
     }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    CGFloat margin = MIN(self.contentView.frame.size.width, self.contentView.frame.size.height) / 10.0f;
+    _backgroundView.frame = self.contentView.bounds;
+    CGFloat margin = MIN(_backgroundView.frame.size.width, _backgroundView.frame.size.height) / 10.0f;
     _textView.frame = CGRectMake(margin, margin, self.contentView.frame.size.width - 2 * margin, self.contentView.frame.size.height - 2 * margin);
+
+    if (_needsAnimating) {
+        _needsAnimating = NO;
+        [self startAnimating];
+    }
+}
+
+- (void)setNeedsAnimating {
+    if (!_needsAnimating) {
+        _needsAnimating = YES;
+    }
 }
 
 - (void)_changeBackground {
@@ -73,6 +85,18 @@
     [self _animate];
 }
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+
+    [_backgroundTimer invalidate];
+    _backgroundTimer = nil;
+
+    [CATransaction begin]; {
+        [_backgroundView.layer removeAllAnimations];
+        [_textView.layer removeAllAnimations];
+    } [CATransaction commit];
+}
+
 #pragma HTTextViewDelegate
 
 - (void)textViewDidStopAnimating:(HTTextView *)textView {
@@ -84,10 +108,10 @@
 #pragma mark - Private
 
 - (void)_animate {
-    CALayer * layer = self.contentView.layer;
+    CALayer * layer = _backgroundView.layer;
     [layer setOpaque:YES];
 
-    CGPoint lastPosition = layer.position;
+    CGPoint lastPosition = self.contentView.layer.position;
     // Calculate the new position for the layer
     CGPoint newPosition = lastPosition;
     switch (_currentAnimationType) {
@@ -111,7 +135,7 @@
         [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithControlPoints:0.11f :0.31f :0.49f :1.0f]];
         [CATransaction setCompletionBlock:^{
             layer.backgroundColor = self.layer.backgroundColor;
-            layer.position = lastPosition;
+            layer.position = self.contentView.layer.position;
             [self _makeLabelAppear];
         }];
         // Animate the position
@@ -127,7 +151,7 @@
 //    _textView.animatedText = [self.datasource textToDisplayForCellView:self];
 //    [_textView startAnimating];
 
-    CGPoint center = self.contentView.center;
+    CGPoint center = _backgroundView.center;
     switch (_currentAnimationType) {
         case HTAnimationTypeTop:
             center.y -= HT_LABEL_MOVE;
@@ -147,7 +171,7 @@
     _textView.center = center;
     [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
         _textView.alpha = 1.0f;
-        _textView.center = self.contentView.center;
+        _textView.center = _backgroundView.center;
     }];
 }
 

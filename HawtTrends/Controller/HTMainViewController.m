@@ -66,12 +66,11 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HTCollectionViewCell * cell = (HTCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"identifier" forIndexPath:indexPath];
-    
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    [(HTCollectionViewCell *)cell startAnimating];
+    [(HTCollectionViewCell *)cell setNeedsAnimating];
 }
 
 #pragma mark - UICollectionViewFlowLayoutDelegate methods

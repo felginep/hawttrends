@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet HTTextView * textView;
 
 - (void)startAnimating;
+- (void)stopAnimating;
+- (void)setNeedsAnimating;
 
 @end
 
