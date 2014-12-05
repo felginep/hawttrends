@@ -9,14 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "HTTextView.h"
 
+@protocol HTCollectionViewCellViewDataSource;
+
 @interface HTCollectionViewCell : UICollectionViewCell <HTTextViewDelegate>
 
-//@property (strong, nonatomic) IBOutlet UIView * contentView;
 @property (strong, nonatomic) IBOutlet HTTextView * textView;
+@property (nonatomic, weak) id<HTCollectionViewCellViewDataSource> datasource;
 
-- (void)startAnimating;
-- (void)stopAnimating;
 - (void)setNeedsAnimating;
 
 @end
 
+@protocol HTCollectionViewCellViewDataSource <NSObject>
+- (NSString *)textToDisplayForCellView:(HTCollectionViewCell *)cellView;
+@end

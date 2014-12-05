@@ -14,7 +14,6 @@
 		490C5CB8174EB22900CBD520 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CB7174EB22900CBD520 /* main.m */; };
 		490C5CBC174EB22900CBD520 /* HTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CBB174EB22900CBD520 /* HTAppDelegate.m */; };
 		490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CC9174EB45D00CBD520 /* HTMainViewController.m */; };
-		490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CCD174EB4E900CBD520 /* HTCellView.m */; };
 		4911BCBD175119F700A1ED8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4911BCBC175119F700A1ED8F /* QuartzCore.framework */; };
 		4919D16C1A2A051C0028E50E /* HTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4919D16B1A2A051C0028E50E /* HTCollectionViewCell.m */; };
 		4935EF581764CF4000069D81 /* HTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4935EF571764CF4000069D81 /* HTLabel.m */; };
@@ -41,8 +40,6 @@
 		490C5CBB174EB22900CBD520 /* HTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTAppDelegate.m; sourceTree = "<group>"; };
 		490C5CC8174EB45D00CBD520 /* HTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMainViewController.h; path = Controller/HTMainViewController.h; sourceTree = "<group>"; };
 		490C5CC9174EB45D00CBD520 /* HTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMainViewController.m; path = Controller/HTMainViewController.m; sourceTree = "<group>"; };
-		490C5CCC174EB4E900CBD520 /* HTCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCellView.h; path = View/HTCellView.h; sourceTree = "<group>"; };
-		490C5CCD174EB4E900CBD520 /* HTCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCellView.m; path = View/HTCellView.m; sourceTree = "<group>"; };
 		4911BCBC175119F700A1ED8F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4919D16A1A2A051C0028E50E /* HTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCollectionViewCell.h; path = View/HTCollectionViewCell.h; sourceTree = "<group>"; };
 		4919D16B1A2A051C0028E50E /* HTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCollectionViewCell.m; path = View/HTCollectionViewCell.m; sourceTree = "<group>"; };
@@ -149,8 +146,6 @@
 		490C5CCF174EB4ED00CBD520 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				490C5CCC174EB4E900CBD520 /* HTCellView.h */,
-				490C5CCD174EB4E900CBD520 /* HTCellView.m */,
 				49BA93331752AB180038DB2A /* HTMeasureTextField.h */,
 				49BA93341752AB180038DB2A /* HTMeasureTextField.m */,
 				4935EF561764CF4000069D81 /* HTLabel.h */,
@@ -247,7 +242,6 @@
 				49C4B1431A252B3A00A418BC /* HTTextView.m in Sources */,
 				490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */,
 				4936EC351A1F6E6E009EB1BC /* HTCountryTableViewController.m in Sources */,
-				490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */,
 				49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */,
 				49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */,
 				49C4B13D1A227BEA00A418BC /* HTCountry.m in Sources */,

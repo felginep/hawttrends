@@ -7,18 +7,25 @@
 //
 
 #import "HTCollectionViewCell.h"
-#import "HTCellView.h" // to remove later
 
 #define HT_TIMER_INTERVAL 3.0f
 #define HT_ANIMATION_DURATION 0.5f
 #define HT_LABEL_ANIMATION_DURATION 0.33f
 #define HT_LABEL_MOVE 30.0f
 
+typedef enum {
+    HTAnimationTypeTop = 0,
+    HTAnimationTypeRight = 1,
+    HTAnimationTypeBottom = 2,
+    HTAnimationTypeLeft
+} HTAnimationType;
+
 @interface HTCollectionViewCell () {
     NSUInteger _colorIndex;
     HTAnimationType _currentAnimationType;
     UIView * _backgroundView;
     NSTimer * _backgroundTimer;
+    NSTimer * _labelTimer;
     BOOL _needsAnimating;
 }
 @end
@@ -38,7 +45,6 @@
         self.clipsToBounds = YES;
 
         _backgroundView = [[UIView alloc] initWithFrame:self.bounds];
-        _backgroundView.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_backgroundView];
 
         _textView = [[HTTextView alloc] init];
@@ -47,7 +53,6 @@
         _textView.animationDelegate = self;
         _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
         _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
-        _textView.backgroundColor = [UIColor orangeColor];
         [_backgroundView addSubview:_textView];
     }
     return self;
@@ -61,7 +66,7 @@
 
     if (_needsAnimating) {
         _needsAnimating = NO;
-        [self startAnimating];
+        [self _animate];
     }
 }
 
@@ -71,25 +76,16 @@
     }
 }
 
-- (void)_changeBackground {
-    self.backgroundColor = [self _nextColor];
-    _currentAnimationType = [self _randomAnimation];
-    
-    [self _animate];
-}
-
-- (void)startAnimating {
-    [_backgroundTimer invalidate];
-    _backgroundTimer = [NSTimer timerWithTimeInterval:5.0f target:self selector:@selector(_changeBackground) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:_backgroundTimer forMode:NSRunLoopCommonModes];
-    [self _animate];
-}
-
 - (void)prepareForReuse {
     [super prepareForReuse];
 
     [_backgroundTimer invalidate];
     _backgroundTimer = nil;
+
+    [_labelTimer invalidate];
+    _labelTimer = nil;
+
+    [_textView stopTimers];
 
     [CATransaction begin]; {
         [_backgroundView.layer removeAllAnimations];
@@ -100,18 +96,34 @@
 #pragma HTTextViewDelegate
 
 - (void)textViewDidStopAnimating:(HTTextView *)textView {
-//    _labelTimer = [NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO];
-//    [[NSRunLoop mainRunLoop] addTimer:_labelTimer forMode:NSDefaultRunLoopMode];
+    _labelTimer = [NSTimer timerWithTimeInterval:HT_TIMER_INTERVAL target:self selector:@selector(_handleTimer:) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:_labelTimer forMode:NSDefaultRunLoopMode];
 }
 
 
 #pragma mark - Private
 
+- (void)_handleTimer:(NSTimer *)timer {
+    [_labelTimer invalidate];
+    _labelTimer = nil;
+    self.backgroundColor = [self _nextColor];
+    _currentAnimationType = [self _randomAnimation];
+    [self _animate];
+}
+
+- (HTAnimationType)_randomAnimation {
+    return [self _random];
+}
+
+- (int)_random {
+    return (int)(((float)rand() / (float)RAND_MAX) * 4);
+}
+
 - (void)_animate {
-    CALayer * layer = _backgroundView.layer;
+    CALayer * layer = self.contentView.layer;
     [layer setOpaque:YES];
 
-    CGPoint lastPosition = self.contentView.layer.position;
+    CGPoint lastPosition = layer.position;
     // Calculate the new position for the layer
     CGPoint newPosition = lastPosition;
     switch (_currentAnimationType) {
@@ -135,7 +147,7 @@
         [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithControlPoints:0.11f :0.31f :0.49f :1.0f]];
         [CATransaction setCompletionBlock:^{
             layer.backgroundColor = self.layer.backgroundColor;
-            layer.position = self.contentView.layer.position;
+            layer.position = lastPosition;
             [self _makeLabelAppear];
         }];
         // Animate the position
@@ -148,10 +160,10 @@
 }
 
 - (void)_makeLabelAppear {
-//    _textView.animatedText = [self.datasource textToDisplayForCellView:self];
-//    [_textView startAnimating];
+    _textView.animatedText = [self.datasource textToDisplayForCellView:self];
+    [_textView startAnimating];
 
-    CGPoint center = _backgroundView.center;
+    CGPoint center = self.contentView.center;
     switch (_currentAnimationType) {
         case HTAnimationTypeTop:
             center.y -= HT_LABEL_MOVE;
@@ -171,16 +183,8 @@
     _textView.center = center;
     [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
         _textView.alpha = 1.0f;
-        _textView.center = _backgroundView.center;
+        _textView.center = self.contentView.center;
     }];
-}
-
-- (int)_random {
-    return (int)(((float)rand() / (float)RAND_MAX) * 4);
-}
-
-- (HTAnimationType)_randomAnimation {
-    return [self _random];
 }
 
 - (NSArray *)_trendColors {

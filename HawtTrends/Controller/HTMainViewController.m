@@ -10,7 +10,6 @@
 #import "HTTermsDownloader.h"
 #import "HTGridSizeSelector.h"
 #import "HTCountryTableViewController.h"
-#import "HTCollectionViewCell.h"
 
 @interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
@@ -66,6 +65,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HTCollectionViewCell * cell = (HTCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"identifier" forIndexPath:indexPath];
+    cell.datasource = self;
     return cell;
 }
 
@@ -109,13 +109,13 @@
 
 - (void)countryTableViewController:(HTCountryTableViewController *)countryTableViewController didSelectCountry:(HTCountry *)country {
     [HTTermsDownloader sharedDownloader].currentCountry = country;
-    [self _loadInterfaceWithConfiguration:_currentConfiguration];
+//    [self _loadInterfaceWithConfiguration:_currentConfiguration];
     [self.scrollView scrollRectToVisible:self.contentView.bounds animated:YES];
 }
 
-# pragma mark - HTCellViewDatasource
+# pragma mark - HTCollectionViewCellViewDataSource
 
-- (NSString *)textToDisplayForCellView:(HTCellView *)cellView {
+- (NSString *)textToDisplayForCellView:(HTCollectionViewCell *)cell {
     NSString * text = [[HTTermsDownloader sharedDownloader] randomTerm];
     if (!text || !text.length) text = @"Loading...";
     return text;
@@ -131,23 +131,23 @@
 
 #pragma mark - Private methods
 
-- (void)_loadInterfaceWithConfiguration:(HTConfiguration)configuration {
-    CGFloat widthCell = _contentView.frame.size.width / configuration.row;
-    CGFloat heightCell = _contentView.frame.size.height / configuration.column;
-
-    // Remove all subviews
-    [_contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
-    CGRect frame = CGRectMake(0, 0, widthCell, heightCell);
-    for (int row = 0; row < configuration.row; row++) {
-        for (int column = 0; column < configuration.column; column++) {
-            frame.origin = CGPointMake(row * widthCell, column * heightCell);
-            HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
-            cellView.datasource = self;
-            [_contentView addSubview:cellView];
-        }
-    }
-}
+//- (void)_loadInterfaceWithConfiguration:(HTConfiguration)configuration {
+//    CGFloat widthCell = _contentView.frame.size.width / configuration.row;
+//    CGFloat heightCell = _contentView.frame.size.height / configuration.column;
+//
+//    // Remove all subviews
+//    [_contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//
+//    CGRect frame = CGRectMake(0, 0, widthCell, heightCell);
+//    for (int row = 0; row < configuration.row; row++) {
+//        for (int column = 0; column < configuration.column; column++) {
+//            frame.origin = CGPointMake(row * widthCell, column * heightCell);
+//            HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
+//            cellView.datasource = self;
+//            [_contentView addSubview:cellView];
+//        }
+//    }
+//}
 
 - (void)_createScrollView {
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
