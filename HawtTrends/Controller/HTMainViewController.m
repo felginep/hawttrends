@@ -13,7 +13,6 @@
 
 @interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
-@property (nonatomic, strong) UIView * contentView;
 @property (nonatomic, strong) HTGridSizeSelector * gridSelector;
 @property (nonatomic, strong) HTCountryTableViewController * countryTableViewController;
 @property (nonatomic, strong) UICollectionView * collectionView;
@@ -24,7 +23,6 @@
 
 - (void)dealloc {
     _gridSelector = nil;
-    _contentView = nil;
     _countryTableViewController = nil;
     _scrollView = nil;
 }
@@ -37,9 +35,6 @@
     [self _createCollectionView];
     [self _createScrollViewContentSizeConstraints];
 
-//    _contentView = [[UIView alloc] initWithFrame:self.view.frame];
-//    [_scrollView addSubview:_contentView];
-//
     _gridSelector = [[HTGridSizeSelector alloc] initWithFrame:CGRectMake(5.0f, 5.0f, 20.0f, 20.0f)];
     _gridSelector.delegate = self;
     [self.view addSubview:_gridSelector];
@@ -96,7 +91,7 @@
 #pragma mark - UIScrollViewDelegate methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    self.gridSelector.alpha = MAX(0, 1.0f - (scrollView.contentOffset.x / self.contentView.frame.size.width));
+    self.gridSelector.alpha = MAX(0, 1.0f - (scrollView.contentOffset.x / self.collectionView.frame.size.width));
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -109,8 +104,8 @@
 
 - (void)countryTableViewController:(HTCountryTableViewController *)countryTableViewController didSelectCountry:(HTCountry *)country {
     [HTTermsDownloader sharedDownloader].currentCountry = country;
-//    [self _loadInterfaceWithConfiguration:_currentConfiguration];
-    [self.scrollView scrollRectToVisible:self.contentView.bounds animated:YES];
+    [self.scrollView scrollRectToVisible:self.collectionView.bounds animated:YES];
+    [_collectionView reloadData];
 }
 
 # pragma mark - HTCollectionViewCellViewDataSource
@@ -126,28 +121,9 @@
 - (void)gridSelector:(HTGridSizeSelector *)gridSelector didChoosePosition:(HTPosition)position {
     _currentConfiguration = HTConfigurationMakeFromPosition(position);
     [_collectionView reloadData];
-//    [self _loadInterfaceWithConfiguration:_currentConfiguration];
 }
 
 #pragma mark - Private methods
-
-//- (void)_loadInterfaceWithConfiguration:(HTConfiguration)configuration {
-//    CGFloat widthCell = _contentView.frame.size.width / configuration.row;
-//    CGFloat heightCell = _contentView.frame.size.height / configuration.column;
-//
-//    // Remove all subviews
-//    [_contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//
-//    CGRect frame = CGRectMake(0, 0, widthCell, heightCell);
-//    for (int row = 0; row < configuration.row; row++) {
-//        for (int column = 0; column < configuration.column; column++) {
-//            frame.origin = CGPointMake(row * widthCell, column * heightCell);
-//            HTCellView * cellView = [[HTCellView alloc] initWithFrame:frame];
-//            cellView.datasource = self;
-//            [_contentView addSubview:cellView];
-//        }
-//    }
-//}
 
 - (void)_createScrollView {
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
