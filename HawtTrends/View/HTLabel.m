@@ -22,7 +22,6 @@
 - (NSTimeInterval)_randomTimeInterval;
 - (void)_positionCursor;
 - (CGFloat)_fontSizeForText:(NSString *)string;
-- (CGRect)_boundingRectForCharacterRange:(NSRange)range;
 @end
 
 @interface HTLabel () {
