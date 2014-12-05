@@ -73,6 +73,7 @@ typedef enum {
 - (void)setNeedsAnimating {
     if (!_needsAnimating) {
         _needsAnimating = YES;
+        [self setNeedsLayout];
     }
 }
 
