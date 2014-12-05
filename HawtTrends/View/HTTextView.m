@@ -47,8 +47,6 @@
         _textView.backgroundColor = [UIColor clearColor];
         [self addSubview:_textView];
 
-        CGFloat fontSize = [[HTTermsDownloader sharedDownloader] fontSizeForSize:self.bounds.size];
-        _textView.font = [UIFont boldSystemFontOfSize:fontSize];
         _textView.textContainer.lineBreakMode = NSLineBreakByWordWrapping;
         _textView.textContainer.lineFragmentPadding = 0;
         _textView.layer.shadowOpacity = 1.0f;
@@ -78,13 +76,17 @@
 }
 
 - (void)setAnimatedText:(NSString *)animatedText {
-    CGFloat fontSize = [[HTTermsDownloader sharedDownloader] fontSizeForSize:self.bounds.size];
+    CGFloat fontSize;
+    if (self.bounds.size.width > self.bounds.size.height) {
+        fontSize = self.bounds.size.height / 4.0f;
+    } else {
+        fontSize = self.bounds.size.width / 8.0f;
+    }
     _textView.font = [UIFont boldSystemFontOfSize:fontSize];
 
     _animatedText = [animatedText copy];
     _textIndex = 0;
     _textView.text = nil;
-//    CGFloat fontSize = _textView.font.pointSize; // to change
     CGRect frame = _cursor.frame;
     frame.size.width = (fontSize < 30) ? 1.0 : 2.0f;
     frame.size.height = fontSize;

@@ -21,7 +21,6 @@
 + (HTTermsDownloader *)sharedDownloader;
 - (NSString *)randomTerm;
 - (void)downloadTerms;
-- (CGFloat)fontSizeForSize:(CGSize)size;
 
 @end
 
