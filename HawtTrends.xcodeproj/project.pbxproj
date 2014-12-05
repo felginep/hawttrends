@@ -16,7 +16,6 @@
 		490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CC9174EB45D00CBD520 /* HTMainViewController.m */; };
 		4911BCBD175119F700A1ED8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4911BCBC175119F700A1ED8F /* QuartzCore.framework */; };
 		4919D16C1A2A051C0028E50E /* HTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4919D16B1A2A051C0028E50E /* HTCollectionViewCell.m */; };
-		4935EF581764CF4000069D81 /* HTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4935EF571764CF4000069D81 /* HTLabel.m */; };
 		4936EC351A1F6E6E009EB1BC /* HTCountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */; };
 		4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4950C74217667B6F0040924E /* HTTermsDownloader.m */; };
 		49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA93341752AB180038DB2A /* HTMeasureTextField.m */; };
@@ -43,8 +42,6 @@
 		4911BCBC175119F700A1ED8F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4919D16A1A2A051C0028E50E /* HTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCollectionViewCell.h; path = View/HTCollectionViewCell.h; sourceTree = "<group>"; };
 		4919D16B1A2A051C0028E50E /* HTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCollectionViewCell.m; path = View/HTCollectionViewCell.m; sourceTree = "<group>"; };
-		4935EF561764CF4000069D81 /* HTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTLabel.h; path = View/HTLabel.h; sourceTree = "<group>"; };
-		4935EF571764CF4000069D81 /* HTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTLabel.m; path = View/HTLabel.m; sourceTree = "<group>"; };
 		4936EC331A1F6E6E009EB1BC /* HTCountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCountryTableViewController.h; path = Controller/HTCountryTableViewController.h; sourceTree = "<group>"; };
 		4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountryTableViewController.m; path = Controller/HTCountryTableViewController.m; sourceTree = "<group>"; };
 		4950C74117667B6F0040924E /* HTTermsDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTermsDownloader.h; path = Controller/HTTermsDownloader.h; sourceTree = "<group>"; };
@@ -148,8 +145,6 @@
 			children = (
 				49BA93331752AB180038DB2A /* HTMeasureTextField.h */,
 				49BA93341752AB180038DB2A /* HTMeasureTextField.m */,
-				4935EF561764CF4000069D81 /* HTLabel.h */,
-				4935EF571764CF4000069D81 /* HTLabel.m */,
 				49C0C19D1A1DF8DC0098E25D /* HTGridSizeSelector.h */,
 				49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */,
 				49C4B1371A20DB8400A418BC /* HTCountryTableViewCell.h */,
@@ -245,7 +240,6 @@
 				49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */,
 				49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */,
 				49C4B13D1A227BEA00A418BC /* HTCountry.m in Sources */,
-				4935EF581764CF4000069D81 /* HTLabel.m in Sources */,
 				4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
