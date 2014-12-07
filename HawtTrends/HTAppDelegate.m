@@ -17,6 +17,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [UIApplication sharedApplication].statusBarHidden = YES;
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
     [[HTTermsDownloader sharedDownloader] downloadTerms];
 
