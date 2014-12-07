@@ -24,6 +24,7 @@
 		49C4B1391A20DB8400A418BC /* HTCountryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */; };
 		49C4B13D1A227BEA00A418BC /* HTCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B13C1A227BEA00A418BC /* HTCountry.m */; };
 		49C4B1431A252B3A00A418BC /* HTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1421A252B3900A418BC /* HTTextView.m */; };
+		49D6ED671A348C300091566C /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D6ED661A348C300091566C /* OpenInChromeController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		49C4B13C1A227BEA00A418BC /* HTCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountry.m; path = Model/HTCountry.m; sourceTree = "<group>"; };
 		49C4B1411A252B3900A418BC /* HTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTextView.h; path = View/HTTextView.h; sourceTree = "<group>"; };
 		49C4B1421A252B3900A418BC /* HTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTextView.m; path = View/HTTextView.m; sourceTree = "<group>"; };
+		49D6ED651A348C300091566C /* OpenInChromeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInChromeController.h; sourceTree = "<group>"; };
+		49D6ED661A348C300091566C /* OpenInChromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInChromeController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,7 @@
 		490C5C9F174EB22800CBD520 = {
 			isa = PBXGroup;
 			children = (
+				49D6ED641A348C300091566C /* External */,
 				490C5CB1174EB22900CBD520 /* HawtTrends */,
 				490C5CAA174EB22800CBD520 /* Frameworks */,
 				490C5CA9174EB22800CBD520 /* Products */,
@@ -166,6 +170,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		49D6ED641A348C300091566C /* External */ = {
+			isa = PBXGroup;
+			children = (
+				49D6ED651A348C300091566C /* OpenInChromeController.h */,
+				49D6ED661A348C300091566C /* OpenInChromeController.m */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -232,6 +245,7 @@
 			files = (
 				49C4B1391A20DB8400A418BC /* HTCountryTableViewCell.m in Sources */,
 				490C5CB8174EB22900CBD520 /* main.m in Sources */,
+				49D6ED671A348C300091566C /* OpenInChromeController.m in Sources */,
 				4919D16C1A2A051C0028E50E /* HTCollectionViewCell.m in Sources */,
 				490C5CBC174EB22900CBD520 /* HTAppDelegate.m in Sources */,
 				49C4B1431A252B3A00A418BC /* HTTextView.m in Sources */,

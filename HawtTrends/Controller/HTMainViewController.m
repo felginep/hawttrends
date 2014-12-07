@@ -10,6 +10,7 @@
 #import "HTTermsDownloader.h"
 #import "HTGridSizeSelector.h"
 #import "HTCountryTableViewController.h"
+#import "OpenInChromeController.h"
 
 @interface HTMainViewController () <HTGridSizeSelectorDelegate, HTCountryTableViewControllerDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
@@ -66,6 +67,23 @@
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     [(HTCollectionViewCell *)cell setNeedsAnimating];
+}
+
+#pragma mark - UICollectionViewDelegate methods
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    HTCollectionViewCell * cell = (HTCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    NSString * term = cell.textView.animatedText;
+    if (term.length) {
+        NSURL * callbackURL = [NSURL URLWithString:@"callback://"];
+        NSString * searchString = [[term stringByReplacingOccurrencesOfString:@" " withString:@"+"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/#q=%@", searchString]];
+        if ([[OpenInChromeController sharedInstance] isChromeInstalled]) {
+            [[OpenInChromeController sharedInstance] openInChrome:url
+                                                  withCallbackURL:callbackURL
+                                                     createNewTab:YES];
+        }
+    }
 }
 
 #pragma mark - UICollectionViewFlowLayoutDelegate methods
