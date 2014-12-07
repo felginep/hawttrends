@@ -54,6 +54,7 @@
         _textView.dataDetectorTypes = UIDataDetectorTypeNone;
         _textView.editable = NO;
         _textView.selectable = NO;
+        _textView.userInteractionEnabled = NO;
 
         self.isWriting = NO;
     }
