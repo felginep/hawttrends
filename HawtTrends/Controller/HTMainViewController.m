@@ -45,7 +45,9 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [_collectionView.collectionViewLayout invalidateLayout];
+//    [_collectionView.collectionViewLayout invalidateLayout];
+
+    [_collectionView reloadData];
 
     if (self.scrollView.contentOffset.x > 0) {
         self.scrollView.contentOffset = CGPointMake(self.scrollView.bounds.size.width, 0);
