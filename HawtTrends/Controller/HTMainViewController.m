@@ -91,7 +91,7 @@
     CGSize screenSize = self.view.bounds.size;
     CGFloat height = floorf(screenSize.height / _currentConfiguration.column);
     CGFloat width = floorf(screenSize.width / _currentConfiguration.row);
-    if (indexPath.item / _currentConfiguration.column == 0) { // first row
+    if (floorf(indexPath.item / _currentConfiguration.row) == 0) { // first row
         height = screenSize.height - (_currentConfiguration.column - 1) * height;
     }
     if (indexPath.item % _currentConfiguration.row == 0) { // first column
