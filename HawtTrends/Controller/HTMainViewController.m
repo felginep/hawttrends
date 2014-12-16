@@ -68,10 +68,6 @@
     return cell;
 }
 
-//- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-//    [(HTCollectionViewCell *)cell setNeedsAnimating];
-//}
-
 #pragma mark - UICollectionViewDelegate methods
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
