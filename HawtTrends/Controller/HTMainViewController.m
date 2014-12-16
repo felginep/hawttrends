@@ -93,7 +93,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize screenSize = self.view.bounds.size;
-    return CGSizeMake(screenSize.width / _currentConfiguration.row, screenSize.height / _currentConfiguration.column);
+    return CGSizeMake(floorf(screenSize.width / _currentConfiguration.row), floorf(screenSize.height / _currentConfiguration.column));
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
