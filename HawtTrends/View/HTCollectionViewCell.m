@@ -60,9 +60,10 @@ typedef enum {
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    NSLog(@"layoutSubviews");
     _backgroundView.frame = self.contentView.bounds;
     CGFloat margin = MIN(_backgroundView.frame.size.width, _backgroundView.frame.size.height) / 10.0f;
-    _textView.frame = CGRectMake(margin, margin, self.contentView.frame.size.width - 2 * margin, self.contentView.frame.size.height - 2 * margin);
+    _textView.frame = CGRectMake(margin, margin, _backgroundView.frame.size.width - 2 * margin, _backgroundView.frame.size.height - 2 * margin);
 
     if (_needsAnimating) {
         _needsAnimating = NO;
