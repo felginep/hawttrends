@@ -23,7 +23,6 @@ typedef enum {
 @interface HTCollectionViewCell () {
     NSUInteger _colorIndex;
     HTAnimationType _currentAnimationType;
-    UIView * _backgroundView;
     NSTimer * _backgroundTimer;
     NSTimer * _labelTimer;
     BOOL _needsAnimating;
@@ -44,8 +43,8 @@ typedef enum {
         self.backgroundColor = [self _nextColor];
         self.clipsToBounds = YES;
 
-        _backgroundView = [[UIView alloc] initWithFrame:self.bounds];
-        [self.contentView addSubview:_backgroundView];
+        _backgroundContentView = [[UIView alloc] initWithFrame:self.bounds];
+        [self.contentView addSubview:_backgroundContentView];
 
         _textView = [[HTTextView alloc] init];
         _textView.backgroundColor = [UIColor clearColor];
@@ -53,17 +52,16 @@ typedef enum {
         _textView.animationDelegate = self;
         _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
         _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
-        [_backgroundView addSubview:_textView];
+        [_backgroundContentView addSubview:_textView];
     }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    NSLog(@"layoutSubviews");
-    _backgroundView.frame = self.contentView.bounds;
-    CGFloat margin = MIN(_backgroundView.frame.size.width, _backgroundView.frame.size.height) / 10.0f;
-    _textView.frame = CGRectMake(margin, margin, _backgroundView.frame.size.width - 2 * margin, _backgroundView.frame.size.height - 2 * margin);
+    _backgroundContentView.frame = self.contentView.bounds;
+    CGFloat margin = floorf(MIN(_backgroundContentView.frame.size.width, _backgroundContentView.frame.size.height) / 10.0f);
+    _textView.frame = CGRectMake(margin, margin, _backgroundContentView.frame.size.width - 2 * margin, _backgroundContentView.frame.size.height - 2 * margin);
 
     if (_needsAnimating) {
         _needsAnimating = NO;
@@ -90,7 +88,7 @@ typedef enum {
     [_textView stopTimers];
 
     [CATransaction begin]; {
-        [_backgroundView.layer removeAllAnimations];
+        [_backgroundContentView.layer removeAllAnimations];
         [_textView.layer removeAllAnimations];
     } [CATransaction commit];
 }
@@ -122,7 +120,7 @@ typedef enum {
 }
 
 - (void)_animate {
-    CALayer * layer = self.contentView.layer;
+    CALayer * layer = self.backgroundContentView.layer;
     [layer setOpaque:YES];
 
     CGPoint lastPosition = layer.position;
@@ -165,7 +163,7 @@ typedef enum {
     _textView.animatedText = [self.datasource textToDisplayForCellView:self];
     [_textView startAnimating];
 
-    CGPoint center = self.contentView.center;
+    CGPoint center = self.backgroundContentView.center;
     switch (_currentAnimationType) {
         case HTAnimationTypeTop:
             center.y -= HT_LABEL_MOVE;
@@ -185,7 +183,7 @@ typedef enum {
     _textView.center = center;
     [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
         _textView.alpha = 1.0f;
-        _textView.center = self.contentView.center;
+        _textView.center = self.backgroundContentView.center;
     }];
 }
 

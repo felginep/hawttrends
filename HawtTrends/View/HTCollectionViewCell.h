@@ -13,6 +13,7 @@
 
 @interface HTCollectionViewCell : UICollectionViewCell <HTTextViewDelegate>
 
+@property (strong, nonatomic) UIView * backgroundContentView;
 @property (strong, nonatomic) IBOutlet HTTextView * textView;
 @property (nonatomic, weak) id<HTCollectionViewCellViewDataSource> datasource;
 
