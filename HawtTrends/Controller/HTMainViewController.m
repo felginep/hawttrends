@@ -45,7 +45,7 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-//    [_collectionView.collectionViewLayout invalidateLayout];
+    [_collectionView.collectionViewLayout invalidateLayout];
 
     [_collectionView reloadData];
 
