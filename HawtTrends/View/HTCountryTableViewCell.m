@@ -17,15 +17,10 @@
         _label = [[UILabel alloc] init];
         _label.textAlignment = NSTextAlignmentCenter;
         _label.backgroundColor = [UIColor clearColor];
-        _label.font = [UIFont boldSystemFontOfSize:60.0f];
-        _label.textColor = [UIColor whiteColor];
-        _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
-        _label.shadowOffset = CGSizeMake(1.0f, 1.0f);
         [self.contentView addSubview:_label];
 
         self.selectedBackgroundView = [UIView new];
         self.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.258f green:0.521f blue:0.956 alpha:1.0f];
-
     }
     return self;
 }

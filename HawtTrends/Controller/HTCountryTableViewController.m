@@ -79,8 +79,17 @@
         cell = [[HTCountryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     HTCountry * country = [HTTermsDownloader sharedDownloader].countries[indexPath.row];
-    cell.label.text = country.displayName;
-    cell.label.font = [UIFont boldSystemFontOfSize:_minFontSize];
+
+    NSShadow * shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.2];
+    shadow.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    NSDictionary * attributes = @{
+                                  NSForegroundColorAttributeName: [UIColor whiteColor],
+                                  NSFontAttributeName: [UIFont boldSystemFontOfSize:_minFontSize],
+                                  NSShadowAttributeName: shadow
+                                  };
+    cell.label.attributedText = [[NSAttributedString alloc] initWithString:country.displayName attributes:attributes];
+
     return cell;
 }
 
