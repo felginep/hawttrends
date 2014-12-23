@@ -140,7 +140,9 @@
             return ;
         }
 
-        _terms = [json objectForKey:_currentCountry.webserviceCode];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _terms = [json objectForKey:_currentCountry.webserviceCode];
+        });
     });
 }
 
