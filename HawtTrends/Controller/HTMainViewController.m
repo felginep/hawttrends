@@ -40,7 +40,7 @@
     _gridSelector.delegate = self;
     [self.view addSubview:_gridSelector];
 
-    _currentConfiguration = HTConfigurationMake(2, 2);
+    _currentConfiguration = HTConfigurationMake(1, 1);
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
