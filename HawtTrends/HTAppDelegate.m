@@ -19,7 +19,7 @@
     [UIApplication sharedApplication].statusBarHidden = YES;
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    [[HTTermsDownloader sharedDownloader] downloadTerms];
+    [[HTTermsDownloader sharedDownloader] downloadTerms:nil];
 
     HTMainViewController * mainViewController = [[HTMainViewController alloc] init];
     self.window.rootViewController = mainViewController;

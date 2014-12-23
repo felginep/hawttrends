@@ -116,7 +116,7 @@
     _currentCountry = currentCountry;
     [[NSUserDefaults standardUserDefaults] setObject:currentCountry.countryCode forKey:HT_LANGUAGE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self downloadTerms];
+    [self downloadTerms:nil];
 }
 
 - (NSString *)randomTerm {
@@ -124,7 +124,7 @@
     return self.terms[index];
 }
 
-- (void)downloadTerms {
+- (void)downloadTerms:(void(^)(void))callback {
     _terms = @[@"Loading..."];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError * error = nil;
@@ -142,6 +142,9 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             _terms = [json objectForKey:_currentCountry.webserviceCode];
+            if (callback) {
+                callback();
+            }
         });
     });
 }
