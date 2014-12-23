@@ -11,8 +11,9 @@
 #define HT_TERMS_API_URL @"http://hawttrends.appspot.com/api/terms/"
 #define HT_LANGUAGE_KEY @"HT_LANGUAGE_KEY"
 
-@interface HTTermsDownloader () {
+@interface HTTermsDownloader () <UIAlertViewDelegate> {
     NSDictionary * _countryAssociations;
+    UIAlertView * _alertView;
 }
 
 @end
@@ -126,27 +127,58 @@
 
 - (void)downloadTerms:(void(^)(void))callback {
     _terms = @[@"Loading..."];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSError * error = nil;
-        NSString * jsonString = [NSString stringWithContentsOfURL:[NSURL URLWithString:HT_TERMS_API_URL] encoding:NSUTF8StringEncoding error:&error];
-        if (error) {
-            NSLog(@"ERROR : %@", error.description);
-            return ;
-        }
 
-        NSDictionary * json = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-        if (error) {
-            NSLog(@"ERROR : %@", error.description);
-            return ;
-        }
+    NSURL * url = [NSURL URLWithString:HT_TERMS_API_URL];
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    NSURLSession * session = [NSURLSession sharedSession];
+    NSURLSessionDataTask * task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (error && !_alertView) {
+                NSLog(@"ERROR => %@", error);
+                [self _displayAlertViewWithErrorMessage:error.localizedDescription];
+                return;
+            }
+
+            NSError * jsonError = nil;
+            NSDictionary * json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            if (jsonError && !_alertView) {
+                NSLog(@"ERROR => %@", jsonError.description);
+                [self _displayAlertViewWithErrorMessage:@"An error occurred"];
+                return ;
+            }
+
             _terms = [json objectForKey:_currentCountry.webserviceCode];
             if (callback) {
                 callback();
             }
         });
-    });
+    }];
+    [task resume];
+}
+
+#pragma mark - UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView == _alertView && buttonIndex == 1) {
+        [self downloadTerms:nil];
+    }
+    _alertView = nil;
+}
+
+#pragma mark - Private
+
+- (void)_displayAlertViewWithErrorMessage:(NSString *)errorMessage {
+    if (_alertView) {
+        return;
+    }
+
+    _alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                            message:errorMessage
+                                           delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  otherButtonTitles:@"Retry", nil];
+    [_alertView show];
 }
 
 @end
