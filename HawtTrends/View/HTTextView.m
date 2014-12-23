@@ -58,8 +58,6 @@ typedef struct HTTextAttribute HTTextAttribute;
         _textView.selectable = NO;
         _textView.userInteractionEnabled = NO;
 
-        _textView.backgroundColor = [UIColor grayColor];
-
         _cursor = [[UIView alloc] init];
         _cursor.backgroundColor = [UIColor blackColor];
         [self addSubview:_cursor];
