@@ -51,7 +51,6 @@ typedef enum {
         _textView.textColor = [UIColor whiteColor];
         _textView.animationDelegate = self;
         _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
-        _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
         [_backgroundContentView addSubview:_textView];
     }
     return self;

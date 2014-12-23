@@ -21,6 +21,7 @@
     NSTimer * _cursorTimer;
     NSTimer * _textTimer;
     UITextView * _textView;
+    NSMutableDictionary * _textAttributes;
 }
 @property (nonatomic, assign) BOOL isWriting;
 @end
@@ -33,6 +34,7 @@
     _cursor = nil;
     _shadowColor = nil;
     _textColor = nil;
+    _textAttributes = nil;
     [self stopTimers];
 }
 
@@ -49,31 +51,27 @@
 
         _textView.textContainer.lineBreakMode = NSLineBreakByWordWrapping;
         _textView.textContainer.lineFragmentPadding = 0;
-        _textView.layer.shadowOpacity = 1.0f;
-        _textView.layer.shadowRadius = 1.0f;
         _textView.dataDetectorTypes = UIDataDetectorTypeNone;
         _textView.editable = NO;
         _textView.selectable = NO;
         _textView.userInteractionEnabled = NO;
 
         self.isWriting = NO;
+
+        _textAttributes = [NSMutableDictionary dictionaryWithDictionary:@{ NSShadowAttributeName: [[NSShadow alloc] init] }];
     }
     return self;
 }
 
 - (void)setTextColor:(UIColor *)textColor {
-    _textView.textColor = textColor;
+    _textColor = textColor;
+    _textAttributes[NSForegroundColorAttributeName] = textColor;
     _cursor.backgroundColor = textColor;
 }
 
 - (void)setShadowColor:(UIColor *)shadowColor {
     _shadowColor = shadowColor;
-    _textView.layer.shadowColor = shadowColor.CGColor;
-}
-
-- (void)setShadowOffset:(CGSize)shadowOffset {
-    _shadowOffset = shadowOffset;
-    _textView.layer.shadowOffset = shadowOffset;
+    ((NSShadow *)_textAttributes[NSShadowAttributeName]).shadowColor = shadowColor;
 }
 
 - (void)setAnimatedText:(NSString *)animatedText {
@@ -83,7 +81,11 @@
     } else {
         fontSize = self.bounds.size.width / 8.0f;
     }
-    _textView.font = [UIFont boldSystemFontOfSize:fontSize];
+
+    // Update text attributes
+    _textAttributes[NSFontAttributeName] = [UIFont boldSystemFontOfSize:fontSize];
+    CGFloat offset = (int)(fontSize / 50.0f) + 1;
+    ((NSShadow *)_textAttributes[NSShadowAttributeName]).shadowOffset = CGSizeMake(offset, offset);
 
     _animatedText = [animatedText copy];
     _textIndex = 0;
@@ -134,7 +136,9 @@
         }
         self.isWriting = NO;
     }
-    _textView.text = [_animatedText substringToIndex:_textIndex];
+
+    _textView.attributedText = [[NSAttributedString alloc] initWithString:[_animatedText substringToIndex:_textIndex]
+                                                               attributes:_textAttributes];
 
     CGSize sizeToFitIn = [_textView sizeThatFits:self.bounds.size];
     CGRect frame = _textView.frame;
