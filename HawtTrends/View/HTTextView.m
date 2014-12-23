@@ -14,6 +14,12 @@
 #define HT_CURSOR_TIMER_INTERVAL 0.4f
 #define HT_LABEL_FONT_FACTOR 0.113f
 
+struct HTTextAttribute {
+    CGFloat fontSize;
+    CGFloat pixelOffset;
+};
+typedef struct HTTextAttribute HTTextAttribute;
+
 @interface HTTextView () {
     NSString * _animatedText;
     NSUInteger _textIndex;
@@ -75,26 +81,16 @@
 }
 
 - (void)setAnimatedText:(NSString *)animatedText {
-    CGFloat fontSize;
-    if (self.bounds.size.width > self.bounds.size.height) {
-        fontSize = self.bounds.size.height / 4.0f;
-    } else {
-        fontSize = self.bounds.size.width / 8.0f;
-    }
-
     // Update text attributes
-    _textAttributes[NSFontAttributeName] = [UIFont boldSystemFontOfSize:fontSize];
-    CGFloat offset = (int)(fontSize / 50.0f) + 1;
-    ((NSShadow *)_textAttributes[NSShadowAttributeName]).shadowOffset = CGSizeMake(offset, offset);
+    HTTextAttribute textAttributes = [self _textAttributesFromBounds];
+    _textAttributes[NSFontAttributeName] = [UIFont boldSystemFontOfSize:textAttributes.fontSize];
+    ((NSShadow *)_textAttributes[NSShadowAttributeName]).shadowOffset = CGSizeMake(textAttributes.pixelOffset, textAttributes.pixelOffset);
 
     _animatedText = [animatedText copy];
     _textIndex = 0;
     _textView.text = nil;
-    CGRect frame = _cursor.frame;
-    frame.size.width = (fontSize < 30) ? 1.0 : 2.0f;
-    frame.size.height = fontSize;
-    frame.origin.y = (self.frame.size.height - frame.size.height) * 0.5f;
-    _cursor.frame = frame;
+    
+    [self _setCursorFrameForTextAttributes:textAttributes];
     [self _positionCursor];
     self.isWriting = NO;
 }
@@ -183,9 +179,27 @@
     CGRect lastCharacterRect = [self _boundingRectForCharacterRange:NSMakeRange(_textView.text.length - 1, 1)];
 
     CGRect cursorFrame = _cursor.frame;
-    cursorFrame.origin.x = lastCharacterRect.origin.x + lastCharacterRect.size.width + 2.0f;
+    cursorFrame.origin.x = lastCharacterRect.origin.x + lastCharacterRect.size.width + [self _textAttributesFromBounds].pixelOffset;
     cursorFrame.origin.y = lastCharacterRect.origin.y + _textView.frame.origin.y;
     _cursor.frame = cursorFrame;
+}
+
+- (HTTextAttribute)_textAttributesFromBounds {
+    HTTextAttribute textAttributes;
+    if (self.bounds.size.width > self.bounds.size.height) {
+        textAttributes.fontSize = self.bounds.size.height / 4.0f;
+    } else {
+        textAttributes.fontSize = self.bounds.size.width / 8.0f;
+    }
+    textAttributes.pixelOffset = (int)(textAttributes.fontSize / 50.0f) + 1;
+    return textAttributes;
+}
+
+- (void)_setCursorFrameForTextAttributes:(HTTextAttribute)textAttributes {
+    CGRect frame = _cursor.frame;
+    frame.size.width = textAttributes.pixelOffset;
+    frame.size.height = textAttributes.fontSize;
+    _cursor.frame = frame;
 }
 
 @end
