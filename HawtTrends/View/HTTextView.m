@@ -140,7 +140,7 @@ typedef struct HTTextAttribute HTTextAttribute;
 
     CGSize sizeToFitIn = [_textView sizeThatFits:self.bounds.size];
     CGRect frame = _textView.frame;
-    frame.size = sizeToFitIn;
+    frame.size = CGSizeMake(sizeToFitIn.width + 1, sizeToFitIn.height); // +1 to fix issue
     frame.origin.y = (self.bounds.size.height - frame.size.height) / 2.0f;
     _textView.frame = frame;
 
