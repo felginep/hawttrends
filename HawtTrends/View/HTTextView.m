@@ -46,10 +46,6 @@ typedef struct HTTextAttribute HTTextAttribute;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        _cursor = [[UIView alloc] init];
-        _cursor.backgroundColor = [UIColor blackColor];
-        [self addSubview:_cursor];
-
         _textView = [[UITextView alloc] initWithFrame:self.bounds];
         _textView.textContainerInset = UIEdgeInsetsZero;
         _textView.backgroundColor = [UIColor clearColor];
@@ -61,6 +57,12 @@ typedef struct HTTextAttribute HTTextAttribute;
         _textView.editable = NO;
         _textView.selectable = NO;
         _textView.userInteractionEnabled = NO;
+
+        _textView.backgroundColor = [UIColor grayColor];
+
+        _cursor = [[UIView alloc] init];
+        _cursor.backgroundColor = [UIColor blackColor];
+        [self addSubview:_cursor];
 
         self.isWriting = NO;
 
