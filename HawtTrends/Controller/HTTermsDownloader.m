@@ -148,7 +148,7 @@
                 return ;
             }
 
-            _terms = [json objectForKey:_currentCountry.webserviceCode];
+            _terms = [self _filteredTerms:[json objectForKey:_currentCountry.webserviceCode]];
             if (callback) {
                 callback();
             }
@@ -179,6 +179,12 @@
                                   cancelButtonTitle:@"Cancel"
                                   otherButtonTitles:@"Retry", nil];
     [_alertView show];
+}
+
+- (NSArray *)_filteredTerms:(NSArray *)terms {
+    return [terms filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString * term, NSDictionary *bindings) {
+        return term.length < 30;
+    }]];
 }
 
 @end
