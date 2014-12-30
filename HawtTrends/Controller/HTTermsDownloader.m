@@ -7,6 +7,7 @@
 //
 
 #import "HTTermsDownloader.h"
+#import "Reachability.h"
 
 #define HT_TERMS_API_URL @"http://hawttrends.appspot.com/api/terms/"
 #define HT_LANGUAGE_KEY @"HT_LANGUAGE_KEY"
@@ -14,6 +15,7 @@
 @interface HTTermsDownloader () <UIAlertViewDelegate> {
     NSDictionary * _countryAssociations;
     UIAlertView * _alertView;
+    Reachability * _internetReachability;
 }
 
 @end
@@ -31,6 +33,7 @@
 - (void)dealloc {
     _countryAssociations = nil;
     _currentCountry = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 - (id)init {
@@ -108,9 +111,21 @@
         NSSortDescriptor * sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
         [countries sortUsingDescriptors:@[sortDescriptor]];
         _countries = countries;
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+        _internetReachability = [Reachability reachabilityForInternetConnection];
+        [_internetReachability startNotifier];
     }
 
     return self;
+}
+
+- (void)reachabilityChanged:(NSNotification *)notification {
+    Reachability * currentReachability = [notification object];
+    NSParameterAssert([currentReachability isKindOfClass:[Reachability class]]);
+    if ([currentReachability currentReachabilityStatus] != NotReachable) {
+        [self downloadTerms:nil];
+    }
 }
 
 - (void)setCurrentCountry:(HTCountry *)currentCountry {
