@@ -7,6 +7,7 @@
 //
 
 #import "HTCollectionViewCell.h"
+#import "UIColor+HawtTrends.h"
 
 #define HT_TIMER_INTERVAL 3.0f
 #define HT_ANIMATION_DURATION 0.5f
@@ -189,10 +190,10 @@ typedef enum {
 - (NSArray *)_trendColors {
     static NSArray * sTrendColors = nil;
     if (!sTrendColors) {
-        sTrendColors = [[NSArray alloc] initWithObjects:[UIColor colorWithRed:0.258f green:0.521f blue:0.956 alpha:1.0f], //blue
-                        [UIColor colorWithRed:0.854f green:0.266f blue:0.215f alpha:1.0f], //red
-                        [UIColor colorWithRed:0.952f green:0.710f blue:0 alpha:1.0f], //orange
-                        [UIColor colorWithRed:0.058f green:0.615f blue:0.345 alpha:1.0f], nil]; //green
+        sTrendColors = [[NSArray alloc] initWithObjects:[UIColor htBlue], //blue
+                        [UIColor htRed], //red
+                        [UIColor htYellow], //orange
+                        [UIColor htGreen], nil]; //green
     }
     return sTrendColors;
 }

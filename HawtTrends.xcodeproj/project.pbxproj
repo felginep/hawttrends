@@ -18,6 +18,7 @@
 		4919D16C1A2A051C0028E50E /* HTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4919D16B1A2A051C0028E50E /* HTCollectionViewCell.m */; };
 		491B3FB11A52CB5600CC6ED2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3FB01A52CB5600CC6ED2 /* Reachability.m */; };
 		491B3FB31A52CC4E00CC6ED2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491B3FB21A52CC4E00CC6ED2 /* SystemConfiguration.framework */; };
+		491B3FB61A52D14A00CC6ED2 /* UIColor+HawtTrends.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */; };
 		4936EC351A1F6E6E009EB1BC /* HTCountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */; };
 		4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4950C74217667B6F0040924E /* HTTermsDownloader.m */; };
 		49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA93341752AB180038DB2A /* HTMeasureTextField.m */; };
@@ -48,6 +49,8 @@
 		491B3FAF1A52CB5600CC6ED2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		491B3FB01A52CB5600CC6ED2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		491B3FB21A52CC4E00CC6ED2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		491B3FB41A52D14A00CC6ED2 /* UIColor+HawtTrends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HawtTrends.h"; path = "Model/UIColor+HawtTrends.h"; sourceTree = "<group>"; };
+		491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HawtTrends.m"; path = "Model/UIColor+HawtTrends.m"; sourceTree = "<group>"; };
 		4936EC331A1F6E6E009EB1BC /* HTCountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCountryTableViewController.h; path = Controller/HTCountryTableViewController.h; sourceTree = "<group>"; };
 		4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountryTableViewController.m; path = Controller/HTCountryTableViewController.m; sourceTree = "<group>"; };
 		4950C74117667B6F0040924E /* HTTermsDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTermsDownloader.h; path = Controller/HTTermsDownloader.h; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 			children = (
 				49C4B13B1A227BEA00A418BC /* HTCountry.h */,
 				49C4B13C1A227BEA00A418BC /* HTCountry.m */,
+				491B3FB41A52D14A00CC6ED2 /* UIColor+HawtTrends.h */,
+				491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				491B3FB11A52CB5600CC6ED2 /* Reachability.m in Sources */,
+				491B3FB61A52D14A00CC6ED2 /* UIColor+HawtTrends.m in Sources */,
 				49C4B1391A20DB8400A418BC /* HTCountryTableViewCell.m in Sources */,
 				490C5CB8174EB22900CBD520 /* main.m in Sources */,
 				49D6ED671A348C300091566C /* OpenInChromeController.m in Sources */,

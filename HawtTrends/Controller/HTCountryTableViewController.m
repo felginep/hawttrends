@@ -9,6 +9,7 @@
 #import "HTCountryTableViewController.h"
 #import "HTCountryTableViewCell.h"
 #import "HTTermsDownloader.h"
+#import "UIColor+HawtTrends.h"
 
 @interface HTCountryTableViewController () {
     CGFloat _minFontSize;
@@ -24,7 +25,7 @@
 
 - (void)loadView {
     [super loadView];
-    self.view.backgroundColor = [UIColor colorWithRed:0.952f green:0.710f blue:0 alpha:1.0f];
+    self.view.backgroundColor = [UIColor htYellow];
 
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor clearColor];

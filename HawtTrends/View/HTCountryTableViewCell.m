@@ -7,6 +7,7 @@
 //
 
 #import "HTCountryTableViewCell.h"
+#import "UIColor+HawtTrends.h"
 
 @implementation HTCountryTableViewCell
 
@@ -20,7 +21,7 @@
         [self.contentView addSubview:_label];
 
         self.selectedBackgroundView = [UIView new];
-        self.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.258f green:0.521f blue:0.956 alpha:1.0f];
+        self.selectedBackgroundView.backgroundColor = [UIColor htBlue];
     }
     return self;
 }
