@@ -28,7 +28,6 @@
 		4945E5B51AC92F3400A40FC4 /* Default-ipad-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5AB1AC92F3400A40FC4 /* Default-ipad-landscape@2x.png */; };
 		4945E5B61AC92F3400A40FC4 /* Default-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5AC1AC92F3400A40FC4 /* Default-ipad.png */; };
 		4945E5B71AC92F3400A40FC4 /* Default-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5AD1AC92F3400A40FC4 /* Default-ipad@2x.png */; };
-		4945E5B81AC92F3400A40FC4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5AE1AC92F3400A40FC4 /* Default.png */; };
 		4945E5B91AC92F3400A40FC4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5AF1AC92F3400A40FC4 /* Default@2x.png */; };
 		4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4950C74217667B6F0040924E /* HTTermsDownloader.m */; };
 		49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA93341752AB180038DB2A /* HTMeasureTextField.m */; };
@@ -302,7 +301,6 @@
 				4945E5B41AC92F3400A40FC4 /* Default-ipad-landscape.png in Resources */,
 				4945E5B21AC92F3400A40FC4 /* Default-736h-landscape@3x.png in Resources */,
 				4945E5B31AC92F3400A40FC4 /* Default-736h@3x.png in Resources */,
-				4945E5B81AC92F3400A40FC4 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +402,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HawtTrends/HawtTrends-Prefix.pch";
@@ -418,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HawtTrends/HawtTrends-Prefix.pch";
