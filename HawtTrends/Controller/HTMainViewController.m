@@ -22,6 +22,10 @@
 
 @implementation HTMainViewController
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 - (void)dealloc {
     _gridSelector = nil;
     _countryTableViewController = nil;
