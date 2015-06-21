@@ -8,7 +8,26 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <button alignment="left" id="unH-op-cHP">
+                            <group key="contentGroup" width="1" height="1" alignment="left" id="Xea-Wd-3dQ">
+                                <items>
+                                    <label alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" id="tz1-fb-raS">
+                                        <fontDescription key="font" type="boldSystem" pointSize="25"/>
+                                    </label>
+                                </items>
+                            </group>
+                            <connections>
+                                <action selector="nextTerm" destination="AgC-eL-Hgc" id="XW6-Ew-TRn"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="mainButton" destination="unH-op-cHP" id="fHe-HD-hH2"/>
+                        <outlet property="mainLabel" destination="tz1-fb-raS" id="1GB-w5-5Rq"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="164" y="217"/>
         </scene>

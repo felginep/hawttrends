@@ -33,4 +33,20 @@
     [[HTTermsDownloader sharedDownloader] downloadTerms:nil];
 }
 
+- (void)application:(UIApplication *)application handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void (^)(NSDictionary *))reply {
+
+    UIBackgroundTaskIdentifier taskIdentifier = [application beginBackgroundTaskWithName:@"WatchKitBackgroundTask" expirationHandler:^{
+        // TODO: Handle task expiration
+    }];
+
+    [[HTTermsDownloader sharedDownloader] downloadTerms:^{
+
+        NSArray * allTerms = [HTTermsDownloader sharedDownloader].terms;
+        reply(@{ @"response": allTerms });
+
+    }];
+
+    [application endBackgroundTask:taskIdentifier];
+}
+
 @end

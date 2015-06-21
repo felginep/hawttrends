@@ -7,9 +7,12 @@
 //
 
 #import "InterfaceController.h"
+#import "UIColor+HawtTrends.h"
 
-
-@interface InterfaceController()
+@interface InterfaceController() {
+    NSArray * _terms;
+    NSUInteger _termIndex;
+}
 
 @end
 
@@ -19,7 +22,8 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
 
-    // Configure interface objects here.
+    [self.mainLabel setText:@""];
+    [self _fetchTerms];
 }
 
 - (void)willActivate {
@@ -30,6 +34,27 @@
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
+}
+
+#pragma mark - Actions
+
+- (IBAction)nextTerm {
+    NSString * term = _terms[_termIndex];
+    _termIndex = (_termIndex + 1) % _terms.count;
+    NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:term attributes:@{ NSForegroundColorAttributeName: [UIColor htYellow]}];
+    [self.mainLabel setAttributedText:attributedString];
+}
+
+#pragma mark - Private
+
+- (void)_fetchTerms {
+    [self.class openParentApplication:@{ @"action": @"terms" } reply:^(NSDictionary *replyInfo, NSError *error) {
+        NSLog(@"reply = %@", replyInfo);
+        _terms = replyInfo[@"response"];
+        _termIndex = 0;
+
+        [self nextTerm];
+    }];
 }
 
 @end

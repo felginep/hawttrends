@@ -26,6 +26,7 @@
 		49272E6D1B3697FC0037521B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49272E6C1B3697FC0037521B /* Images.xcassets */; };
 		49272E701B3697FC0037521B /* HawtTrends WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 49272E541B3697FC0037521B /* HawtTrends WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		49272E7A1B3698720037521B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49272E781B3698720037521B /* Interface.storyboard */; };
+		49272E7E1B369D990037521B /* UIColor+HawtTrends.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */; };
 		4936EC351A1F6E6E009EB1BC /* HTCountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */; };
 		4945E5B01AC92F3400A40FC4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5A61AC92F3400A40FC4 /* Default-568h@2x.png */; };
 		4945E5B11AC92F3400A40FC4 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5A71AC92F3400A40FC4 /* Default-667h@2x.png */; };
@@ -495,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49272E7E1B369D990037521B /* UIColor+HawtTrends.m in Sources */,
 				49272E5A1B3697FC0037521B /* InterfaceController.m in Sources */,
 				49272E5D1B3697FC0037521B /* GlanceController.m in Sources */,
 			);
