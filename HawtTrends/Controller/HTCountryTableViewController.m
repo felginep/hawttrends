@@ -9,6 +9,7 @@
 #import "HTCountryTableViewController.h"
 #import "HTCountryTableViewCell.h"
 #import "HTTermsDownloader.h"
+#import "UIColor+HawtTrends.h"
 
 @interface HTCountryTableViewController () {
     CGFloat _minFontSize;
@@ -24,7 +25,7 @@
 
 - (void)loadView {
     [super loadView];
-    self.view.backgroundColor = [UIColor colorWithRed:0.952f green:0.710f blue:0 alpha:1.0f];
+    self.view.backgroundColor = [UIColor htYellow];
 
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor clearColor];
@@ -79,8 +80,17 @@
         cell = [[HTCountryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     HTCountry * country = [HTTermsDownloader sharedDownloader].countries[indexPath.row];
-    cell.label.text = country.displayName;
-    cell.label.font = [UIFont boldSystemFontOfSize:_minFontSize];
+
+    NSShadow * shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.2];
+    shadow.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    NSDictionary * attributes = @{
+                                  NSForegroundColorAttributeName: [UIColor whiteColor],
+                                  NSFontAttributeName: [UIFont boldSystemFontOfSize:_minFontSize],
+                                  NSShadowAttributeName: shadow
+                                  };
+    cell.label.attributedText = [[NSAttributedString alloc] initWithString:country.displayName attributes:attributes];
+
     return cell;
 }
 

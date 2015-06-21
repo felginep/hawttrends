@@ -14,6 +14,12 @@
 #define HT_CURSOR_TIMER_INTERVAL 0.4f
 #define HT_LABEL_FONT_FACTOR 0.113f
 
+struct HTTextAttribute {
+    CGFloat fontSize;
+    CGFloat pixelOffset;
+};
+typedef struct HTTextAttribute HTTextAttribute;
+
 @interface HTTextView () {
     NSString * _animatedText;
     NSUInteger _textIndex;
@@ -21,6 +27,7 @@
     NSTimer * _cursorTimer;
     NSTimer * _textTimer;
     UITextView * _textView;
+    NSMutableDictionary * _textAttributes;
 }
 @property (nonatomic, assign) BOOL isWriting;
 @end
@@ -33,63 +40,57 @@
     _cursor = nil;
     _shadowColor = nil;
     _textColor = nil;
+    _textAttributes = nil;
     [self stopTimers];
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        _cursor = [[UIView alloc] init];
-        _cursor.backgroundColor = [UIColor blackColor];
-        [self addSubview:_cursor];
-
         _textView = [[UITextView alloc] initWithFrame:self.bounds];
         _textView.textContainerInset = UIEdgeInsetsZero;
         _textView.backgroundColor = [UIColor clearColor];
         [self addSubview:_textView];
 
-        CGFloat fontSize = [[HTTermsDownloader sharedDownloader] fontSizeForSize:self.bounds.size];
-        _textView.font = [UIFont boldSystemFontOfSize:fontSize];
         _textView.textContainer.lineBreakMode = NSLineBreakByWordWrapping;
         _textView.textContainer.lineFragmentPadding = 0;
-        _textView.layer.shadowOpacity = 1.0f;
-        _textView.layer.shadowRadius = 1.0f;
         _textView.dataDetectorTypes = UIDataDetectorTypeNone;
         _textView.editable = NO;
         _textView.selectable = NO;
+        _textView.userInteractionEnabled = NO;
+
+        _cursor = [[UIView alloc] init];
+        _cursor.backgroundColor = [UIColor blackColor];
+        [self addSubview:_cursor];
 
         self.isWriting = NO;
+
+        _textAttributes = [NSMutableDictionary dictionaryWithDictionary:@{ NSShadowAttributeName: [[NSShadow alloc] init] }];
     }
     return self;
 }
 
 - (void)setTextColor:(UIColor *)textColor {
-    _textView.textColor = textColor;
+    _textColor = textColor;
+    _textAttributes[NSForegroundColorAttributeName] = textColor;
     _cursor.backgroundColor = textColor;
 }
 
 - (void)setShadowColor:(UIColor *)shadowColor {
     _shadowColor = shadowColor;
-    _textView.layer.shadowColor = shadowColor.CGColor;
-}
-
-- (void)setShadowOffset:(CGSize)shadowOffset {
-    _shadowOffset = shadowOffset;
-    _textView.layer.shadowOffset = shadowOffset;
+    ((NSShadow *)_textAttributes[NSShadowAttributeName]).shadowColor = shadowColor;
 }
 
 - (void)setAnimatedText:(NSString *)animatedText {
-    CGFloat fontSize = [[HTTermsDownloader sharedDownloader] fontSizeForSize:self.bounds.size];
-    _textView.font = [UIFont boldSystemFontOfSize:fontSize];
+    // Update text attributes
+    HTTextAttribute textAttributes = [self _textAttributesFromBounds];
+    _textAttributes[NSFontAttributeName] = [UIFont boldSystemFontOfSize:textAttributes.fontSize];
+    ((NSShadow *)_textAttributes[NSShadowAttributeName]).shadowOffset = CGSizeMake(textAttributes.pixelOffset, textAttributes.pixelOffset);
 
     _animatedText = [animatedText copy];
     _textIndex = 0;
     _textView.text = nil;
-//    CGFloat fontSize = _textView.font.pointSize; // to change
-    CGRect frame = _cursor.frame;
-    frame.size.width = (fontSize < 30) ? 1.0 : 2.0f;
-    frame.size.height = fontSize;
-    frame.origin.y = (self.frame.size.height - frame.size.height) * 0.5f;
-    _cursor.frame = frame;
+    
+    [self _setCursorFrameForTextAttributes:textAttributes];
     [self _positionCursor];
     self.isWriting = NO;
 }
@@ -131,11 +132,13 @@
         }
         self.isWriting = NO;
     }
-    _textView.text = [_animatedText substringToIndex:_textIndex];
+
+    _textView.attributedText = [[NSAttributedString alloc] initWithString:[_animatedText substringToIndex:_textIndex]
+                                                               attributes:_textAttributes];
 
     CGSize sizeToFitIn = [_textView sizeThatFits:self.bounds.size];
     CGRect frame = _textView.frame;
-    frame.size = sizeToFitIn;
+    frame.size = CGSizeMake(sizeToFitIn.width + 1, sizeToFitIn.height); // +1 to fix issue
     frame.origin.y = (self.bounds.size.height - frame.size.height) / 2.0f;
     _textView.frame = frame;
 
@@ -176,9 +179,27 @@
     CGRect lastCharacterRect = [self _boundingRectForCharacterRange:NSMakeRange(_textView.text.length - 1, 1)];
 
     CGRect cursorFrame = _cursor.frame;
-    cursorFrame.origin.x = lastCharacterRect.origin.x + lastCharacterRect.size.width + 2.0f;
+    cursorFrame.origin.x = lastCharacterRect.origin.x + lastCharacterRect.size.width + [self _textAttributesFromBounds].pixelOffset;
     cursorFrame.origin.y = lastCharacterRect.origin.y + _textView.frame.origin.y;
     _cursor.frame = cursorFrame;
+}
+
+- (HTTextAttribute)_textAttributesFromBounds {
+    HTTextAttribute textAttributes;
+    if (self.bounds.size.width > self.bounds.size.height) {
+        textAttributes.fontSize = self.bounds.size.height / 4.0f;
+    } else {
+        textAttributes.fontSize = self.bounds.size.width / 8.0f;
+    }
+    textAttributes.pixelOffset = (int)(textAttributes.fontSize / 50.0f) + 1;
+    return textAttributes;
+}
+
+- (void)_setCursorFrameForTextAttributes:(HTTextAttribute)textAttributes {
+    CGRect frame = _cursor.frame;
+    frame.size.width = textAttributes.pixelOffset;
+    frame.size.height = textAttributes.fontSize;
+    _cursor.frame = frame;
 }
 
 @end

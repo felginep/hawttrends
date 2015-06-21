@@ -1,75 +1,96 @@
 //
-//  HTCellView.m
+//  HTCollectionViewCell.m
 //  HawtTrends
 //
-//  Created by Pierre Felgines on 23/05/13.
-//  Copyright (c) 2013 Pierre Felgines. All rights reserved.
+//  Created by Pierre on 29/11/2014.
+//  Copyright (c) 2014 Pierre Felgines. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
-#import "HTCellView.h"
-#import "HTTermsDownloader.h"
+#import "HTCollectionViewCell.h"
+#import "UIColor+HawtTrends.h"
 
 #define HT_TIMER_INTERVAL 3.0f
 #define HT_ANIMATION_DURATION 0.5f
 #define HT_LABEL_ANIMATION_DURATION 0.33f
 #define HT_LABEL_MOVE 30.0f
 
-@interface HTCellView (Private)
-- (void)_handleTimer:(NSTimer *)timer;
-- (int)_random;
-- (HTAnimationType)_randomAnimation;
-- (void)_animate;
-- (void)_makeLabelAppear;
-- (NSArray *)_trendColors;
-- (UIColor *)_nextColor;
-@end
+typedef enum {
+    HTAnimationTypeTop = 0,
+    HTAnimationTypeRight = 1,
+    HTAnimationTypeBottom = 2,
+    HTAnimationTypeLeft
+} HTAnimationType;
 
-@interface HTCellView () {
-    HTAnimationType _currentAnimationType;
+@interface HTCollectionViewCell () {
     NSUInteger _colorIndex;
+    HTAnimationType _currentAnimationType;
+    NSTimer * _backgroundTimer;
     NSTimer * _labelTimer;
+    BOOL _needsAnimating;
 }
 @end
 
-@implementation HTCellView
+@implementation HTCollectionViewCell
 
 - (void)dealloc {
-    _contentView = nil;
-    [_labelTimer invalidate];
-    _labelTimer = nil;
+    [_backgroundTimer invalidate];
+    _backgroundTimer = nil;
     _textView = nil;
-    [_textView stopTimers];
 }
 
 - (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
+    if (self = [super initWithFrame:frame]) {
         _colorIndex = [self _random];
         self.backgroundColor = [self _nextColor];
         self.clipsToBounds = YES;
-        
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        [_contentView setOpaque:YES];
-        [self addSubview:_contentView];
-        self.contentView.backgroundColor = self.backgroundColor;
 
-        CGFloat margin = MIN(_contentView.frame.size.width, _contentView.frame.size.height) / 10.0f;
-        _textView = [[HTTextView alloc] initWithFrame:CGRectMake(margin, margin, _contentView.frame.size.width - 2 * margin, _contentView.frame.size.height - 2 * margin)];
+        _backgroundContentView = [[UIView alloc] initWithFrame:self.bounds];
+        [self.contentView addSubview:_backgroundContentView];
+
+        _textView = [[HTTextView alloc] init];
         _textView.backgroundColor = [UIColor clearColor];
         _textView.textColor = [UIColor whiteColor];
         _textView.animationDelegate = self;
         _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.2f];
-        _textView.shadowOffset = CGSizeMake(1.0f, 1.0f);
-        [self.contentView addSubview:_textView];
+        [_backgroundContentView addSubview:_textView];
     }
     return self;
 }
 
-- (void)setDatasource:(id<HTCellViewDataSource>)datasource {
-    _datasource = datasource;
-    _textView.animatedText = [datasource textToDisplayForCellView:self];
-    [_textView startAnimating];
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _backgroundContentView.frame = self.contentView.bounds;
+    CGFloat margin = floorf(MIN(_backgroundContentView.frame.size.width, _backgroundContentView.frame.size.height) / 10.0f);
+    _textView.frame = CGRectMake(margin, margin, _backgroundContentView.frame.size.width - 2 * margin, _backgroundContentView.frame.size.height - 2 * margin);
+
+    if (_needsAnimating) {
+        _needsAnimating = NO;
+        [self _animate];
+    }
+}
+
+- (void)setNeedsAnimating {
+    if (!_needsAnimating) {
+        _needsAnimating = YES;
+        [self setNeedsLayout];
+    }
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+
+    [_backgroundTimer invalidate];
+    _backgroundTimer = nil;
+
+    [_labelTimer invalidate];
+    _labelTimer = nil;
+
+    [_textView stopTimers];
+
+    [CATransaction begin]; {
+        [_backgroundContentView.layer removeAllAnimations];
+        [_textView.layer removeAllAnimations];
+    } [CATransaction commit];
 }
 
 #pragma HTTextViewDelegate
@@ -79,9 +100,8 @@
     [[NSRunLoop mainRunLoop] addTimer:_labelTimer forMode:NSDefaultRunLoopMode];
 }
 
-@end
 
-@implementation HTCellView (Private)
+#pragma mark - Private
 
 - (void)_handleTimer:(NSTimer *)timer {
     [_labelTimer invalidate];
@@ -100,9 +120,9 @@
 }
 
 - (void)_animate {
-    CALayer * layer = self.contentView.layer;
+    CALayer * layer = self.backgroundContentView.layer;
     [layer setOpaque:YES];
-        
+
     CGPoint lastPosition = layer.position;
     // Calculate the new position for the layer
     CGPoint newPosition = lastPosition;
@@ -120,7 +140,7 @@
             newPosition.x += self.frame.size.width;
             break;
     }
-        
+
     [CATransaction begin]; {
         [CATransaction setAnimationDuration:HT_ANIMATION_DURATION];
         // See http://cubic-bezier.com/ for control points
@@ -143,7 +163,7 @@
     _textView.animatedText = [self.datasource textToDisplayForCellView:self];
     [_textView startAnimating];
 
-    CGPoint center = self.contentView.center;
+    CGPoint center = self.backgroundContentView.center;
     switch (_currentAnimationType) {
         case HTAnimationTypeTop:
             center.y -= HT_LABEL_MOVE;
@@ -163,17 +183,17 @@
     _textView.center = center;
     [UIView animateWithDuration:HT_LABEL_ANIMATION_DURATION animations:^{
         _textView.alpha = 1.0f;
-        _textView.center = self.contentView.center;
+        _textView.center = self.backgroundContentView.center;
     }];
 }
 
 - (NSArray *)_trendColors {
     static NSArray * sTrendColors = nil;
     if (!sTrendColors) {
-        sTrendColors = [[NSArray alloc] initWithObjects:[UIColor colorWithRed:0.258f green:0.521f blue:0.956 alpha:1.0f], //blue
-                        [UIColor colorWithRed:0.854f green:0.266f blue:0.215f alpha:1.0f], //red
-                        [UIColor colorWithRed:0.952f green:0.710f blue:0 alpha:1.0f], //orange
-                        [UIColor colorWithRed:0.058f green:0.615f blue:0.345 alpha:1.0f], nil]; //green
+        sTrendColors = [[NSArray alloc] initWithObjects:[UIColor htBlue], //blue
+                        [UIColor htRed], //red
+                        [UIColor htYellow], //orange
+                        [UIColor htGreen], nil]; //green
     }
     return sTrendColors;
 }

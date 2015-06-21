@@ -7,12 +7,15 @@
 //
 
 #import "HTTermsDownloader.h"
+#import "Reachability.h"
 
 #define HT_TERMS_API_URL @"http://hawttrends.appspot.com/api/terms/"
 #define HT_LANGUAGE_KEY @"HT_LANGUAGE_KEY"
 
-@interface HTTermsDownloader () {
+@interface HTTermsDownloader () <UIAlertViewDelegate> {
     NSDictionary * _countryAssociations;
+    UIAlertView * _alertView;
+    Reachability * _internetReachability;
 }
 
 @end
@@ -30,13 +33,14 @@
 - (void)dealloc {
     _countryAssociations = nil;
     _currentCountry = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 - (id)init {
     _countryAssociations = @{
                              @"ZA": @"40",
                              @"DE": @"15",
-                             @"SA": @"36",
+//                             @"SA": @"36",
                              @"AR": @"30",
                              @"AU": @"8",
                              @"AT": @"44",
@@ -47,7 +51,7 @@
                              @"CO": @"32",
                              @"KR": @"23",
                              @"DK": @"49",
-                             @"EG": @"29",
+//                             @"EG": @"29",
                              @"ES": @"26",
                              @"US": @"1",
                              @"FI": @"50",
@@ -57,7 +61,7 @@
                              @"HU": @"45",
                              @"IN": @"3",
                              @"ID": @"19",
-                             @"IL": @"6",
+//                             @"IL": @"6",
                              @"IT": @"27",
                              @"JP": @"4",
                              @"KE": @"37",
@@ -77,7 +81,7 @@
                              @"SE": @"42",
                              @"CH": @"46",
                              @"TW": @"12",
-                             @"TH": @"33",
+//                             @"TH": @"33",
                              @"TR": @"24",
                              @"UA": @"35",
                              @"VN": @"28"
@@ -107,16 +111,28 @@
         NSSortDescriptor * sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
         [countries sortUsingDescriptors:@[sortDescriptor]];
         _countries = countries;
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+        _internetReachability = [Reachability reachabilityForInternetConnection];
+        [_internetReachability startNotifier];
     }
 
     return self;
+}
+
+- (void)reachabilityChanged:(NSNotification *)notification {
+    Reachability * currentReachability = [notification object];
+    NSParameterAssert([currentReachability isKindOfClass:[Reachability class]]);
+    if ([currentReachability currentReachabilityStatus] != NotReachable) {
+        [self downloadTerms:nil];
+    }
 }
 
 - (void)setCurrentCountry:(HTCountry *)currentCountry {
     _currentCountry = currentCountry;
     [[NSUserDefaults standardUserDefaults] setObject:currentCountry.countryCode forKey:HT_LANGUAGE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self downloadTerms];
+    [self downloadTerms:nil];
 }
 
 - (NSString *)randomTerm {
@@ -124,73 +140,66 @@
     return self.terms[index];
 }
 
-- (void)downloadTerms {
+- (void)downloadTerms:(void(^)(void))callback {
     _terms = @[@"Loading..."];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSError * error = nil;
-        NSString * jsonString = [NSString stringWithContentsOfURL:[NSURL URLWithString:HT_TERMS_API_URL] encoding:NSUTF8StringEncoding error:&error];
-        if (error) {
-            NSLog(@"ERROR : %@", error.description);
-            return ;
-        }
 
-        NSDictionary * json = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-        if (error) {
-            NSLog(@"ERROR : %@", error.description);
-            return ;
-        }
+    NSURL * url = [NSURL URLWithString:HT_TERMS_API_URL];
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    NSURLSession * session = [NSURLSession sharedSession];
+    NSURLSessionDataTask * task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 
-        _terms = [json objectForKey:_currentCountry.webserviceCode];
-    });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error && !_alertView) {
+                NSLog(@"ERROR => %@", error);
+                [self _displayAlertViewWithErrorMessage:error.localizedDescription];
+                return;
+            }
+
+            NSError * jsonError = nil;
+            NSDictionary * json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            if (jsonError && !_alertView) {
+                NSLog(@"ERROR => %@", jsonError.description);
+                [self _displayAlertViewWithErrorMessage:@"An error occurred"];
+                return ;
+            }
+
+            _terms = [self _filteredTerms:[json objectForKey:_currentCountry.webserviceCode]];
+            if (callback) {
+                callback();
+            }
+        });
+    }];
+    [task resume];
 }
 
+#pragma mark - UIAlertViewDelegate methods
 
-#define HT_MIN_FONT_SIZE 10.0f
-#define HT_MAX_FONT_SIZE 100.0f
-
-- (CGFloat)fontSizeForSize:(CGSize)size {
-    static CGSize savedSize;
-    static NSArray * savedTerms;
-    static CGFloat savedFontSize;
-
-    if (CGSizeEqualToSize(size, savedSize) && savedTerms == self.terms && savedFontSize > 0) {
-        return savedFontSize;
-    } else {
-        savedSize = size;
-        savedTerms = _terms;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView == _alertView && buttonIndex == 1) {
+        [self downloadTerms:nil];
     }
-
-    CGFloat minFontSize = HT_MAX_FONT_SIZE;
-    for (NSString * term in self.terms) {
-        CGFloat fontSize = [self _fontSizeForSize:size andString:term];
-        if (fontSize < minFontSize) {
-            minFontSize = fontSize;
-        }
-    }
-
-    savedFontSize = minFontSize;
-
-    return minFontSize;
+    _alertView = nil;
 }
 
-- (CGFloat)_fontSizeForSize:(CGSize)size andString:(NSString *)string {
-    CGFloat fontSize = HT_MAX_FONT_SIZE;
-    while (fontSize > HT_MIN_FONT_SIZE) {
-        UIFont * font = [UIFont boldSystemFontOfSize:fontSize];
-        NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-        CGRect stringRect = [string boundingRectWithSize:CGSizeMake(size.width, CGFLOAT_MAX)
-                                                 options:NSStringDrawingUsesLineFragmentOrigin
-                                              attributes:@{NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle}
-                                                 context:nil];
+#pragma mark - Private
 
-        if (stringRect.size.height <= size.height && stringRect.size.width <= size.width) {
-            break;
-        }
-
-        fontSize -= 2;
+- (void)_displayAlertViewWithErrorMessage:(NSString *)errorMessage {
+    if (_alertView) {
+        return;
     }
-    return fontSize;
+
+    _alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                            message:errorMessage
+                                           delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  otherButtonTitles:@"Retry", nil];
+    [_alertView show];
+}
+
+- (NSArray *)_filteredTerms:(NSArray *)terms {
+    return [terms filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString * term, NSDictionary *bindings) {
+        return term.length < 30;
+    }]];
 }
 
 @end

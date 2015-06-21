@@ -9,23 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "HTCountry.h"
 
-@protocol HTTermsDownloaderDelegate;
-
 @interface HTTermsDownloader : NSObject
 
 @property (nonatomic, strong, readonly) NSArray * terms;
 @property (nonatomic, strong) HTCountry * currentCountry;
 @property (nonatomic, strong) NSArray * countries;
-@property (nonatomic, weak) id<HTTermsDownloaderDelegate> delegate;
 
 + (HTTermsDownloader *)sharedDownloader;
 - (NSString *)randomTerm;
-- (void)downloadTerms;
-- (CGFloat)fontSizeForSize:(CGSize)size;
+- (void)downloadTerms:(void(^)(void))callback;
 
-@end
-
-@protocol HTTermsDownloaderDelegate <NSObject>
-@optional
-- (void)termsDownloader:(HTTermsDownloader *)termsDownloader didDownloadTerms:(NSArray *)terms;
 @end

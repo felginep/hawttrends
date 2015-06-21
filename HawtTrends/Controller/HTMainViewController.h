@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HTCellView.h"
+#import "HTCollectionViewCell.h"
 
-@interface HTMainViewController : UIViewController <HTCellViewDataSource>
+@interface HTMainViewController : UIViewController <HTCollectionViewCellViewDataSource>
 @end

@@ -17,8 +17,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [UIApplication sharedApplication].statusBarHidden = YES;
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    [[HTTermsDownloader sharedDownloader] downloadTerms];
+
 
     HTMainViewController * mainViewController = [[HTMainViewController alloc] init];
     self.window.rootViewController = mainViewController;
@@ -26,6 +27,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    [[HTTermsDownloader sharedDownloader] downloadTerms:nil];
 }
 
 @end

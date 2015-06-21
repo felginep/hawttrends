@@ -14,10 +14,21 @@
 		490C5CB8174EB22900CBD520 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CB7174EB22900CBD520 /* main.m */; };
 		490C5CBC174EB22900CBD520 /* HTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CBB174EB22900CBD520 /* HTAppDelegate.m */; };
 		490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CC9174EB45D00CBD520 /* HTMainViewController.m */; };
-		490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C5CCD174EB4E900CBD520 /* HTCellView.m */; };
 		4911BCBD175119F700A1ED8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4911BCBC175119F700A1ED8F /* QuartzCore.framework */; };
-		4935EF581764CF4000069D81 /* HTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4935EF571764CF4000069D81 /* HTLabel.m */; };
+		4919D16C1A2A051C0028E50E /* HTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4919D16B1A2A051C0028E50E /* HTCollectionViewCell.m */; };
+		491B3FB11A52CB5600CC6ED2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3FB01A52CB5600CC6ED2 /* Reachability.m */; };
+		491B3FB31A52CC4E00CC6ED2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491B3FB21A52CC4E00CC6ED2 /* SystemConfiguration.framework */; };
+		491B3FB61A52D14A00CC6ED2 /* UIColor+HawtTrends.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */; };
 		4936EC351A1F6E6E009EB1BC /* HTCountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */; };
+		4945E5B01AC92F3400A40FC4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5A61AC92F3400A40FC4 /* Default-568h@2x.png */; };
+		4945E5B11AC92F3400A40FC4 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5A71AC92F3400A40FC4 /* Default-667h@2x.png */; };
+		4945E5B21AC92F3400A40FC4 /* Default-736h-landscape@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5A81AC92F3400A40FC4 /* Default-736h-landscape@3x.png */; };
+		4945E5B31AC92F3400A40FC4 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5A91AC92F3400A40FC4 /* Default-736h@3x.png */; };
+		4945E5B41AC92F3400A40FC4 /* Default-ipad-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5AA1AC92F3400A40FC4 /* Default-ipad-landscape.png */; };
+		4945E5B51AC92F3400A40FC4 /* Default-ipad-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5AB1AC92F3400A40FC4 /* Default-ipad-landscape@2x.png */; };
+		4945E5B61AC92F3400A40FC4 /* Default-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5AC1AC92F3400A40FC4 /* Default-ipad.png */; };
+		4945E5B71AC92F3400A40FC4 /* Default-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5AD1AC92F3400A40FC4 /* Default-ipad@2x.png */; };
+		4945E5B91AC92F3400A40FC4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5AF1AC92F3400A40FC4 /* Default@2x.png */; };
 		4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4950C74217667B6F0040924E /* HTTermsDownloader.m */; };
 		49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA93341752AB180038DB2A /* HTMeasureTextField.m */; };
 		49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */; };
@@ -25,6 +36,7 @@
 		49C4B1391A20DB8400A418BC /* HTCountryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */; };
 		49C4B13D1A227BEA00A418BC /* HTCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B13C1A227BEA00A418BC /* HTCountry.m */; };
 		49C4B1431A252B3A00A418BC /* HTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1421A252B3900A418BC /* HTTextView.m */; };
+		49D6ED671A348C300091566C /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D6ED661A348C300091566C /* OpenInChromeController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,13 +52,26 @@
 		490C5CBB174EB22900CBD520 /* HTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTAppDelegate.m; sourceTree = "<group>"; };
 		490C5CC8174EB45D00CBD520 /* HTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMainViewController.h; path = Controller/HTMainViewController.h; sourceTree = "<group>"; };
 		490C5CC9174EB45D00CBD520 /* HTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMainViewController.m; path = Controller/HTMainViewController.m; sourceTree = "<group>"; };
-		490C5CCC174EB4E900CBD520 /* HTCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCellView.h; path = View/HTCellView.h; sourceTree = "<group>"; };
-		490C5CCD174EB4E900CBD520 /* HTCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCellView.m; path = View/HTCellView.m; sourceTree = "<group>"; };
 		4911BCBC175119F700A1ED8F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4935EF561764CF4000069D81 /* HTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTLabel.h; path = View/HTLabel.h; sourceTree = "<group>"; };
-		4935EF571764CF4000069D81 /* HTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTLabel.m; path = View/HTLabel.m; sourceTree = "<group>"; };
+		4919D16A1A2A051C0028E50E /* HTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCollectionViewCell.h; path = View/HTCollectionViewCell.h; sourceTree = "<group>"; };
+		4919D16B1A2A051C0028E50E /* HTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCollectionViewCell.m; path = View/HTCollectionViewCell.m; sourceTree = "<group>"; };
+		491B3FAF1A52CB5600CC6ED2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		491B3FB01A52CB5600CC6ED2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		491B3FB21A52CC4E00CC6ED2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		491B3FB41A52D14A00CC6ED2 /* UIColor+HawtTrends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HawtTrends.h"; path = "Model/UIColor+HawtTrends.h"; sourceTree = "<group>"; };
+		491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HawtTrends.m"; path = "Model/UIColor+HawtTrends.m"; sourceTree = "<group>"; };
 		4936EC331A1F6E6E009EB1BC /* HTCountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCountryTableViewController.h; path = Controller/HTCountryTableViewController.h; sourceTree = "<group>"; };
 		4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountryTableViewController.m; path = Controller/HTCountryTableViewController.m; sourceTree = "<group>"; };
+		4945E5A61AC92F3400A40FC4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = "<group>"; };
+		4945E5A71AC92F3400A40FC4 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-667h@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-667h@2x.png"; sourceTree = "<group>"; };
+		4945E5A81AC92F3400A40FC4 /* Default-736h-landscape@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-736h-landscape@3x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-736h-landscape@3x.png"; sourceTree = "<group>"; };
+		4945E5A91AC92F3400A40FC4 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-736h@3x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-736h@3x.png"; sourceTree = "<group>"; };
+		4945E5AA1AC92F3400A40FC4 /* Default-ipad-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-ipad-landscape.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-ipad-landscape.png"; sourceTree = "<group>"; };
+		4945E5AB1AC92F3400A40FC4 /* Default-ipad-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-ipad-landscape@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-ipad-landscape@2x.png"; sourceTree = "<group>"; };
+		4945E5AC1AC92F3400A40FC4 /* Default-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-ipad.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-ipad.png"; sourceTree = "<group>"; };
+		4945E5AD1AC92F3400A40FC4 /* Default-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-ipad@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-ipad@2x.png"; sourceTree = "<group>"; };
+		4945E5AE1AC92F3400A40FC4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Images.xcassets/LaunchImage.launchimage/Default.png; sourceTree = "<group>"; };
+		4945E5AF1AC92F3400A40FC4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default@2x.png"; sourceTree = "<group>"; };
 		4950C74117667B6F0040924E /* HTTermsDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTermsDownloader.h; path = Controller/HTTermsDownloader.h; sourceTree = "<group>"; };
 		4950C74217667B6F0040924E /* HTTermsDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTermsDownloader.m; path = Controller/HTTermsDownloader.m; sourceTree = "<group>"; };
 		49BA93331752AB180038DB2A /* HTMeasureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMeasureTextField.h; path = View/HTMeasureTextField.h; sourceTree = "<group>"; };
@@ -60,6 +85,8 @@
 		49C4B13C1A227BEA00A418BC /* HTCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountry.m; path = Model/HTCountry.m; sourceTree = "<group>"; };
 		49C4B1411A252B3900A418BC /* HTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTextView.h; path = View/HTTextView.h; sourceTree = "<group>"; };
 		49C4B1421A252B3900A418BC /* HTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTextView.m; path = View/HTTextView.m; sourceTree = "<group>"; };
+		49D6ED651A348C300091566C /* OpenInChromeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInChromeController.h; sourceTree = "<group>"; };
+		49D6ED661A348C300091566C /* OpenInChromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInChromeController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491B3FB31A52CC4E00CC6ED2 /* SystemConfiguration.framework in Frameworks */,
 				4911BCBD175119F700A1ED8F /* QuartzCore.framework in Frameworks */,
 				490C5CAC174EB22900CBD520 /* UIKit.framework in Frameworks */,
 				490C5CAE174EB22900CBD520 /* Foundation.framework in Frameworks */,
@@ -80,6 +108,7 @@
 		490C5C9F174EB22800CBD520 = {
 			isa = PBXGroup;
 			children = (
+				49D6ED641A348C300091566C /* External */,
 				490C5CB1174EB22900CBD520 /* HawtTrends */,
 				490C5CAA174EB22800CBD520 /* Frameworks */,
 				490C5CA9174EB22800CBD520 /* Products */,
@@ -97,6 +126,7 @@
 		490C5CAA174EB22800CBD520 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				491B3FB21A52CC4E00CC6ED2 /* SystemConfiguration.framework */,
 				4911BCBC175119F700A1ED8F /* QuartzCore.framework */,
 				490C5CAB174EB22800CBD520 /* UIKit.framework */,
 				490C5CAD174EB22900CBD520 /* Foundation.framework */,
@@ -126,6 +156,7 @@
 				490C5CB7174EB22900CBD520 /* main.m */,
 				490C5CB9174EB22900CBD520 /* HawtTrends-Prefix.pch */,
 				49C4B1351A20C74400A418BC /* Images.xcassets */,
+				4945E5BA1AC930D100A40FC4 /* Launch Images */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -146,20 +177,44 @@
 		490C5CCF174EB4ED00CBD520 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				490C5CCC174EB4E900CBD520 /* HTCellView.h */,
-				490C5CCD174EB4E900CBD520 /* HTCellView.m */,
 				49BA93331752AB180038DB2A /* HTMeasureTextField.h */,
 				49BA93341752AB180038DB2A /* HTMeasureTextField.m */,
-				4935EF561764CF4000069D81 /* HTLabel.h */,
-				4935EF571764CF4000069D81 /* HTLabel.m */,
 				49C0C19D1A1DF8DC0098E25D /* HTGridSizeSelector.h */,
 				49C0C19E1A1DF8DC0098E25D /* HTGridSizeSelector.m */,
 				49C4B1371A20DB8400A418BC /* HTCountryTableViewCell.h */,
 				49C4B1381A20DB8400A418BC /* HTCountryTableViewCell.m */,
 				49C4B1411A252B3900A418BC /* HTTextView.h */,
 				49C4B1421A252B3900A418BC /* HTTextView.m */,
+				4919D16A1A2A051C0028E50E /* HTCollectionViewCell.h */,
+				4919D16B1A2A051C0028E50E /* HTCollectionViewCell.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		491B3FAE1A52CB5600CC6ED2 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				491B3FAF1A52CB5600CC6ED2 /* Reachability.h */,
+				491B3FB01A52CB5600CC6ED2 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		4945E5BA1AC930D100A40FC4 /* Launch Images */ = {
+			isa = PBXGroup;
+			children = (
+				4945E5A61AC92F3400A40FC4 /* Default-568h@2x.png */,
+				4945E5A71AC92F3400A40FC4 /* Default-667h@2x.png */,
+				4945E5A81AC92F3400A40FC4 /* Default-736h-landscape@3x.png */,
+				4945E5A91AC92F3400A40FC4 /* Default-736h@3x.png */,
+				4945E5AA1AC92F3400A40FC4 /* Default-ipad-landscape.png */,
+				4945E5AB1AC92F3400A40FC4 /* Default-ipad-landscape@2x.png */,
+				4945E5AC1AC92F3400A40FC4 /* Default-ipad.png */,
+				4945E5AD1AC92F3400A40FC4 /* Default-ipad@2x.png */,
+				4945E5AE1AC92F3400A40FC4 /* Default.png */,
+				4945E5AF1AC92F3400A40FC4 /* Default@2x.png */,
+			);
+			name = "Launch Images";
 			sourceTree = "<group>";
 		};
 		49C4B13A1A227BBE00A418BC /* Model */ = {
@@ -167,8 +222,20 @@
 			children = (
 				49C4B13B1A227BEA00A418BC /* HTCountry.h */,
 				49C4B13C1A227BEA00A418BC /* HTCountry.m */,
+				491B3FB41A52D14A00CC6ED2 /* UIColor+HawtTrends.h */,
+				491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		49D6ED641A348C300091566C /* External */ = {
+			isa = PBXGroup;
+			children = (
+				491B3FAE1A52CB5600CC6ED2 /* Reachability */,
+				49D6ED651A348C300091566C /* OpenInChromeController.h */,
+				49D6ED661A348C300091566C /* OpenInChromeController.m */,
+			);
+			path = External;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,8 +290,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4945E5B91AC92F3400A40FC4 /* Default@2x.png in Resources */,
+				4945E5B71AC92F3400A40FC4 /* Default-ipad@2x.png in Resources */,
 				490C5CB6174EB22900CBD520 /* InfoPlist.strings in Resources */,
+				4945E5B61AC92F3400A40FC4 /* Default-ipad.png in Resources */,
+				4945E5B11AC92F3400A40FC4 /* Default-667h@2x.png in Resources */,
+				4945E5B51AC92F3400A40FC4 /* Default-ipad-landscape@2x.png in Resources */,
 				49C4B1361A20C74400A418BC /* Images.xcassets in Resources */,
+				4945E5B01AC92F3400A40FC4 /* Default-568h@2x.png in Resources */,
+				4945E5B41AC92F3400A40FC4 /* Default-ipad-landscape.png in Resources */,
+				4945E5B21AC92F3400A40FC4 /* Default-736h-landscape@3x.png in Resources */,
+				4945E5B31AC92F3400A40FC4 /* Default-736h@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,17 +311,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491B3FB11A52CB5600CC6ED2 /* Reachability.m in Sources */,
+				491B3FB61A52D14A00CC6ED2 /* UIColor+HawtTrends.m in Sources */,
 				49C4B1391A20DB8400A418BC /* HTCountryTableViewCell.m in Sources */,
 				490C5CB8174EB22900CBD520 /* main.m in Sources */,
+				49D6ED671A348C300091566C /* OpenInChromeController.m in Sources */,
+				4919D16C1A2A051C0028E50E /* HTCollectionViewCell.m in Sources */,
 				490C5CBC174EB22900CBD520 /* HTAppDelegate.m in Sources */,
 				49C4B1431A252B3A00A418BC /* HTTextView.m in Sources */,
 				490C5CCA174EB45D00CBD520 /* HTMainViewController.m in Sources */,
 				4936EC351A1F6E6E009EB1BC /* HTCountryTableViewController.m in Sources */,
-				490C5CCE174EB4E900CBD520 /* HTCellView.m in Sources */,
 				49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */,
 				49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */,
 				49C4B13D1A227BEA00A418BC /* HTCountry.m in Sources */,
-				4935EF581764CF4000069D81 /* HTLabel.m in Sources */,
 				4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,7 +407,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HawtTrends/HawtTrends-Prefix.pch";
 				INFOPLIST_FILE = "HawtTrends/HawtTrends-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -344,7 +422,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HawtTrends/HawtTrends-Prefix.pch";
 				INFOPLIST_FILE = "HawtTrends/HawtTrends-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
