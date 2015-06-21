@@ -19,6 +19,13 @@
 		491B3FB11A52CB5600CC6ED2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3FB01A52CB5600CC6ED2 /* Reachability.m */; };
 		491B3FB31A52CC4E00CC6ED2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491B3FB21A52CC4E00CC6ED2 /* SystemConfiguration.framework */; };
 		491B3FB61A52D14A00CC6ED2 /* UIColor+HawtTrends.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */; };
+		49272E5A1B3697FC0037521B /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49272E591B3697FC0037521B /* InterfaceController.m */; };
+		49272E5D1B3697FC0037521B /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49272E5C1B3697FC0037521B /* GlanceController.m */; };
+		49272E5F1B3697FC0037521B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49272E5E1B3697FC0037521B /* Images.xcassets */; };
+		49272E631B3697FC0037521B /* HawtTrends WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 49272E621B3697FC0037521B /* HawtTrends WatchKit App.app */; };
+		49272E6D1B3697FC0037521B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49272E6C1B3697FC0037521B /* Images.xcassets */; };
+		49272E701B3697FC0037521B /* HawtTrends WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 49272E541B3697FC0037521B /* HawtTrends WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		49272E7A1B3698720037521B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49272E781B3698720037521B /* Interface.storyboard */; };
 		4936EC351A1F6E6E009EB1BC /* HTCountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */; };
 		4945E5B01AC92F3400A40FC4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5A61AC92F3400A40FC4 /* Default-568h@2x.png */; };
 		4945E5B11AC92F3400A40FC4 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4945E5A71AC92F3400A40FC4 /* Default-667h@2x.png */; };
@@ -38,6 +45,37 @@
 		49C4B1431A252B3A00A418BC /* HTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1421A252B3900A418BC /* HTTextView.m */; };
 		49D6ED671A348C300091566C /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D6ED661A348C300091566C /* OpenInChromeController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		49272E641B3697FC0037521B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 490C5CA0174EB22800CBD520 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49272E611B3697FC0037521B;
+			remoteInfo = "HawtTrends WatchKit App";
+		};
+		49272E6E1B3697FC0037521B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 490C5CA0174EB22800CBD520 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49272E531B3697FC0037521B;
+			remoteInfo = "HawtTrends WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		49272E771B3697FC0037521B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				49272E701B3697FC0037521B /* HawtTrends WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		490C5CA8174EB22800CBD520 /* HawtTrends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HawtTrends.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +98,17 @@
 		491B3FB21A52CC4E00CC6ED2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		491B3FB41A52D14A00CC6ED2 /* UIColor+HawtTrends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HawtTrends.h"; path = "Model/UIColor+HawtTrends.h"; sourceTree = "<group>"; };
 		491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HawtTrends.m"; path = "Model/UIColor+HawtTrends.m"; sourceTree = "<group>"; };
+		49272E541B3697FC0037521B /* HawtTrends WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "HawtTrends WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49272E571B3697FC0037521B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49272E581B3697FC0037521B /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		49272E591B3697FC0037521B /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		49272E5B1B3697FC0037521B /* GlanceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlanceController.h; sourceTree = "<group>"; };
+		49272E5C1B3697FC0037521B /* GlanceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlanceController.m; sourceTree = "<group>"; };
+		49272E5E1B3697FC0037521B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		49272E621B3697FC0037521B /* HawtTrends WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HawtTrends WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49272E681B3697FC0037521B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49272E6C1B3697FC0037521B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		49272E791B3698720037521B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		4936EC331A1F6E6E009EB1BC /* HTCountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTCountryTableViewController.h; path = Controller/HTCountryTableViewController.h; sourceTree = "<group>"; };
 		4936EC341A1F6E6E009EB1BC /* HTCountryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTCountryTableViewController.m; path = Controller/HTCountryTableViewController.m; sourceTree = "<group>"; };
 		4945E5A61AC92F3400A40FC4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -102,6 +151,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49272E511B3697FC0037521B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -110,6 +166,8 @@
 			children = (
 				49D6ED641A348C300091566C /* External */,
 				490C5CB1174EB22900CBD520 /* HawtTrends */,
+				49272E551B3697FC0037521B /* HawtTrends WatchKit Extension */,
+				49272E661B3697FC0037521B /* HawtTrends WatchKit App */,
 				490C5CAA174EB22800CBD520 /* Frameworks */,
 				490C5CA9174EB22800CBD520 /* Products */,
 			);
@@ -119,6 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				490C5CA8174EB22800CBD520 /* HawtTrends.app */,
+				49272E541B3697FC0037521B /* HawtTrends WatchKit Extension.appex */,
+				49272E621B3697FC0037521B /* HawtTrends WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,6 +260,45 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		49272E551B3697FC0037521B /* HawtTrends WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				49272E581B3697FC0037521B /* InterfaceController.h */,
+				49272E591B3697FC0037521B /* InterfaceController.m */,
+				49272E5B1B3697FC0037521B /* GlanceController.h */,
+				49272E5C1B3697FC0037521B /* GlanceController.m */,
+				49272E5E1B3697FC0037521B /* Images.xcassets */,
+				49272E561B3697FC0037521B /* Supporting Files */,
+			);
+			path = "HawtTrends WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		49272E561B3697FC0037521B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				49272E571B3697FC0037521B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49272E661B3697FC0037521B /* HawtTrends WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				49272E781B3698720037521B /* Interface.storyboard */,
+				49272E6C1B3697FC0037521B /* Images.xcassets */,
+				49272E671B3697FC0037521B /* Supporting Files */,
+			);
+			path = "HawtTrends WatchKit App";
+			sourceTree = "<group>";
+		};
+		49272E671B3697FC0037521B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				49272E681B3697FC0037521B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4945E5BA1AC930D100A40FC4 /* Launch Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,15 +347,50 @@
 				490C5CA4174EB22800CBD520 /* Sources */,
 				490C5CA5174EB22800CBD520 /* Frameworks */,
 				490C5CA6174EB22800CBD520 /* Resources */,
+				49272E771B3697FC0037521B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				49272E6F1B3697FC0037521B /* PBXTargetDependency */,
 			);
 			name = HawtTrends;
 			productName = HawtTrends;
 			productReference = 490C5CA8174EB22800CBD520 /* HawtTrends.app */;
 			productType = "com.apple.product-type.application";
+		};
+		49272E531B3697FC0037521B /* HawtTrends WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49272E761B3697FC0037521B /* Build configuration list for PBXNativeTarget "HawtTrends WatchKit Extension" */;
+			buildPhases = (
+				49272E501B3697FC0037521B /* Sources */,
+				49272E511B3697FC0037521B /* Frameworks */,
+				49272E521B3697FC0037521B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49272E651B3697FC0037521B /* PBXTargetDependency */,
+			);
+			name = "HawtTrends WatchKit Extension";
+			productName = "HawtTrends WatchKit Extension";
+			productReference = 49272E541B3697FC0037521B /* HawtTrends WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		49272E611B3697FC0037521B /* HawtTrends WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49272E751B3697FC0037521B /* Build configuration list for PBXNativeTarget "HawtTrends WatchKit App" */;
+			buildPhases = (
+				49272E601B3697FC0037521B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HawtTrends WatchKit App";
+			productName = "HawtTrends WatchKit App";
+			productReference = 49272E621B3697FC0037521B /* HawtTrends WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
 		};
 /* End PBXNativeTarget section */
 
@@ -267,6 +401,14 @@
 				CLASSPREFIX = HT;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Pierre Felgines";
+				TargetAttributes = {
+					49272E531B3697FC0037521B = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					49272E611B3697FC0037521B = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
 			};
 			buildConfigurationList = 490C5CA3174EB22800CBD520 /* Build configuration list for PBXProject "HawtTrends" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -274,6 +416,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 490C5C9F174EB22800CBD520;
 			productRefGroup = 490C5CA9174EB22800CBD520 /* Products */;
@@ -281,6 +424,8 @@
 			projectRoot = "";
 			targets = (
 				490C5CA7174EB22800CBD520 /* HawtTrends */,
+				49272E531B3697FC0037521B /* HawtTrends WatchKit Extension */,
+				49272E611B3697FC0037521B /* HawtTrends WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -301,6 +446,24 @@
 				4945E5B41AC92F3400A40FC4 /* Default-ipad-landscape.png in Resources */,
 				4945E5B21AC92F3400A40FC4 /* Default-736h-landscape@3x.png in Resources */,
 				4945E5B31AC92F3400A40FC4 /* Default-736h@3x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49272E521B3697FC0037521B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49272E631B3697FC0037521B /* HawtTrends WatchKit App.app in Resources */,
+				49272E5F1B3697FC0037521B /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49272E601B3697FC0037521B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49272E7A1B3698720037521B /* Interface.storyboard in Resources */,
+				49272E6D1B3697FC0037521B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +491,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49272E501B3697FC0037521B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49272E5A1B3697FC0037521B /* InterfaceController.m in Sources */,
+				49272E5D1B3697FC0037521B /* GlanceController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		49272E651B3697FC0037521B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49272E611B3697FC0037521B /* HawtTrends WatchKit App */;
+			targetProxy = 49272E641B3697FC0037521B /* PBXContainerItemProxy */;
+		};
+		49272E6F1B3697FC0037521B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49272E531B3697FC0037521B /* HawtTrends WatchKit Extension */;
+			targetProxy = 49272E6E1B3697FC0037521B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		490C5CB4174EB22900CBD520 /* InfoPlist.strings */ = {
@@ -337,6 +522,14 @@
 				490C5CB5174EB22900CBD520 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		49272E781B3698720037521B /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49272E791B3698720037521B /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -428,6 +621,128 @@
 			};
 			name = Release;
 		};
+		49272E711B3697FC0037521B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "HawtTrends WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		49272E721B3697FC0037521B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "HawtTrends WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		49272E731B3697FC0037521B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IBSC_MODULE = HawtTrends_WatchKit_Extension;
+				INFOPLIST_FILE = "HawtTrends WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		49272E741B3697FC0037521B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IBSC_MODULE = HawtTrends_WatchKit_Extension;
+				INFOPLIST_FILE = "HawtTrends WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -448,6 +763,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		49272E751B3697FC0037521B /* Build configuration list for PBXNativeTarget "HawtTrends WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49272E731B3697FC0037521B /* Debug */,
+				49272E741B3697FC0037521B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		49272E761B3697FC0037521B /* Build configuration list for PBXNativeTarget "HawtTrends WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49272E711B3697FC0037521B /* Debug */,
+				49272E721B3697FC0037521B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
