@@ -187,20 +187,9 @@ typedef enum {
     }];
 }
 
-- (NSArray *)_trendColors {
-    static NSArray * sTrendColors = nil;
-    if (!sTrendColors) {
-        sTrendColors = [[NSArray alloc] initWithObjects:[UIColor htBlue], //blue
-                        [UIColor htRed], //red
-                        [UIColor htYellow], //orange
-                        [UIColor htGreen], nil]; //green
-    }
-    return sTrendColors;
-}
-
 - (UIColor *)_nextColor {
-    _colorIndex = (_colorIndex + 1) % [self _trendColors].count;
-    return [self _trendColors][_colorIndex];
+    _colorIndex = (_colorIndex + 1) % [UIColor htTrendsColors].count;
+    return [UIColor htTrendsColors][_colorIndex];
 }
 
 @end

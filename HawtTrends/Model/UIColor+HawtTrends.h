@@ -14,5 +14,6 @@
 + (UIColor *)htRed;
 + (UIColor *)htGreen;
 + (UIColor *)htBlue;
++ (NSArray *)htTrendsColors;
 
 @end

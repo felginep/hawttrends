@@ -26,4 +26,16 @@
     return [UIColor colorWithRed:0.258f green:0.521f blue:0.956 alpha:1.0f];
 }
 
++ (NSArray *)htTrendsColors {
+    static NSArray * sTrendColors = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sTrendColors = @[[UIColor htBlue],
+                         [UIColor htRed],
+                         [UIColor htYellow],
+                         [UIColor htGreen]];
+    });
+    return sTrendColors;
+}
+
 @end
