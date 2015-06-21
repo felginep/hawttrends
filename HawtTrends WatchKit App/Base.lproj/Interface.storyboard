@@ -24,7 +24,6 @@
                         </button>
                     </items>
                     <connections>
-                        <outlet property="mainButton" destination="unH-op-cHP" id="fHe-HD-hH2"/>
                         <outlet property="mainLabel" destination="tz1-fb-raS" id="1GB-w5-5Rq"/>
                     </connections>
                 </controller>
