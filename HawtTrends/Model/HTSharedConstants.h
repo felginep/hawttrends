@@ -13,5 +13,6 @@ extern NSString * const kHTWatchResponse;
 
 typedef NS_ENUM(NSUInteger, HTWatchAction) {
     HTWatchActionSavedTerms,
-    HTWatchActionFetchTerms
+    HTWatchActionFetchTerms,
+    HTWatchActionCurrentCountry
 };

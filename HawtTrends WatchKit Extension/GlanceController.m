@@ -22,8 +22,10 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
 
-    // Configure interface objects here.
+    [self.countryLabel setText:@""];
 
+    // Configure interface objects here.
+    [self _fetchCountry];
     [self _fetchTerms];
 }
 
@@ -38,6 +40,13 @@
 }
 
 #pragma mark - Private
+
+- (void)_fetchCountry {
+    [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionCurrentCountry) } reply:^(NSDictionary *replyInfo, NSError *error) {
+        NSString * country = replyInfo[kHTWatchResponse];
+        [self.countryLabel setText:country];
+    }];
+}
 
 - (void)_fetchTerms {
     [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionFetchTerms) } reply:^(NSDictionary *replyInfo, NSError *error) {

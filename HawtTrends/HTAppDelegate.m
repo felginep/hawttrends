@@ -41,16 +41,22 @@
     }];
 
     HTWatchAction action = [userInfo[kHTWatchAction] integerValue];
-    NSAssert(action == HTWatchActionFetchTerms, @"Wrong action");
-
-    [[HTTermsDownloader sharedDownloader] downloadTerms:^{
-
-        NSArray * allTerms = [HTTermsDownloader sharedDownloader].terms;
-        reply(@{ kHTWatchResponse: allTerms });
-
-    }];
-
-    [application endBackgroundTask:taskIdentifier];
+    switch (action) {
+        case HTWatchActionFetchTerms: {
+            [[HTTermsDownloader sharedDownloader] downloadTerms:^{
+                NSArray * allTerms = [HTTermsDownloader sharedDownloader].terms;
+                reply(@{ kHTWatchResponse: allTerms });
+                [application endBackgroundTask:taskIdentifier];
+            }];
+        } break;
+        case HTWatchActionCurrentCountry: {
+            HTCountry * country = [HTTermsDownloader sharedDownloader].currentCountry;
+            reply(@{ kHTWatchResponse: country.displayName });
+            [application endBackgroundTask:taskIdentifier];
+        } break;
+        default:
+            break;
+    }
 }
 
 @end

@@ -12,4 +12,5 @@
 @interface GlanceController : WKInterfaceController
 
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel * mainLabel;
+@property (weak, nonatomic) IBOutlet WKInterfaceLabel * countryLabel;
 @end
