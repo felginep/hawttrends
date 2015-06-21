@@ -8,6 +8,7 @@
 
 #import "InterfaceController.h"
 #import "UIColor+HawtTrends.h"
+#import "HTSharedConstants.h"
 
 @interface InterfaceController() {
     NSArray * _terms;
@@ -54,9 +55,9 @@
 #pragma mark - Private
 
 - (void)_fetchTerms {
-    [self.class openParentApplication:@{ @"action": @"terms" } reply:^(NSDictionary *replyInfo, NSError *error) {
+    [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionFetchTerms) } reply:^(NSDictionary *replyInfo, NSError *error) {
         NSLog(@"reply = %@", replyInfo);
-        _terms = replyInfo[@"response"];
+        _terms = replyInfo[kHTWatchResponse];
         _termIndex = 0;
         _colorIndex = 0;
 

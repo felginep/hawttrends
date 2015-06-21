@@ -9,6 +9,7 @@
 #import "HTAppDelegate.h"
 #import "HTMainViewController.h"
 #import "HTTermsDownloader.h"
+#import "HTSharedConstants.h"
 
 @implementation HTAppDelegate
 
@@ -39,10 +40,13 @@
         // TODO: Handle task expiration
     }];
 
+    HTWatchAction action = [userInfo[kHTWatchAction] integerValue];
+    NSAssert(action == HTWatchActionFetchTerms, @"Wrong action");
+
     [[HTTermsDownloader sharedDownloader] downloadTerms:^{
 
         NSArray * allTerms = [HTTermsDownloader sharedDownloader].terms;
-        reply(@{ @"response": allTerms });
+        reply(@{ kHTWatchResponse: allTerms });
 
     }];
 
