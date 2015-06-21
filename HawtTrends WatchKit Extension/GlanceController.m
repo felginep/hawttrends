@@ -23,6 +23,7 @@
     [super awakeWithContext:context];
 
     [self.countryLabel setText:@""];
+    [self.mainLabel setText:@""];
 
     // Configure interface objects here.
     [self _fetchCountry];
@@ -32,6 +33,7 @@
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
+    [self _displayTerm];
 }
 
 - (void)didDeactivate {
@@ -57,6 +59,10 @@
 }
 
 - (void)_displayTerm {
+    if (_terms.count == 0) {
+        return;
+    }
+
     NSInteger termIndex = arc4random() % _terms.count;
     NSInteger colorIndex = arc4random() % [UIColor htTrendsColors].count;
     NSString * term = _terms[termIndex];
