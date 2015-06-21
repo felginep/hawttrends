@@ -11,4 +11,5 @@
 
 @interface GlanceController : WKInterfaceController
 
+@property (weak, nonatomic) IBOutlet WKInterfaceLabel * mainLabel;
 @end
