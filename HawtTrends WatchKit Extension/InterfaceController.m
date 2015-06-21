@@ -12,6 +12,7 @@
 @interface InterfaceController() {
     NSArray * _terms;
     NSUInteger _termIndex;
+    NSUInteger _colorIndex;
 }
 
 @end
@@ -41,8 +42,13 @@
 - (IBAction)nextTerm {
     NSString * term = _terms[_termIndex];
     _termIndex = (_termIndex + 1) % _terms.count;
-    NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:term attributes:@{ NSForegroundColorAttributeName: [UIColor htYellow]}];
-    [self.mainLabel setAttributedText:attributedString];
+
+    UIColor * color = [UIColor htTrendsColors][_colorIndex];
+    _colorIndex = (_colorIndex + 1) % [UIColor htTrendsColors].count;
+
+    NSDictionary * attributes = @{ NSForegroundColorAttributeName: color };
+    NSAttributedString * attributedTerm = [[NSAttributedString alloc] initWithString:term attributes:attributes];
+    [self.mainLabel setAttributedText:attributedTerm];
 }
 
 #pragma mark - Private
@@ -52,6 +58,7 @@
         NSLog(@"reply = %@", replyInfo);
         _terms = replyInfo[@"response"];
         _termIndex = 0;
+        _colorIndex = 0;
 
         [self nextTerm];
     }];
