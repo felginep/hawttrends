@@ -63,6 +63,22 @@
             reply(@{ kHTWatchResponse: names });
             [application endBackgroundTask:taskIdentifier];
         } break;
+        case HTWatchActionSetCurrentCountry: {
+            NSString * currentCountryName = userInfo[kHTWatchUserInfos];
+            NSArray * countries = [HTTermsDownloader sharedDownloader].countries;
+            HTCountry * currentCountry = nil;
+            for (HTCountry * country in countries) {
+                if ([country.displayName isEqualToString:currentCountryName]) {
+                    currentCountry = country;
+                    break;
+                }
+            }
+            if (currentCountry) {
+                [HTTermsDownloader sharedDownloader].currentCountry = currentCountry;
+            }
+            reply(@{ kHTWatchResponse: @YES });
+            [application endBackgroundTask:taskIdentifier];
+        } break;
         default:
             break;
     }

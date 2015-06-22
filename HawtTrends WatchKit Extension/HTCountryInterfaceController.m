@@ -39,7 +39,16 @@
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
     NSString * country = _countries[rowIndex];
-    // TODO: save this country as current one
+
+    [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionSetCurrentCountry), kHTWatchUserInfos: country } reply:^(NSDictionary *replyInfo, NSError *error) {
+        BOOL success = [replyInfo[kHTWatchResponse] boolValue];
+        if (!success) {
+            NSLog(@"Error setting up new country");
+            return ;
+        }
+
+        [self dismissController];
+    }];
 }
 
 #pragma mark - Private
