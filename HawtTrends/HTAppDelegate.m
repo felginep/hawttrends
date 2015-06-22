@@ -55,12 +55,8 @@
             [application endBackgroundTask:taskIdentifier];
         } break;
         case HTWatchActionCountries: {
-            NSArray * countries = [HTTermsDownloader sharedDownloader].countries;
-            NSMutableArray * names = [NSMutableArray array];
-            for (HTCountry * country in countries) {
-                [names addObject:country.displayName];
-            }
-            reply(@{ kHTWatchResponse: names });
+            NSArray * countryNames = [[HTTermsDownloader sharedDownloader].countries map:^id(HTCountry * c) { return c.displayName; }];
+            reply(@{ kHTWatchResponse: countryNames });
             [application endBackgroundTask:taskIdentifier];
         } break;
         case HTWatchActionSetCurrentCountry: {

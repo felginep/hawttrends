@@ -9,6 +9,7 @@
 #import "HTCountryInterfaceController.h"
 #import "HTCountryRowController.h"
 #import "HTSharedConstants.h"
+#import "NSArray+HawtTrends.h"
 
 @interface HTCountryInterfaceController () {
     NSArray * _countries;
@@ -59,12 +60,9 @@
         return;
     }
 
-    NSMutableArray * rowTypes = [NSMutableArray array];
-    for (int i = 0; i < _countries.count; i++) {
-        [rowTypes addObject:NSStringFromClass(HTCountryRowController.class)];
-    }
+    NSArray * rowTypes = [NSArray arrayWithObject:NSStringFromClass(HTCountryRowController.class) numberOfOccurences:_countries.count];
+    [self.table setRowTypes:rowTypes];
 
-    [self.table setRowTypes:[rowTypes copy]];
     for (int i = 0; i < self.table.numberOfRows; i++) {
         HTCountryRowController * row = [self.table rowControllerAtIndex:i];
         NSString * country = _countries[i];
