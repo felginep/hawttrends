@@ -10,6 +10,7 @@
 #import "HTMainViewController.h"
 #import "HTTermsDownloader.h"
 #import "HTSharedConstants.h"
+#import "NSArray+HawtTrends.h"
 
 @implementation HTAppDelegate
 
@@ -35,7 +36,6 @@
 }
 
 - (void)application:(UIApplication *)application handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void (^)(NSDictionary *))reply {
-
     UIBackgroundTaskIdentifier taskIdentifier = [application beginBackgroundTaskWithName:@"WatchKitBackgroundTask" expirationHandler:^{
         // TODO: Handle task expiration
     }];
@@ -61,18 +61,19 @@
         } break;
         case HTWatchActionSetCurrentCountry: {
             NSString * currentCountryName = userInfo[kHTWatchUserInfos];
-            NSArray * countries = [HTTermsDownloader sharedDownloader].countries;
             HTCountry * currentCountry = nil;
-            for (HTCountry * country in countries) {
+            for (HTCountry * country in [HTTermsDownloader sharedDownloader].countries) {
                 if ([country.displayName isEqualToString:currentCountryName]) {
                     currentCountry = country;
                     break;
                 }
             }
+
+            BOOL success = currentCountry != nil;
             if (currentCountry) {
                 [HTTermsDownloader sharedDownloader].currentCountry = currentCountry;
             }
-            reply(@{ kHTWatchResponse: @YES });
+            reply(@{ kHTWatchResponse: @(success) });
             [application endBackgroundTask:taskIdentifier];
         } break;
         default:
