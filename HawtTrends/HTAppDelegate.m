@@ -54,6 +54,15 @@
             reply(@{ kHTWatchResponse: country.displayName });
             [application endBackgroundTask:taskIdentifier];
         } break;
+        case HTWatchActionCountries: {
+            NSArray * countries = [HTTermsDownloader sharedDownloader].countries;
+            NSMutableArray * names = [NSMutableArray array];
+            for (HTCountry * country in countries) {
+                [names addObject:country.displayName];
+            }
+            reply(@{ kHTWatchResponse: names });
+            [application endBackgroundTask:taskIdentifier];
+        } break;
         default:
             break;
     }
