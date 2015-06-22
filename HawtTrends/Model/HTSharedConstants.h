@@ -16,5 +16,6 @@ typedef NS_ENUM(NSUInteger, HTWatchAction) {
     HTWatchActionSavedTerms,
     HTWatchActionFetchTerms,
     HTWatchActionCurrentCountry,
-    HTWatchActionCountries
+    HTWatchActionCountries,
+    HTWatchActionSetCurrentCountry
 };
