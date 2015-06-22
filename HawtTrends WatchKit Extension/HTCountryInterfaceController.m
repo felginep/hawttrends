@@ -89,6 +89,8 @@
         NSString * country = _countries[i];
         [row.mainLabel setText:country];
     }
+
+    // TODO: be smarter, and save favorites countries
 }
 
 @end
