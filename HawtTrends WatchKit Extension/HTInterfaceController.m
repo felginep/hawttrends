@@ -67,6 +67,7 @@
 
 - (void)presentedControllerWillDismiss:(WKInterfaceController *)presentedController {
     [self _fetchTerms];
+    [self _fetchCountry];
 }
 
 #pragma mark - Private
