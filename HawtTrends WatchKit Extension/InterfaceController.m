@@ -9,8 +9,9 @@
 #import "InterfaceController.h"
 #import "UIColor+HawtTrends.h"
 #import "HTSharedConstants.h"
+#import "HTCountryInterfaceController.h"
 
-@interface InterfaceController() {
+@interface InterfaceController() <HTPresentationDelegate> {
     NSArray * _terms;
     NSUInteger _termIndex;
     NSUInteger _colorIndex;
@@ -34,7 +35,8 @@
 }
 
 - (void)_chooseCountry {
-    [self presentControllerWithName:@"HTCountryInterfaceController" context:nil];
+    HTCountryInterfaceContext * context = [HTCountryInterfaceContext contextWithPresentingController:self];
+    [self presentControllerWithName:NSStringFromClass(HTCountryInterfaceController.class) context:context];
 }
 
 - (void)willActivate {
@@ -56,6 +58,12 @@
 - (IBAction)nextTerm {
     [self _restartTimer];
     [self _nextTerm];
+}
+
+#pragma mark - HTPresentationDelegate
+
+- (void)presentedControllerWillDismiss:(WKInterfaceController *)presentedController {
+    [self _fetchTerms];
 }
 
 #pragma mark - Private

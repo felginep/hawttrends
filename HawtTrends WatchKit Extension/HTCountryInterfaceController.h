@@ -9,6 +9,15 @@
 #import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
 
+@protocol HTPresentationDelegate <NSObject>
+- (void)presentedControllerWillDismiss:(WKInterfaceController *)presentedController;
+@end
+
+@interface HTCountryInterfaceContext : NSObject
++ (instancetype)contextWithPresentingController:(id<HTPresentationDelegate>)presentingController;
+@property (nonatomic, strong) id<HTPresentationDelegate> presentingController;
+@end
+
 @interface HTCountryInterfaceController : WKInterfaceController
 
 @property (weak, nonatomic) IBOutlet WKInterfaceTable * table;

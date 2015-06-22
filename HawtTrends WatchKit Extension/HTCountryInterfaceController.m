@@ -11,8 +11,20 @@
 #import "HTSharedConstants.h"
 #import "NSArray+HawtTrends.h"
 
+
+@implementation HTCountryInterfaceContext
+
++ (instancetype)contextWithPresentingController:(id<HTPresentationDelegate>)presentingController {
+    HTCountryInterfaceContext * context = [[HTCountryInterfaceContext alloc] init];
+    context.presentingController = presentingController;
+    return context;
+}
+
+@end
+
 @interface HTCountryInterfaceController () {
     NSArray * _countries;
+    HTCountryInterfaceContext * _context;
 }
 
 @end
@@ -21,6 +33,8 @@
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
+
+    _context = context;
 
     [self.class openParentApplication:@{kHTWatchAction: @(HTWatchActionCountries) } reply:^(NSDictionary *replyInfo, NSError *error) {
         _countries = replyInfo[kHTWatchResponse];
@@ -48,11 +62,18 @@
             return ;
         }
 
-        [self dismissController];
+        [self _dismiss];
     }];
 }
 
 #pragma mark - Private
+
+- (void)_dismiss {
+    if ([_context.presentingController respondsToSelector:@selector(presentedControllerWillDismiss:)]) {
+        [_context.presentingController presentedControllerWillDismiss:self];
+    }
+    [self dismissController];
+}
 
 - (void)_updateTable {
     if (_countries.count == 0) {
