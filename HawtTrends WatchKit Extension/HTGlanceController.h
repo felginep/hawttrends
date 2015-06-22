@@ -9,7 +9,7 @@
 #import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
 
-@interface GlanceController : WKInterfaceController
+@interface HTGlanceController : WKInterfaceController
 
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel * mainLabel;
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel * countryLabel;

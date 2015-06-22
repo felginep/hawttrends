@@ -8,7 +8,7 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController">
+                <controller id="AgC-eL-Hgc" customClass="HTInterfaceController">
                     <items>
                         <button alignment="left" id="unH-op-cHP">
                             <group key="contentGroup" width="1" height="1" alignment="left" id="Xea-Wd-3dQ">
@@ -60,7 +60,7 @@
         <!--Glance Interface Controller-->
         <scene sceneID="rjY-Ar-IMT">
             <objects>
-                <glanceController spacing="0.0" id="Sv0-Ai-Zie" customClass="GlanceController">
+                <glanceController spacing="0.0" id="Sv0-Ai-Zie" customClass="HTGlanceController">
                     <items>
                         <group alignment="left" id="gv7-I2-MZq">
                             <items>

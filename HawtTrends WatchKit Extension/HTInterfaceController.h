@@ -9,7 +9,7 @@
 #import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
 
-@interface InterfaceController : WKInterfaceController
+@interface HTInterfaceController : WKInterfaceController
 
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel * mainLabel;
 - (IBAction)nextTerm;

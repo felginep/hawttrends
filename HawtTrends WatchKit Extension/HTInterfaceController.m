@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Pierre Felgines. All rights reserved.
 //
 
-#import "InterfaceController.h"
+#import "HTInterfaceController.h"
 #import "UIColor+HawtTrends.h"
 #import "HTSharedConstants.h"
 #import "HTCountryInterfaceController.h"
 
-@interface InterfaceController() <HTPresentationDelegate> {
+@interface HTInterfaceController() <HTPresentationDelegate> {
     NSArray * _terms;
     NSUInteger _termIndex;
     NSUInteger _colorIndex;
@@ -21,7 +21,7 @@
 @end
 
 
-@implementation InterfaceController
+@implementation HTInterfaceController
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];

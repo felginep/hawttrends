@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 Pierre Felgines. All rights reserved.
 //
 
-#import "GlanceController.h"
+#import "HTGlanceController.h"
 #import "UIColor+HawtTrends.h"
 #import "HTSharedConstants.h"
 
-@interface GlanceController() {
+@interface HTGlanceController() {
     NSArray * _terms;
 }
 
 @end
 
 
-@implementation GlanceController
+@implementation HTGlanceController
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
