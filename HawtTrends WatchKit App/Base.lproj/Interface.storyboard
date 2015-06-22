@@ -30,6 +30,33 @@
             </objects>
             <point key="canvasLocation" x="164" y="217"/>
         </scene>
+        <!--HTCountryInterfaceController-->
+        <scene sceneID="msg-3I-N5n">
+            <objects>
+                <controller identifier="HTCountryInterfaceController" id="spY-zY-J54" customClass="HTCountryInterfaceController">
+                    <items>
+                        <table alignment="left" id="5xZ-F4-L38">
+                            <items>
+                                <tableRow identifier="HTCountryRowController" id="Wjw-Hs-Yy2" customClass="HTCountryRowController">
+                                    <group key="rootItem" width="1" alignment="left" id="1uG-FL-K0o">
+                                        <items>
+                                            <label alignment="center" verticalAlignment="center" text="Label" id="shv-lf-8TY"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="mainLabel" destination="shv-lf-8TY" id="sUw-LF-0QN"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="5xZ-F4-L38" id="Tgz-zy-dlO"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="367" y="215"/>
+        </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="rjY-Ar-IMT">
             <objects>

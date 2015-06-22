@@ -29,6 +29,12 @@
     [self _fetchTerms];
 
     [self setTitle:@"HotTrends"];
+
+    [self addMenuItemWithItemIcon:WKMenuItemIconMore title:@"Country" action:@selector(_chooseCountry)];
+}
+
+- (void)_chooseCountry {
+    [self presentControllerWithName:@"HTCountryInterfaceController" context:nil];
 }
 
 - (void)willActivate {

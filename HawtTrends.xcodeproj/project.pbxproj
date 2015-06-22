@@ -19,6 +19,8 @@
 		491B3FB11A52CB5600CC6ED2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3FB01A52CB5600CC6ED2 /* Reachability.m */; };
 		491B3FB31A52CC4E00CC6ED2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491B3FB21A52CC4E00CC6ED2 /* SystemConfiguration.framework */; };
 		491B3FB61A52D14A00CC6ED2 /* UIColor+HawtTrends.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */; };
+		4921F0761B384F4500CCB984 /* HTCountryRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921F0751B384F4500CCB984 /* HTCountryRowController.m */; };
+		4921F0791B384FE500CCB984 /* HTCountryInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921F0781B384FE500CCB984 /* HTCountryInterfaceController.m */; };
 		49272E5A1B3697FC0037521B /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49272E591B3697FC0037521B /* InterfaceController.m */; };
 		49272E5D1B3697FC0037521B /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49272E5C1B3697FC0037521B /* GlanceController.m */; };
 		49272E5F1B3697FC0037521B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49272E5E1B3697FC0037521B /* Images.xcassets */; };
@@ -101,6 +103,10 @@
 		491B3FB21A52CC4E00CC6ED2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		491B3FB41A52D14A00CC6ED2 /* UIColor+HawtTrends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HawtTrends.h"; path = "Model/UIColor+HawtTrends.h"; sourceTree = "<group>"; };
 		491B3FB51A52D14A00CC6ED2 /* UIColor+HawtTrends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HawtTrends.m"; path = "Model/UIColor+HawtTrends.m"; sourceTree = "<group>"; };
+		4921F0741B384F4500CCB984 /* HTCountryRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTCountryRowController.h; sourceTree = "<group>"; };
+		4921F0751B384F4500CCB984 /* HTCountryRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTCountryRowController.m; sourceTree = "<group>"; };
+		4921F0771B384FE500CCB984 /* HTCountryInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTCountryInterfaceController.h; sourceTree = "<group>"; };
+		4921F0781B384FE500CCB984 /* HTCountryInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTCountryInterfaceController.m; sourceTree = "<group>"; };
 		49272E541B3697FC0037521B /* HawtTrends WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "HawtTrends WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49272E571B3697FC0037521B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49272E581B3697FC0037521B /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
@@ -274,6 +280,10 @@
 				49272E5C1B3697FC0037521B /* GlanceController.m */,
 				49272E5E1B3697FC0037521B /* Images.xcassets */,
 				49272E561B3697FC0037521B /* Supporting Files */,
+				4921F0741B384F4500CCB984 /* HTCountryRowController.h */,
+				4921F0751B384F4500CCB984 /* HTCountryRowController.m */,
+				4921F0771B384FE500CCB984 /* HTCountryInterfaceController.h */,
+				4921F0781B384FE500CCB984 /* HTCountryInterfaceController.m */,
 			);
 			path = "HawtTrends WatchKit Extension";
 			sourceTree = "<group>";
@@ -504,8 +514,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				49272E7E1B369D990037521B /* UIColor+HawtTrends.m in Sources */,
+				4921F0761B384F4500CCB984 /* HTCountryRowController.m in Sources */,
 				49272E5A1B3697FC0037521B /* InterfaceController.m in Sources */,
 				4986895F1B36A6360039C456 /* HTSharedConstants.m in Sources */,
+				4921F0791B384FE500CCB984 /* HTCountryInterfaceController.m in Sources */,
 				49272E5D1B3697FC0037521B /* GlanceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
