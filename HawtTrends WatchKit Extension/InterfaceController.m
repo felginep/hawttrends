@@ -26,6 +26,8 @@
 
     [self.mainLabel setText:@""];
     [self _fetchTerms];
+
+    [self setTitle:@"HotTrends"];
 }
 
 - (void)willActivate {
