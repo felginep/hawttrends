@@ -12,6 +12,7 @@
 
 @interface HTGlanceController() {
     NSArray * _terms;
+    NSString * _country;
 }
 
 @end
@@ -26,14 +27,22 @@
     [self.mainLabel setText:@""];
 
     // Configure interface objects here.
-    [self _fetchCountry];
+    [self _fetchCountryWithCompletion:nil];
     [self _fetchTerms];
 }
 
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
-    [self _displayTerm];
+
+    [self _fetchCountryWithCompletion:^(NSString *country) {
+        if (country && ![country isEqualToString:_country]) {
+            _country = country;
+            [self _fetchTerms];
+        } else {
+            [self _displayTerm];
+        }
+    }];
 }
 
 - (void)didDeactivate {
@@ -43,10 +52,11 @@
 
 #pragma mark - Private
 
-- (void)_fetchCountry {
+- (void)_fetchCountryWithCompletion:(void(^)(NSString * country))completion {
     [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionCurrentCountry) } reply:^(NSDictionary *replyInfo, NSError *error) {
         NSString * country = replyInfo[kHTWatchResponse];
         [self.countryLabel setText:country];
+        if (completion) { completion(country); }
     }];
 }
 
