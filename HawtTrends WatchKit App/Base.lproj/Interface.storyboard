@@ -10,20 +10,29 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="HTInterfaceController">
                     <items>
-                        <button alignment="left" id="unH-op-cHP">
-                            <group key="contentGroup" width="1" height="1" alignment="left" id="Xea-Wd-3dQ">
-                                <items>
-                                    <label alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" id="tz1-fb-raS">
-                                        <fontDescription key="font" type="boldSystem" pointSize="25"/>
-                                    </label>
-                                </items>
-                            </group>
-                            <connections>
-                                <action selector="nextTerm" destination="AgC-eL-Hgc" id="XW6-Ew-TRn"/>
-                            </connections>
-                        </button>
+                        <group width="1" alignment="left" layout="vertical" id="uCL-5t-VEx">
+                            <items>
+                                <label alignment="left" text="Label" id="xAy-pp-BMA">
+                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                </label>
+                                <button alignment="center" verticalAlignment="center" id="unH-op-cHP">
+                                    <group key="contentGroup" width="1" height="1" heightAdjustment="-18" alignment="left" id="Xea-Wd-3dQ">
+                                        <items>
+                                            <label alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" id="tz1-fb-raS">
+                                                <fontDescription key="font" type="boldSystem" pointSize="25"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <action selector="nextTerm" destination="AgC-eL-Hgc" id="XW6-Ew-TRn"/>
+                                    </connections>
+                                </button>
+                            </items>
+                            <edgeInsets key="margins" left="4" right="4" top="0.0" bottom="0.0"/>
+                        </group>
                     </items>
                     <connections>
+                        <outlet property="countryLabel" destination="xAy-pp-BMA" id="8gb-dk-xNB"/>
                         <outlet property="mainLabel" destination="tz1-fb-raS" id="1GB-w5-5Rq"/>
                     </connections>
                 </controller>

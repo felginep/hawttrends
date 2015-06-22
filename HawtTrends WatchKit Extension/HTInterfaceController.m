@@ -27,7 +27,10 @@
     [super awakeWithContext:context];
 
     [self.mainLabel setText:@""];
+    [self.countryLabel setText:@""];
+    [self.countryLabel setTextColor:[UIColor htYellow]];
     [self _fetchTerms];
+    [self _fetchCountry];
 
     [self setTitle:@"HotTrends"];
 
@@ -102,6 +105,13 @@
         _colorIndex = 0;
 
         [self nextTerm];
+    }];
+}
+
+- (void)_fetchCountry {
+    [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionCurrentCountry) } reply:^(NSDictionary *replyInfo, NSError *error) {
+        NSString * countryName = replyInfo[kHTWatchResponse];
+        [self.countryLabel setText:countryName];
     }];
 }
 

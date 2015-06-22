@@ -12,6 +12,8 @@
 @interface HTInterfaceController : WKInterfaceController
 
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel * mainLabel;
+@property (weak, nonatomic) IBOutlet WKInterfaceLabel * countryLabel;
+
 - (IBAction)nextTerm;
 
 @end
