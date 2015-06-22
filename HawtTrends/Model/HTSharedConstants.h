@@ -10,6 +10,7 @@
 
 extern NSString * const kHTWatchAction;
 extern NSString * const kHTWatchResponse;
+extern NSString * const kHTWatchUserInfos;
 
 typedef NS_ENUM(NSUInteger, HTWatchAction) {
     HTWatchActionSavedTerms,
