@@ -14,6 +14,7 @@
     NSArray * _terms;
     NSUInteger _termIndex;
     NSUInteger _colorIndex;
+    NSTimer * _timer;
 }
 
 @end
@@ -33,16 +34,41 @@
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
+
+    [self nextTerm];
+    [self _restartTimer];
 }
 
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
+    [self _stopTimer];
 }
 
 #pragma mark - Actions
 
 - (IBAction)nextTerm {
+    [self _restartTimer];
+    [self _nextTerm];
+}
+
+#pragma mark - Private
+
+- (void)_stopTimer {
+    [_timer invalidate];
+    _timer = nil;
+}
+
+- (void)_restartTimer {
+    [self _stopTimer];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(nextTerm) userInfo:nil repeats:YES];
+}
+
+- (void)_nextTerm {
+    if (_terms.count == 0) {
+        return;
+    }
+
     NSString * term = _terms[_termIndex];
     _termIndex = (_termIndex + 1) % _terms.count;
 
@@ -53,8 +79,6 @@
     NSAttributedString * attributedTerm = [[NSAttributedString alloc] initWithString:term attributes:attributes];
     [self.mainLabel setAttributedText:attributedTerm];
 }
-
-#pragma mark - Private
 
 - (void)_fetchTerms {
     [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionFetchTerms) } reply:^(NSDictionary *replyInfo, NSError *error) {
