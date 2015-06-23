@@ -11,6 +11,7 @@
 #import "HTTermsDownloader.h"
 #import "HTSharedConstants.h"
 #import "NSArray+HawtTrends.h"
+#import "HTTermCache.h"
 
 @implementation HTAppDelegate
 
@@ -45,13 +46,29 @@
     HTWatchAction action = [userInfo[kHTWatchAction] integerValue];
     switch (action) {
         case HTWatchActionFetchTerms: {
-            [[HTTermsDownloader sharedDownloader] downloadTerms:^{
-                NSArray * allTerms = [HTTermsDownloader sharedDownloader].terms;
-                if (!allTerms) { allTerms = @[]; }
-                NSLog(@" => %@", @{ kHTWatchResponse: allTerms, kHTWatchUserInfos: country.displayName });
-                reply(@{ kHTWatchResponse: allTerms, kHTWatchUserInfos: country.displayName });
+
+            void(^termsHandler)(NSArray *, NSString *) = ^(NSArray * terms, NSString * identifier) {
+                if (!terms) {
+                    terms = @[];
+                }
+                NSDictionary * response =  @{ kHTWatchResponse: terms,
+                                              kHTWatchUserInfos: country.displayName };
+                NSLog(@"%@ %@", identifier, response);
+                reply(response);
                 [application endBackgroundTask:taskIdentifier];
-            }];
+            };
+
+            if (![HTTermCache hasExpired]) {
+                NSArray * allTerms = [HTTermCache termsForCountry:[HTTermsDownloader sharedDownloader].currentCountry.webserviceCode];
+                termsHandler(allTerms, @"local");
+                return;
+            } else {
+                [[HTTermsDownloader sharedDownloader] downloadTerms:^{
+                    NSArray * allTerms = [HTTermsDownloader sharedDownloader].terms;
+                    termsHandler(allTerms, @"remote");
+                }];
+            }
+            
         } break;
         case HTWatchActionCurrentCountry: {
             reply(@{ kHTWatchResponse: country.displayName });
