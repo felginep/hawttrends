@@ -12,6 +12,8 @@ extern NSString * const kHTWatchAction;
 extern NSString * const kHTWatchResponse;
 extern NSString * const kHTWatchUserInfos;
 
+extern NSInteger const kHTWatchSubsetResultCount;
+
 typedef NS_ENUM(NSUInteger, HTWatchAction) {
     HTWatchActionSavedTerms,
     HTWatchActionFetchTerms,

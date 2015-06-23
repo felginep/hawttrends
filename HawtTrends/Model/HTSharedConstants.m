@@ -11,3 +11,5 @@
 NSString * const kHTWatchAction = @"kHTWatchAction";
 NSString * const kHTWatchResponse = @"kHTWatchResponse";
 NSString * const kHTWatchUserInfos = @"kHTWatchUserInfos";
+
+NSInteger const kHTWatchSubsetResultCount = 5;
