@@ -9,6 +9,7 @@
 #import "HTTermsDownloader.h"
 #import "Reachability.h"
 #import "HTTermCache.h"
+#import "HTCountryQueue.h"
 
 #define HT_TERMS_API_URL @"http://hawttrends.appspot.com/api/terms/"
 #define HT_LANGUAGE_KEY @"HT_LANGUAGE_KEY"
@@ -131,6 +132,7 @@
 
 - (void)setCurrentCountry:(HTCountry *)currentCountry {
     _currentCountry = currentCountry;
+    [HTCountryQueue addCountry:currentCountry.displayName];
     [[NSUserDefaults standardUserDefaults] setObject:currentCountry.countryCode forKey:HT_LANGUAGE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self downloadTerms:nil];
