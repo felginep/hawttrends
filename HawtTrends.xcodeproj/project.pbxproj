@@ -280,14 +280,14 @@
 			children = (
 				49272E581B3697FC0037521B /* HTInterfaceController.h */,
 				49272E591B3697FC0037521B /* HTInterfaceController.m */,
-				49272E5B1B3697FC0037521B /* HTGlanceController.h */,
-				49272E5C1B3697FC0037521B /* HTGlanceController.m */,
-				49272E5E1B3697FC0037521B /* Images.xcassets */,
-				49272E561B3697FC0037521B /* Supporting Files */,
 				4921F0741B384F4500CCB984 /* HTCountryRowController.h */,
 				4921F0751B384F4500CCB984 /* HTCountryRowController.m */,
 				4921F0771B384FE500CCB984 /* HTCountryInterfaceController.h */,
 				4921F0781B384FE500CCB984 /* HTCountryInterfaceController.m */,
+				49272E5B1B3697FC0037521B /* HTGlanceController.h */,
+				49272E5C1B3697FC0037521B /* HTGlanceController.m */,
+				49272E5E1B3697FC0037521B /* Images.xcassets */,
+				49272E561B3697FC0037521B /* Supporting Files */,
 			);
 			path = "HawtTrends WatchKit Extension";
 			sourceTree = "<group>";
