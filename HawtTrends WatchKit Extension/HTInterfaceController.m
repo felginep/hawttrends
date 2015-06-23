@@ -16,6 +16,7 @@
     NSUInteger _termIndex;
     NSUInteger _colorIndex;
     NSTimer * _timer;
+    BOOL _needsUpdateTermsAndCountry;
 }
 
 @end
@@ -46,14 +47,24 @@
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
 
-    [self nextTerm];
     [self _restartTimer];
+
+    NSLog(@"willActivate");
+
+    if (_needsUpdateTermsAndCountry) {
+        [self _fetchTerms];
+        _needsUpdateTermsAndCountry = NO;
+    } else {
+        [self nextTerm];
+    }
 }
 
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
     [self _stopTimer];
+
+    NSLog(@"didDeactivate");
 }
 
 #pragma mark - Actions
@@ -66,8 +77,8 @@
 #pragma mark - HTPresentationDelegate
 
 - (void)presentedControllerWillDismiss:(WKInterfaceController *)presentedController {
-    [self _fetchTerms];
-    [self _fetchCountry];
+    NSLog(@"presentedControllerWillDismiss");
+    _needsUpdateTermsAndCountry = YES;
 }
 
 #pragma mark - Private
@@ -104,6 +115,9 @@
         _terms = replyInfo[kHTWatchResponse];
         _termIndex = 0;
         _colorIndex = 0;
+
+        NSString * country = replyInfo[kHTWatchUserInfos];
+        [self.countryLabel setText:country];
 
         [self nextTerm];
     }];
