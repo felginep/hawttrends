@@ -40,6 +40,11 @@
 
     [self.class openParentApplication:@{kHTWatchAction: @(HTWatchActionCountries) } reply:^(NSDictionary *replyInfo, NSError *error) {
         _countries = replyInfo[kHTWatchResponse];
+        if (_countries.count == 0) {
+            [self dismissController];
+            return;
+        }
+
         [self _updateTable];
     }];
 }
@@ -78,11 +83,6 @@
 }
 
 - (void)_updateTable {
-    if (_countries.count == 0) {
-        [self dismissController];
-        return;
-    }
-
     HTCountryTableViewModel * tableViewModel = [[HTCountryTableViewModel alloc] initWithCountries:_countries isSubset:NO];
     [self.table updateFrom:_tableViewModel to:tableViewModel];
     _tableViewModel = tableViewModel;
