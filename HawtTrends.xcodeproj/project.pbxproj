@@ -24,6 +24,7 @@
 		4921F07C1B38559F00CCB984 /* NSArray+HawtTrends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921F07B1B38559F00CCB984 /* NSArray+HawtTrends.m */; };
 		4921F07D1B38559F00CCB984 /* NSArray+HawtTrends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921F07B1B38559F00CCB984 /* NSArray+HawtTrends.m */; };
 		4921F0DB1B39490200CCB984 /* HTTermCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921F0DA1B39490200CCB984 /* HTTermCache.m */; };
+		4921F0DE1B3950D200CCB984 /* HTCountryQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921F0DD1B3950D200CCB984 /* HTCountryQueue.m */; };
 		4921F0E11B39595E00CCB984 /* WKInterface+Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921F0E01B39595E00CCB984 /* WKInterface+Performance.m */; };
 		4921F0E41B395A0600CCB984 /* HTCountryTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921F0E31B395A0600CCB984 /* HTCountryTableViewModel.m */; };
 		49272E5A1B3697FC0037521B /* HTInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49272E591B3697FC0037521B /* HTInterfaceController.m */; };
@@ -116,6 +117,8 @@
 		4921F07B1B38559F00CCB984 /* NSArray+HawtTrends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+HawtTrends.m"; path = "Model/NSArray+HawtTrends.m"; sourceTree = "<group>"; };
 		4921F0D91B39490200CCB984 /* HTTermCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTermCache.h; path = Model/HTTermCache.h; sourceTree = "<group>"; };
 		4921F0DA1B39490200CCB984 /* HTTermCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTermCache.m; path = Model/HTTermCache.m; sourceTree = "<group>"; };
+		4921F0DC1B3950D200CCB984 /* HTCountryQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTCountryQueue.h; sourceTree = "<group>"; };
+		4921F0DD1B3950D200CCB984 /* HTCountryQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTCountryQueue.m; sourceTree = "<group>"; };
 		4921F0DF1B39595E00CCB984 /* WKInterface+Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKInterface+Performance.h"; sourceTree = "<group>"; };
 		4921F0E01B39595E00CCB984 /* WKInterface+Performance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKInterface+Performance.m"; sourceTree = "<group>"; };
 		4921F0E21B395A0600CCB984 /* HTCountryTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTCountryTableViewModel.h; sourceTree = "<group>"; };
@@ -361,6 +364,8 @@
 				4921F07B1B38559F00CCB984 /* NSArray+HawtTrends.m */,
 				4921F0D91B39490200CCB984 /* HTTermCache.h */,
 				4921F0DA1B39490200CCB984 /* HTTermCache.m */,
+				4921F0DC1B3950D200CCB984 /* HTCountryQueue.h */,
+				4921F0DD1B3950D200CCB984 /* HTCountryQueue.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -526,6 +531,7 @@
 				49BA93351752AB180038DB2A /* HTMeasureTextField.m in Sources */,
 				49C0C19F1A1DF8DC0098E25D /* HTGridSizeSelector.m in Sources */,
 				49C4B13D1A227BEA00A418BC /* HTCountry.m in Sources */,
+				4921F0DE1B3950D200CCB984 /* HTCountryQueue.m in Sources */,
 				4921F07C1B38559F00CCB984 /* NSArray+HawtTrends.m in Sources */,
 				4950C74317667B6F0040924E /* HTTermsDownloader.m in Sources */,
 				4921F0DB1B39490200CCB984 /* HTTermCache.m in Sources */,
