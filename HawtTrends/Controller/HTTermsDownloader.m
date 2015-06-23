@@ -8,6 +8,7 @@
 
 #import "HTTermsDownloader.h"
 #import "Reachability.h"
+#import "HTTermCache.h"
 
 #define HT_TERMS_API_URL @"http://hawttrends.appspot.com/api/terms/"
 #define HT_LANGUAGE_KEY @"HT_LANGUAGE_KEY"
@@ -162,6 +163,8 @@
                 [self _displayAlertViewWithErrorMessage:@"An error occurred"];
                 return ;
             }
+
+            [HTTermCache saveTermsByCountry:json];
 
             _terms = [self _filteredTerms:[json objectForKey:_currentCountry.webserviceCode]];
             if (callback) {
