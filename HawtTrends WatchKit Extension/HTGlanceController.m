@@ -13,6 +13,8 @@
 @interface HTGlanceController() {
     NSArray * _terms;
     NSString * _country;
+    BOOL _isFetchingCountry;
+    BOOL _isFetchingTerms;
 }
 
 @end
@@ -53,7 +55,13 @@
 #pragma mark - Private
 
 - (void)_fetchCountryWithCompletion:(void(^)(NSString * country))completion {
+    if (_isFetchingCountry) {
+        return;
+    }
+
+    _isFetchingCountry = YES;
     [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionCurrentCountry) } reply:^(NSDictionary *replyInfo, NSError *error) {
+        _isFetchingCountry = NO;
         NSString * country = replyInfo[kHTWatchResponse];
         [self.countryLabel setText:country];
         if (completion) { completion(country); }
@@ -61,8 +69,14 @@
 }
 
 - (void)_fetchTerms {
+    if (_isFetchingTerms) {
+        return;
+    }
+
+    _isFetchingTerms = YES;
     [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionFetchTerms) } reply:^(NSDictionary *replyInfo, NSError *error) {
         NSLog(@"reply = %@", replyInfo);
+        _isFetchingTerms = NO;
         _terms = replyInfo[kHTWatchResponse];
         [self _displayTerm];
     }];
