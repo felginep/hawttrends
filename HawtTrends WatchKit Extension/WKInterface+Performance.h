@@ -23,12 +23,12 @@
 @end
 
 
-@protocol PLTableViewModel <NSObject>
+@protocol WKTableViewModel <NSObject>
 @property (nonatomic, strong, readonly) NSArray * rowTypes;
 - (id)rowViewModelAtIndex:(NSInteger)index;
 - (void)table:(WKInterfaceTable *)table updateFrom:(id)oldViewModel to:(id)newViewModel atIndex:(NSInteger)index;
 @end
 
 @interface WKInterfaceTable (Performance)
-- (void)updateFrom:(id<PLTableViewModel>)oldValue to:(id<PLTableViewModel>)newValue;
+- (void)updateFrom:(id<WKTableViewModel>)oldValue to:(id<WKTableViewModel>)newValue;
 @end

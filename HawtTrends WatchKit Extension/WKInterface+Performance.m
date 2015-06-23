@@ -52,7 +52,7 @@
 
 @implementation WKInterfaceTable (Performance)
 
-- (void)updateFrom:(id<PLTableViewModel>)oldValue to:(id<PLTableViewModel>)newValue {
+- (void)updateFrom:(id<WKTableViewModel>)oldValue to:(id<WKTableViewModel>)newValue {
     if (oldValue && newValue) {
         // only update if necessary
         if (oldValue.rowTypes.count == 0) {
