@@ -10,6 +10,7 @@
 #import "HTCountryRowController.h"
 #import "HTSharedConstants.h"
 #import "NSArray+HawtTrends.h"
+#import "HTCountryTableViewModel.h"
 
 
 @implementation HTCountryInterfaceContext
@@ -25,6 +26,7 @@
 @interface HTCountryInterfaceController () {
     NSArray * _countries;
     HTCountryInterfaceContext * _context;
+    HTCountryTableViewModel * _tableViewModel;
 }
 
 @end
@@ -81,14 +83,9 @@
         return;
     }
 
-    NSArray * rowTypes = [NSArray arrayWithObject:NSStringFromClass(HTCountryRowController.class) numberOfOccurences:_countries.count];
-    [self.table setRowTypes:rowTypes];
-
-    for (int i = 0; i < self.table.numberOfRows; i++) {
-        HTCountryRowController * row = [self.table rowControllerAtIndex:i];
-        NSString * country = _countries[i];
-        [row.mainLabel setText:country];
-    }
+    HTCountryTableViewModel * tableViewModel = [[HTCountryTableViewModel alloc] initWithCountries:_countries isSubset:NO];
+    [self.table updateFrom:_tableViewModel to:tableViewModel];
+    _tableViewModel = tableViewModel;
 
     // TODO: be smarter, and save favorites countries
 }
