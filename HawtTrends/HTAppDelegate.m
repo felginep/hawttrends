@@ -40,17 +40,20 @@
         // TODO: Handle task expiration
     }];
 
+    HTCountry * country = [HTTermsDownloader sharedDownloader].currentCountry;
+
     HTWatchAction action = [userInfo[kHTWatchAction] integerValue];
     switch (action) {
         case HTWatchActionFetchTerms: {
             [[HTTermsDownloader sharedDownloader] downloadTerms:^{
                 NSArray * allTerms = [HTTermsDownloader sharedDownloader].terms;
-                reply(@{ kHTWatchResponse: allTerms });
+                if (!allTerms) { allTerms = @[]; }
+                NSLog(@" => %@", @{ kHTWatchResponse: allTerms, kHTWatchUserInfos: country.displayName });
+                reply(@{ kHTWatchResponse: allTerms, kHTWatchUserInfos: country.displayName });
                 [application endBackgroundTask:taskIdentifier];
             }];
         } break;
         case HTWatchActionCurrentCountry: {
-            HTCountry * country = [HTTermsDownloader sharedDownloader].currentCountry;
             reply(@{ kHTWatchResponse: country.displayName });
             [application endBackgroundTask:taskIdentifier];
         } break;
