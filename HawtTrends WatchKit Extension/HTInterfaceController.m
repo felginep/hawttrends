@@ -17,6 +17,8 @@
     NSUInteger _colorIndex;
     NSTimer * _timer;
     BOOL _needsUpdateTermsAndCountry;
+    BOOL _isFetchingCountry;
+    NSString * _country;
 }
 
 @end
@@ -31,7 +33,7 @@
     [self.countryLabel setText:@""];
     [self.countryLabel setTextColor:[UIColor htYellow]];
     [self _fetchTerms];
-    [self _fetchCountry];
+    [self _fetchCountryWithCompletion:nil];
 
     [self setTitle:@"HotTrends"];
 
@@ -48,6 +50,7 @@
     [super willActivate];
 
     [self _restartTimer];
+    [self nextTerm];
 
     NSLog(@"willActivate");
 
@@ -55,7 +58,12 @@
         [self _fetchTerms];
         _needsUpdateTermsAndCountry = NO;
     } else {
-        [self nextTerm];
+        [self _fetchCountryWithCompletion:^(NSString *country) {
+            if (country && ![country isEqualToString:_country]) {
+                _country = country;
+                [self _fetchTerms];
+            }
+        }];
     }
 }
 
@@ -123,10 +131,17 @@
     }];
 }
 
-- (void)_fetchCountry {
+- (void)_fetchCountryWithCompletion:(void(^)(NSString * country))completion {
+    if (_isFetchingCountry) {
+        return;
+    }
+
+    _isFetchingCountry = YES;
     [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionCurrentCountry) } reply:^(NSDictionary *replyInfo, NSError *error) {
-        NSString * countryName = replyInfo[kHTWatchResponse];
-        [self.countryLabel setText:countryName];
+        _isFetchingCountry = NO;
+        NSString * country = replyInfo[kHTWatchResponse];
+        [self.countryLabel setText:country];
+        if (completion) { completion(country); }
     }];
 }
 
