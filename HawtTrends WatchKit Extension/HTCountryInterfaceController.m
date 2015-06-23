@@ -25,8 +25,10 @@
 
 @interface HTCountryInterfaceController () {
     NSArray * _countries;
+    NSArray * _favoriteCountries;
     HTCountryInterfaceContext * _context;
     HTCountryTableViewModel * _tableViewModel;
+    BOOL _isSubset;
 }
 
 @end
@@ -40,11 +42,12 @@
 
     [self.class openParentApplication:@{kHTWatchAction: @(HTWatchActionCountries) } reply:^(NSDictionary *replyInfo, NSError *error) {
         _countries = replyInfo[kHTWatchResponse];
+        _favoriteCountries = replyInfo[kHTWatchUserInfos];
+        _isSubset = _favoriteCountries.count == kHTWatchSubsetResultCount;
         if (_countries.count == 0) {
             [self dismissController];
             return;
         }
-
         [self _updateTable];
     }];
 }
@@ -60,20 +63,41 @@
 }
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
-    NSString * country = _countries[rowIndex];
+    if (_isSubset && rowIndex == _tableViewModel.rowTypes.count - 1) { // Load more
+        [self _loadMore];
+    } else { // set current country
+        NSString * country = [self _displayedCountries][rowIndex];
+        [self _setCurrentCountry:country];
+    }
+}
 
+#pragma mark - Private
+
+- (void)_loadMore {
+    _isSubset = NO;
+
+    NSMutableSet * matches = [NSMutableSet setWithArray:_countries];
+    NSSet * submatches = [NSSet setWithArray:_favoriteCountries];
+    [matches minusSet:submatches];
+    NSArray * countriesWithoutFavorites = [[matches allObjects] sortedArrayUsingSelector:@selector(compare:)];
+    _countries = [_favoriteCountries arrayByAddingObjectsFromArray:countriesWithoutFavorites];
+
+    [self _updateTable];
+}
+
+- (void)_setCurrentCountry:(NSString *)country {
+    if (country.length == 0) {
+        return;
+    }
     [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionSetCurrentCountry), kHTWatchUserInfos: country } reply:^(NSDictionary *replyInfo, NSError *error) {
         BOOL success = [replyInfo[kHTWatchResponse] boolValue];
         if (!success) {
             NSLog(@"Error setting up new country");
             return ;
         }
-
         [self _dismiss];
     }];
 }
-
-#pragma mark - Private
 
 - (void)_dismiss {
     if ([_context.presentingController respondsToSelector:@selector(presentedControllerWillDismiss:)]) {
@@ -82,12 +106,14 @@
     [self dismissController];
 }
 
+- (NSArray *)_displayedCountries {
+    return _isSubset ? _favoriteCountries : _countries;
+}
+
 - (void)_updateTable {
-    HTCountryTableViewModel * tableViewModel = [[HTCountryTableViewModel alloc] initWithCountries:_countries isSubset:NO];
+    HTCountryTableViewModel * tableViewModel = [[HTCountryTableViewModel alloc] initWithCountries:[self _displayedCountries] isSubset:_isSubset];
     [self.table updateFrom:_tableViewModel to:tableViewModel];
     _tableViewModel = tableViewModel;
-
-    // TODO: be smarter, and save favorites countries
 }
 
 @end

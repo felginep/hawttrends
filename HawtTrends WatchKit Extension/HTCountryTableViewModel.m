@@ -23,7 +23,7 @@
 - (instancetype)initWithCountries:(NSArray *)countries isSubset:(BOOL)isSubset {
     if (self = [super init]) {
         _rowTypes = [NSArray arrayWithObject:NSStringFromClass(HTCountryRowController.class) numberOfOccurences:countries.count + (isSubset ? 1 : 0)];
-        _rowViewModels = countries;
+        _rowViewModels = isSubset ? [countries arrayByAddingObject:@"Load more..."] : countries;
         _isSubset = isSubset;
     }
     return self;

@@ -12,6 +12,7 @@
 #import "HTSharedConstants.h"
 #import "NSArray+HawtTrends.h"
 #import "HTTermCache.h"
+#import "HTCountryQueue.h"
 
 @implementation HTAppDelegate
 
@@ -75,8 +76,13 @@
             [application endBackgroundTask:taskIdentifier];
         } break;
         case HTWatchActionCountries: {
+            NSArray * lastCountries = [HTCountryQueue countriesToIndex:kHTWatchSubsetResultCount];
+            if (!lastCountries) {
+                lastCountries = @[];
+            }
             NSArray * countryNames = [[HTTermsDownloader sharedDownloader].countries map:^id(HTCountry * c) { return c.displayName; }];
-            reply(@{ kHTWatchResponse: countryNames });
+            NSLog(@"%@", @{ kHTWatchResponse: countryNames, kHTWatchUserInfos: lastCountries });
+            reply(@{ kHTWatchResponse: countryNames, kHTWatchUserInfos: lastCountries });
             [application endBackgroundTask:taskIdentifier];
         } break;
         case HTWatchActionSetCurrentCountry: {
