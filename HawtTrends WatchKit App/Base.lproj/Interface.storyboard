@@ -77,16 +77,16 @@
                                 <group alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="Edb-zC-h67">
                                     <items>
                                         <label alignment="left" text="Trends" id="vkO-6D-OD2">
-                                            <fontDescription key="font" type="system" weight="semibold" pointSize="16"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                         </label>
                                         <label alignment="left" text="France" id="Ppk-hf-cv6">
-                                            <fontDescription key="font" type="italicSystem" pointSize="13"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                         </label>
                                     </items>
-                                    <edgeInsets key="margins" left="2" right="0.0" top="0.0" bottom="0.0"/>
+                                    <edgeInsets key="margins" left="4" right="0.0" top="0.0" bottom="0.0"/>
                                 </group>
                             </items>
-                            <edgeInsets key="margins" left="2" right="0.0" top="2" bottom="0.0"/>
+                            <edgeInsets key="margins" left="6" right="0.0" top="2" bottom="0.0"/>
                         </group>
                         <group alignment="left" id="eew-Gs-W6Y">
                             <items>
@@ -100,6 +100,7 @@
                     <connections>
                         <outlet property="countryLabel" destination="Ppk-hf-cv6" id="eaO-I3-zQ7"/>
                         <outlet property="mainLabel" destination="Saq-y3-fep" id="GQ9-Qt-ptK"/>
+                        <outlet property="titleLabel" destination="vkO-6D-OD2" id="4qB-cJ-Dbm"/>
                     </connections>
                 </glanceController>
             </objects>

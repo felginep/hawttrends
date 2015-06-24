@@ -11,6 +11,7 @@
 
 @interface HTGlanceController : WKInterfaceController
 
+@property (weak, nonatomic) IBOutlet WKInterfaceLabel * titleLabel;
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel * mainLabel;
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel * countryLabel;
 @end

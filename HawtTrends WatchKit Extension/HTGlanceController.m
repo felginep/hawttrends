@@ -27,6 +27,10 @@
 
     [self.countryLabel setText:@""];
     [self.mainLabel setText:@""];
+    [self.titleLabel setText:@"HotTrends"];
+
+    [self.countryLabel setTextColor:[UIColor htYellow]];
+    [self.titleLabel setTextColor:[UIColor htYellow]];
 
     // Configure interface objects here.
     [self _fetchCountryWithCompletion:nil];
