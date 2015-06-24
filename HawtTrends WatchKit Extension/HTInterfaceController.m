@@ -37,7 +37,7 @@
 
     [self setTitle:@"HotTrends"];
 
-    [self addMenuItemWithItemIcon:WKMenuItemIconMore title:@"Country" action:@selector(_chooseCountry)];
+    [self addMenuItemWithImageNamed:@"HTFlagIcon" title:@"Countries" action:@selector(_chooseCountry)];
 }
 
 - (void)_chooseCountry {
