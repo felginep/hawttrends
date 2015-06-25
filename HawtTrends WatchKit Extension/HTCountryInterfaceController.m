@@ -57,11 +57,16 @@
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
+
+    NSLog(@"[HTCountryInterfaceController] willActivate");
 }
 
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
+
+    NSLog(@"[HTCountryInterfaceController] didDeactivate");
+
     if ([_context.presentingController respondsToSelector:@selector(presentedControllerDidDismiss:)]) {
         [_context.presentingController presentedControllerDidDismiss:self];
     }
