@@ -19,6 +19,7 @@
     BOOL _needsUpdateTermsAndCountry;
     BOOL _isFetchingCountry;
     HTCountry * _country;
+    BOOL _isPresentingController;
 }
 
 @end
@@ -41,6 +42,7 @@
 }
 
 - (void)_chooseCountry {
+    _isPresentingController = YES;
     HTCountryInterfaceContext * context = [HTCountryInterfaceContext contextWithPresentingController:self];
     [self presentControllerWithName:NSStringFromClass(HTCountryInterfaceController.class) context:context];
 }
@@ -49,7 +51,9 @@
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
 
-    [self nextTerm];
+    if (!_isPresentingController) {
+        [self nextTerm];
+    }
 
     NSLog(@"willActivate");
 
@@ -84,6 +88,11 @@
 - (void)presentedControllerWillDismiss:(WKInterfaceController *)presentedController {
     NSLog(@"presentedControllerWillDismiss");
     _needsUpdateTermsAndCountry = YES;
+}
+
+- (void)presentedControllerDidDismiss:(WKInterfaceController *)presentedController {
+    NSLog(@"presentedControllerDidDismiss");
+    _isPresentingController = NO;
 }
 
 #pragma mark - Private
