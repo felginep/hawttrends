@@ -9,10 +9,11 @@
 #import "HTGlanceController.h"
 #import "UIColor+HawtTrends.h"
 #import "HTSharedConstants.h"
+#import "HTCountry.h"
 
 @interface HTGlanceController() {
     NSArray * _terms;
-    NSString * _country;
+    HTCountry * _country;
     BOOL _isFetchingCountry;
     BOOL _isFetchingTerms;
 }
@@ -41,8 +42,8 @@
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
 
-    [self _fetchCountryWithCompletion:^(NSString *country) {
-        if (country && ![country isEqualToString:_country]) {
+    [self _fetchCountryWithCompletion:^(HTCountry * country) {
+        if (country && ![country isEqual:_country]) {
             _country = country;
             [self _fetchTerms];
         } else {
@@ -58,7 +59,7 @@
 
 #pragma mark - Private
 
-- (void)_fetchCountryWithCompletion:(void(^)(NSString * country))completion {
+- (void)_fetchCountryWithCompletion:(void(^)(HTCountry * country))completion {
     if (_isFetchingCountry) {
         return;
     }
@@ -66,8 +67,13 @@
     _isFetchingCountry = YES;
     [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionCurrentCountry) } reply:^(NSDictionary *replyInfo, NSError *error) {
         _isFetchingCountry = NO;
-        NSString * country = replyInfo[kHTWatchResponse];
-        [self.countryLabel setText:country];
+
+        NSData * countryData = replyInfo[kHTWatchResponse];
+        HTCountry * country = nil;
+        if (countryData) {
+            HTCountry * country = [NSKeyedUnarchiver unarchiveObjectWithData:countryData];
+            [self.countryLabel setText:country.displayName];
+        }
         if (completion) { completion(country); }
     }];
 }

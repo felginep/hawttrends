@@ -10,6 +10,7 @@
 #import "UIColor+HawtTrends.h"
 #import "HTSharedConstants.h"
 #import "HTCountryInterfaceController.h"
+#import "HTCountry.h"
 
 @interface HTInterfaceController() <HTPresentationDelegate> {
     NSArray * _terms;
@@ -17,7 +18,7 @@
     NSUInteger _colorIndex;
     BOOL _needsUpdateTermsAndCountry;
     BOOL _isFetchingCountry;
-    NSString * _country;
+    HTCountry * _country;
 }
 
 @end
@@ -56,8 +57,8 @@
         [self _fetchTerms];
         _needsUpdateTermsAndCountry = NO;
     } else {
-        [self _fetchCountryWithCompletion:^(NSString *country) {
-            if (country && ![country isEqualToString:_country]) {
+        [self _fetchCountryWithCompletion:^(HTCountry * country) {
+            if (country && ![country isEqual:_country]) {
                 _country = country;
                 [self _fetchTerms];
             }
@@ -110,14 +111,17 @@
         _termIndex = 0;
         _colorIndex = 0;
 
-        NSString * country = replyInfo[kHTWatchUserInfos];
-        [self.countryLabel setText:country];
+        NSData * countryData = replyInfo[kHTWatchUserInfos];
+        if (countryData) {
+            HTCountry * country = [NSKeyedUnarchiver unarchiveObjectWithData:countryData];
+            [self.countryLabel setText:country.displayName];
+        }
 
         [self nextTerm];
     }];
 }
 
-- (void)_fetchCountryWithCompletion:(void(^)(NSString * country))completion {
+- (void)_fetchCountryWithCompletion:(void(^)(HTCountry * country))completion {
     if (_isFetchingCountry) {
         return;
     }
@@ -125,8 +129,13 @@
     _isFetchingCountry = YES;
     [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionCurrentCountry) } reply:^(NSDictionary *replyInfo, NSError *error) {
         _isFetchingCountry = NO;
-        NSString * country = replyInfo[kHTWatchResponse];
-        [self.countryLabel setText:country];
+
+        NSData * countryData = replyInfo[kHTWatchResponse];
+        HTCountry * country = nil;
+        if (countryData) {
+            HTCountry * country = [NSKeyedUnarchiver unarchiveObjectWithData:countryData];
+            [self.countryLabel setText:country.displayName];
+        }
         if (completion) { completion(country); }
     }];
 }

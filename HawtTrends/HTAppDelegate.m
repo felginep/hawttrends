@@ -43,6 +43,7 @@
     }];
 
     HTCountry * country = [HTTermsDownloader sharedDownloader].currentCountry;
+    NSData * countryData = [NSKeyedArchiver archivedDataWithRootObject:country];
 
     HTWatchAction action = [userInfo[kHTWatchAction] integerValue];
     switch (action) {
@@ -53,7 +54,7 @@
                     terms = @[];
                 }
                 NSDictionary * response =  @{ kHTWatchResponse: terms,
-                                              kHTWatchUserInfos: country.displayName };
+                                              kHTWatchUserInfos: countryData };
                 NSLog(@"%@ %@", identifier, response);
                 reply(response);
                 [application endBackgroundTask:taskIdentifier];
@@ -72,7 +73,7 @@
             
         } break;
         case HTWatchActionCurrentCountry: {
-            reply(@{ kHTWatchResponse: country.displayName });
+            reply(@{ kHTWatchResponse: countryData });
             [application endBackgroundTask:taskIdentifier];
         } break;
         case HTWatchActionCountries: {
