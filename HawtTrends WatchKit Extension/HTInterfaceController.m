@@ -15,7 +15,6 @@
     NSArray * _terms;
     NSUInteger _termIndex;
     NSUInteger _colorIndex;
-    NSTimer * _timer;
     BOOL _needsUpdateTermsAndCountry;
     BOOL _isFetchingCountry;
     NSString * _country;
@@ -49,7 +48,6 @@
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
 
-    [self _restartTimer];
     [self nextTerm];
 
     NSLog(@"willActivate");
@@ -70,7 +68,6 @@
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
-    [self _stopTimer];
 
     NSLog(@"didDeactivate");
 }
@@ -78,7 +75,6 @@
 #pragma mark - Actions
 
 - (IBAction)nextTerm {
-    [self _restartTimer];
     [self _nextTerm];
 }
 
@@ -90,16 +86,6 @@
 }
 
 #pragma mark - Private
-
-- (void)_stopTimer {
-    [_timer invalidate];
-    _timer = nil;
-}
-
-- (void)_restartTimer {
-    [self _stopTimer];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(nextTerm) userInfo:nil repeats:YES];
-}
 
 - (void)_nextTerm {
     if (_terms.count == 0) {
