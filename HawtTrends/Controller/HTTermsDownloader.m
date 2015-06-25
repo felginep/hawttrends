@@ -99,7 +99,6 @@
             HTCountry * country = [[HTCountry alloc] init];
             country.countryCode = countryCode;
             country.webserviceCode = _countryAssociations[countryCode];
-            country.displayName = [[NSLocale systemLocale] displayNameForKey:NSLocaleCountryCode value:countryCode];
             [countries addObject:country];
 
             if ([currentCountryCode isEqualToString:countryCode]) {

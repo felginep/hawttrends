@@ -13,7 +13,10 @@
 - (void)dealloc {
     _countryCode = nil;
     _webserviceCode = nil;
-    _displayName = nil;
+}
+
+- (NSString *)displayName {
+    return [[NSLocale systemLocale] displayNameForKey:NSLocaleCountryCode value:self.countryCode];
 }
 
 @end

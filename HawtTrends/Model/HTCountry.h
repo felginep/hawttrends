@@ -11,5 +11,5 @@
 @interface HTCountry : NSObject
 @property (nonatomic, strong) NSString * countryCode;
 @property (nonatomic, strong) NSString * webserviceCode;
-@property (nonatomic, strong) NSString * displayName;
+@property (nonatomic, readonly) NSString * displayName;
 @end
