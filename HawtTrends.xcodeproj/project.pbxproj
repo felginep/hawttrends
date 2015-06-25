@@ -56,6 +56,7 @@
 		49C4B1431A252B3A00A418BC /* HTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1421A252B3900A418BC /* HTTextView.m */; };
 		49D6ED671A348C300091566C /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D6ED661A348C300091566C /* OpenInChromeController.m */; };
 		49F68F5F1B3BE3F200466A21 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49F68F611B3BE3F200466A21 /* Localizable.strings */; };
+		49F68F651B3BE80A00466A21 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49F68F671B3BE80A00466A21 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,8 @@
 		49D6ED661A348C300091566C /* OpenInChromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInChromeController.m; sourceTree = "<group>"; };
 		49F68F601B3BE3F200466A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		49F68F621B3BE3FE00466A21 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		49F68F661B3BE80A00466A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		49F68F681B3BE80D00466A21 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +250,7 @@
 				490C5CB9174EB22900CBD520 /* HawtTrends-Prefix.pch */,
 				49C4B1351A20C74400A418BC /* Images.xcassets */,
 				4945E5BA1AC930D100A40FC4 /* Launch Images */,
+				49F68F671B3BE80A00466A21 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -484,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4945E5B91AC92F3400A40FC4 /* Default@2x.png in Resources */,
+				49F68F651B3BE80A00466A21 /* Localizable.strings in Resources */,
 				4945E5B71AC92F3400A40FC4 /* Default-ipad@2x.png in Resources */,
 				490C5CB6174EB22900CBD520 /* InfoPlist.strings in Resources */,
 				4945E5B61AC92F3400A40FC4 /* Default-ipad.png in Resources */,
@@ -597,6 +602,15 @@
 			children = (
 				49F68F601B3BE3F200466A21 /* Base */,
 				49F68F621B3BE3FE00466A21 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		49F68F671B3BE80A00466A21 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49F68F661B3BE80A00466A21 /* Base */,
+				49F68F681B3BE80D00466A21 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

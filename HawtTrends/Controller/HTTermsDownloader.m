@@ -144,7 +144,7 @@
 }
 
 - (void)downloadTerms:(void(^)(void))callback {
-    _terms = @[@"Loading..."];
+    _terms = @[NSLocalizedString(@"loading", nil)];
 
     NSURL * url = [NSURL URLWithString:HT_TERMS_API_URL];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
