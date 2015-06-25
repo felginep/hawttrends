@@ -55,7 +55,7 @@
         [self nextTerm];
     }
 
-    NSLog(@"willActivate");
+    NSLog(@"willActivate %@", _isPresentingController ? @"Y" : @"N");
 
     if (_needsUpdateTermsAndCountry) {
         [self _fetchTerms];
@@ -74,7 +74,7 @@
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
 
-    NSLog(@"didDeactivate");
+    NSLog(@"didDeactivate %@", _isPresentingController ? @"Y" : @"N");
 }
 
 #pragma mark - Actions
