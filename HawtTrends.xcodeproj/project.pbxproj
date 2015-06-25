@@ -57,6 +57,7 @@
 		49D6ED671A348C300091566C /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D6ED661A348C300091566C /* OpenInChromeController.m */; };
 		49F68F5F1B3BE3F200466A21 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49F68F611B3BE3F200466A21 /* Localizable.strings */; };
 		49F68F651B3BE80A00466A21 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49F68F671B3BE80A00466A21 /* Localizable.strings */; };
+		49F68F691B3C2FE400466A21 /* HTCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B13C1A227BEA00A418BC /* HTCountry.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -557,6 +558,7 @@
 				4921F0761B384F4500CCB984 /* HTCountryRowController.m in Sources */,
 				4921F0E41B395A0600CCB984 /* HTCountryTableViewModel.m in Sources */,
 				49272E5A1B3697FC0037521B /* HTInterfaceController.m in Sources */,
+				49F68F691B3C2FE400466A21 /* HTCountry.m in Sources */,
 				4986895F1B36A6360039C456 /* HTSharedConstants.m in Sources */,
 				4921F0E11B39595E00CCB984 /* WKInterface+Performance.m in Sources */,
 				4921F0791B384FE500CCB984 /* HTCountryInterfaceController.m in Sources */,
