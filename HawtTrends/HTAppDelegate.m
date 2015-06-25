@@ -80,9 +80,10 @@
             if (!lastCountries) {
                 lastCountries = @[];
             }
+            NSArray * lastCountriesNames = [lastCountries map:^id(HTCountry * c) { return c.displayName; }];
             NSArray * countryNames = [[HTTermsDownloader sharedDownloader].countries map:^id(HTCountry * c) { return c.displayName; }];
-            NSLog(@"%@", @{ kHTWatchResponse: countryNames, kHTWatchUserInfos: lastCountries });
-            reply(@{ kHTWatchResponse: countryNames, kHTWatchUserInfos: lastCountries });
+            NSLog(@"%@", @{ kHTWatchResponse: countryNames, kHTWatchUserInfos: lastCountriesNames });
+            reply(@{ kHTWatchResponse: countryNames, kHTWatchUserInfos: lastCountriesNames });
             [application endBackgroundTask:taskIdentifier];
         } break;
         case HTWatchActionSetCurrentCountry: {

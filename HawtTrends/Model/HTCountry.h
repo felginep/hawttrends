@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HTCountry : NSObject
+@interface HTCountry : NSObject <NSCoding, NSSecureCoding>
 @property (nonatomic, strong) NSString * countryCode;
 @property (nonatomic, strong) NSString * webserviceCode;
 @property (nonatomic, readonly) NSString * displayName;

@@ -7,6 +7,7 @@
 //
 
 #import "HTCountryQueue.h"
+#import "HTCountry.h"
 
 static NSString * kCountryQueueKey = @"kCountryQueueKey";
 
@@ -18,19 +19,23 @@ static NSString * kCountryQueueKey = @"kCountryQueueKey";
         queue = [NSMutableArray array];
     }
 
-    NSUInteger index = [queue indexOfObjectPassingTest:^BOOL(NSString * obj, NSUInteger idx, BOOL *stop) {
-        return [obj isEqualToString:country];
+    NSUInteger index = [queue indexOfObjectPassingTest:^BOOL(HTCountry * obj, NSUInteger idx, BOOL *stop) {
+        return [obj isEqual:country];
     }];
     if (index != NSNotFound) {
         [queue removeObjectAtIndex:index];
     }
     [queue insertObject:country atIndex:0];
-    [[NSUserDefaults standardUserDefaults] setObject:[queue copy] forKey:kCountryQueueKey];
+
+
+    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:[queue copy]];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:kCountryQueueKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (NSArray *)countries {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:kCountryQueueKey];
+    NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:kCountryQueueKey];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 
 + (NSArray *)countriesToIndex:(NSInteger)index {

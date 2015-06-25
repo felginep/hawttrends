@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class HTCountry;
+
 @interface HTCountryQueue : NSObject
 
-+ (void)addCountry:(NSString *)country;
++ (void)addCountry:(HTCountry *)country;
 + (NSArray *)countries;
 + (NSArray *)countriesToIndex:(NSInteger)index;
 + (void)flush;

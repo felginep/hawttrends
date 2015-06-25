@@ -131,7 +131,7 @@
 
 - (void)setCurrentCountry:(HTCountry *)currentCountry {
     _currentCountry = currentCountry;
-    [HTCountryQueue addCountry:currentCountry.displayName];
+    [HTCountryQueue addCountry:currentCountry];
     [[NSUserDefaults standardUserDefaults] setObject:currentCountry.countryCode forKey:HT_LANGUAGE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self downloadTerms:nil];
