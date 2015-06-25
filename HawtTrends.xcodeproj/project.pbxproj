@@ -55,6 +55,7 @@
 		49C4B13D1A227BEA00A418BC /* HTCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B13C1A227BEA00A418BC /* HTCountry.m */; };
 		49C4B1431A252B3A00A418BC /* HTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B1421A252B3900A418BC /* HTTextView.m */; };
 		49D6ED671A348C300091566C /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D6ED661A348C300091566C /* OpenInChromeController.m */; };
+		49F68F5F1B3BE3F200466A21 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49F68F611B3BE3F200466A21 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,8 @@
 		49C4B1421A252B3900A418BC /* HTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTextView.m; path = View/HTTextView.m; sourceTree = "<group>"; };
 		49D6ED651A348C300091566C /* OpenInChromeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInChromeController.h; sourceTree = "<group>"; };
 		49D6ED661A348C300091566C /* OpenInChromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInChromeController.m; sourceTree = "<group>"; };
+		49F68F601B3BE3F200466A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		49F68F621B3BE3FE00466A21 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +307,7 @@
 				4921F0E31B395A0600CCB984 /* HTCountryTableViewModel.m */,
 				49272E5E1B3697FC0037521B /* Images.xcassets */,
 				49272E561B3697FC0037521B /* Supporting Files */,
+				49F68F611B3BE3F200466A21 /* Localizable.strings */,
 			);
 			path = "HawtTrends WatchKit Extension";
 			sourceTree = "<group>";
@@ -460,6 +464,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 490C5C9F174EB22800CBD520;
 			productRefGroup = 490C5CA9174EB22800CBD520 /* Products */;
@@ -497,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49272E631B3697FC0037521B /* HawtTrends WatchKit App.app in Resources */,
+				49F68F5F1B3BE3F200466A21 /* Localizable.strings in Resources */,
 				49272E5F1B3697FC0037521B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,6 +590,15 @@
 				49272E791B3698720037521B /* Base */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		49F68F611B3BE3F200466A21 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49F68F601B3BE3F200466A21 /* Base */,
+				49F68F621B3BE3FE00466A21 /* fr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

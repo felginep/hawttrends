@@ -38,6 +38,8 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
 
+    [self setTitle:NSLocalizedString(@"cancel", nil)];
+
     _context = context;
 
     [self.class openParentApplication:@{kHTWatchAction: @(HTWatchActionCountries) } reply:^(NSDictionary *replyInfo, NSError *error) {

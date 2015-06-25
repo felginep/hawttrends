@@ -37,7 +37,7 @@
 
     [self setTitle:@"HotTrends"];
 
-    [self addMenuItemWithImageNamed:@"HTFlagIcon" title:@"Countries" action:@selector(_chooseCountry)];
+    [self addMenuItemWithImageNamed:@"HTFlagIcon" title:NSLocalizedString(@"countries", nil) action:@selector(_chooseCountry)];
 }
 
 - (void)_chooseCountry {
