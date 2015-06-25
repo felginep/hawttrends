@@ -9,6 +9,7 @@
 #import "HTCountryTableViewModel.h"
 #import "NSArray+HawtTrends.h"
 #import "HTCountryRowController.h"
+#import "HTCountry.h"
 
 @interface HTCountryTableViewModel () {
     NSArray * _rowTypes; // of NSString
@@ -23,7 +24,8 @@
 - (instancetype)initWithCountries:(NSArray *)countries isSubset:(BOOL)isSubset {
     if (self = [super init]) {
         _rowTypes = [NSArray arrayWithObject:NSStringFromClass(HTCountryRowController.class) numberOfOccurences:countries.count + (isSubset ? 1 : 0)];
-        _rowViewModels = isSubset ? [countries arrayByAddingObject:NSLocalizedString(@"load_more", nil)] : countries;
+        NSArray * countryNames = [countries map:^id(HTCountry * obj) { return obj.displayName; }];
+        _rowViewModels = isSubset ? [countryNames arrayByAddingObject:NSLocalizedString(@"load_more", nil)] : countryNames;
         _isSubset = isSubset;
     }
     return self;

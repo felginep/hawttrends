@@ -11,7 +11,7 @@
 #import "HTSharedConstants.h"
 #import "NSArray+HawtTrends.h"
 #import "HTCountryTableViewModel.h"
-
+#import "HTCountry.h"
 
 @implementation HTCountryInterfaceContext
 
@@ -43,8 +43,8 @@
     _context = context;
 
     [self.class openParentApplication:@{kHTWatchAction: @(HTWatchActionCountries) } reply:^(NSDictionary *replyInfo, NSError *error) {
-        _countries = replyInfo[kHTWatchResponse];
-        _favoriteCountries = replyInfo[kHTWatchUserInfos];
+        _countries = [NSKeyedUnarchiver unarchiveObjectWithData:replyInfo[kHTWatchResponse]];
+        _favoriteCountries = [NSKeyedUnarchiver unarchiveObjectWithData:replyInfo[kHTWatchUserInfos]];
         _isSubset = _favoriteCountries.count == kHTWatchSubsetResultCount;
         if (_countries.count == 0) {
             [self dismissController];
@@ -68,7 +68,7 @@
     if (_isSubset && rowIndex == _tableViewModel.rowTypes.count - 1) { // Load more
         [self _loadMore];
     } else { // set current country
-        NSString * country = [self _displayedCountries][rowIndex];
+        HTCountry * country = [self _displayedCountries][rowIndex];
         [self _setCurrentCountry:country];
     }
 }
@@ -81,17 +81,17 @@
     NSMutableSet * matches = [NSMutableSet setWithArray:_countries];
     NSSet * submatches = [NSSet setWithArray:_favoriteCountries];
     [matches minusSet:submatches];
-    NSArray * countriesWithoutFavorites = [[matches allObjects] sortedArrayUsingSelector:@selector(compare:)];
+    NSArray * countriesWithoutFavorites = [[matches allObjects] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES]]];
     _countries = [_favoriteCountries arrayByAddingObjectsFromArray:countriesWithoutFavorites];
 
     [self _updateTable];
 }
 
-- (void)_setCurrentCountry:(NSString *)country {
-    if (country.length == 0) {
-        return;
-    }
-    [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionSetCurrentCountry), kHTWatchUserInfos: country } reply:^(NSDictionary *replyInfo, NSError *error) {
+- (void)_setCurrentCountry:(HTCountry *)country {
+    if (!country) return;
+
+    NSData * countryData = [NSKeyedArchiver archivedDataWithRootObject:country];
+    [self.class openParentApplication:@{ kHTWatchAction: @(HTWatchActionSetCurrentCountry), kHTWatchUserInfos: countryData } reply:^(NSDictionary *replyInfo, NSError *error) {
         BOOL success = [replyInfo[kHTWatchResponse] boolValue];
         if (!success) {
             NSLog(@"Error setting up new country");

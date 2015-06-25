@@ -80,25 +80,16 @@
             if (!lastCountries) {
                 lastCountries = @[];
             }
-            NSArray * lastCountriesNames = [lastCountries map:^id(HTCountry * c) { return c.displayName; }];
-            NSArray * countryNames = [[HTTermsDownloader sharedDownloader].countries map:^id(HTCountry * c) { return c.displayName; }];
-            NSLog(@"%@", @{ kHTWatchResponse: countryNames, kHTWatchUserInfos: lastCountriesNames });
-            reply(@{ kHTWatchResponse: countryNames, kHTWatchUserInfos: lastCountriesNames });
+            NSData * archivedCountries = [NSKeyedArchiver archivedDataWithRootObject:[HTTermsDownloader sharedDownloader].countries];
+            NSData * archivedLastCountries = [NSKeyedArchiver archivedDataWithRootObject:lastCountries];
+            reply(@{ kHTWatchResponse: archivedCountries, kHTWatchUserInfos: archivedLastCountries });
             [application endBackgroundTask:taskIdentifier];
         } break;
         case HTWatchActionSetCurrentCountry: {
-            NSString * currentCountryName = userInfo[kHTWatchUserInfos];
-            HTCountry * currentCountry = nil;
-            for (HTCountry * country in [HTTermsDownloader sharedDownloader].countries) {
-                if ([country.displayName isEqualToString:currentCountryName]) {
-                    currentCountry = country;
-                    break;
-                }
-            }
-
-            BOOL success = currentCountry != nil;
-            if (currentCountry) {
-                [HTTermsDownloader sharedDownloader].currentCountry = currentCountry;
+            HTCountry * country = [NSKeyedUnarchiver unarchiveObjectWithData:userInfo[kHTWatchUserInfos]];
+            BOOL success = country != nil;
+            if (country) {
+                [HTTermsDownloader sharedDownloader].currentCountry = country;
             }
             reply(@{ kHTWatchResponse: @(success) });
             [application endBackgroundTask:taskIdentifier];
