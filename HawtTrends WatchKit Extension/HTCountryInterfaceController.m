@@ -62,6 +62,9 @@
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
+    if ([_context.presentingController respondsToSelector:@selector(presentedControllerDidDismiss:)]) {
+        [_context.presentingController presentedControllerDidDismiss:self];
+    }
 }
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {

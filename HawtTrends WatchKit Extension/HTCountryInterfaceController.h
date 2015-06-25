@@ -11,6 +11,7 @@
 
 @protocol HTPresentationDelegate <NSObject>
 - (void)presentedControllerWillDismiss:(WKInterfaceController *)presentedController;
+- (void)presentedControllerDidDismiss:(WKInterfaceController *)presentedController;
 @end
 
 @interface HTCountryInterfaceContext : NSObject
